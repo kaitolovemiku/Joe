@@ -226,7 +226,7 @@ export default {
             projectType: this.projectType,
             projectMember: this.projectMember,
             projectAdvisor: this.projectAdvisor,
-            projectPoint: null,
+            projectPoint: 0,
             projectStatus: "Waiting for teacher acception",
             projectDuration: this.projectDuration,
             projectFileName: this.projectFile.name,

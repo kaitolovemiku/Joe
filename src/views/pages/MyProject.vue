@@ -73,7 +73,7 @@
       <CCard v-if="haveProjectOrNot">
         <CCardHeader>
           <CIcon name="cil-justify-center" />
-          <strong>Project progress document</strong>
+          <strong>Upload project progress document</strong>
           <div class="card-header-actions">
             <a
               href="https://coreui.io/vue/docs/components/breadcrumb"

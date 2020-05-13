@@ -55,7 +55,7 @@
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Project Point:</label>
-                        <div class="col-sm-9">{{project.projectPoint}}</div>
+                        <div class="col-sm-9">{{totalPoint =totalPoint+1}}</div>
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Project Status:</label>
@@ -184,7 +184,11 @@
                             :placeholder="progress.comment"
                           />
                         </div>
-                        <button type="submit" v-on:click="updateProgress2()" class="btn btn-primary mb-2 float-right">Update</button>
+                        <button
+                          type="submit"
+                          v-on:click="updateProgress2()"
+                          class="btn btn-primary mb-2 float-right"
+                        >Update</button>
                       </form>
                     </div>
                   </div>
@@ -217,13 +221,65 @@
                     </div>
                     <label for="colFormLabel" class="col-sm-2 col-form-label">Comment:</label>
                     <div class="col-sm-10" style="margin-bottom:10px;">
-                      <input type="text" v-model="comment3" :placeholder="this.finalPresent[0].comment" class="form-control" id="colFormLabel" />
+                      <input
+                        type="text"
+                        v-model="comment3"
+                        :placeholder="this.finalPresent[0].comment"
+                        class="form-control"
+                        id="colFormLabel"
+                      />
                     </div>
-                    <button type="submit" v-on:click="updateFinalProject()" class="btn btn-primary mb-2 float-right">Update</button>
+                    <button
+                      type="submit"
+                      v-on:click="updateFinalProject()"
+                      class="btn btn-primary mb-2 float-right"
+                    >Update</button>
                   </form>
                 </div>
               </div>
-              <div class="col-md-12"></div>
+              <div class="col-md-12">
+                <hr />
+              </div>
+              <div class="col-md-12">
+                <h3 class="center">Final Document</h3>
+                <div class="col-md-12">
+                  <form class="form-group row">
+                    <label for="colFormLabel" class="col-sm-2 col-form-label">Point:</label>
+                    <div class="col-sm-10" style="margin-bottom:10px;">
+                      <input
+                        type="number"
+                        min="0"
+                        v-model="point4"
+                        class="form-control"
+                        id="colFormLabel"
+                        :placeholder="this.finalDocument[0].point"
+                      />
+                    </div>
+                    <label for="colFormLabel" class="col-sm-2 col-form-label">Status:</label>
+                    <div class="col-sm-10" style="margin-bottom:10px;">
+                      <select v-model="status4" class="form-control">
+                        <option disabled value>{{this.finalDocument[0].status}}</option>
+                        <option v-for="option in options" v-bind:key="option">{{option}}</option>
+                      </select>
+                    </div>
+                    <label for="colFormLabel" class="col-sm-2 col-form-label">Comment:</label>
+                    <div class="col-sm-10" style="margin-bottom:10px;">
+                      <input
+                        type="text"
+                        v-model="comment4"
+                        :placeholder="this.finalDocument[0].comment"
+                        class="form-control"
+                        id="colFormLabel"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      v-on:click="updateFinalDocument()"
+                      class="btn btn-primary mb-2 float-right"
+                    >Update</button>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </CCardBody>
@@ -237,7 +293,6 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 
 const db = firebase.firestore();
-
 export default {
   name: "Breadcrumbs",
   data() {
@@ -245,6 +300,7 @@ export default {
       projects: [],
       projectProgress: [],
       finalPresent: [],
+      finalDocument: [],
       options: [
         "Waiting for teacher acception",
         "Passed",
@@ -252,6 +308,10 @@ export default {
         "Pending",
         "Closed"
       ],
+      comment4: "",
+      status4: "",
+      totalPoint: 0,
+      point4: "",
       status3: "",
       point3: "",
       comment3: "",
@@ -288,7 +348,7 @@ export default {
       .catch(error => {
         console.log("Error getting documents: ", error);
       });
-      db.collection("projectProgress")
+    db.collection("projectProgress")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
@@ -309,7 +369,7 @@ export default {
       .catch(error => {
         console.log("Error getting documents: ", error);
       });
-      db.collection("finalPresent")
+    db.collection("finalPresent")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
@@ -324,6 +384,25 @@ export default {
           }
         });
         return this.finalPresent;
+      })
+      .catch(error => {
+        console.log("Error getting documents: ", error);
+      });
+    db.collection("finalDocument")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          if (doc.data().projectId == this.projects[0].id) {
+            this.finalDocument.push({
+              id: doc.id,
+              comment: doc.data().comment,
+              point: doc.data().point,
+              status: doc.data().status,
+              projectId: doc.data().projectId
+            });
+          }
+        });
+        return this.finalDocument;
       })
       .catch(error => {
         console.log("Error getting documents: ", error);
@@ -385,9 +464,7 @@ export default {
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            if (
-              doc.id == this.finalPresent[0].id
-            ) {
+            if (doc.id == this.finalPresent[0].id) {
               db.collection("finalPresent")
                 .doc(doc.id)
                 .update({
@@ -397,14 +474,43 @@ export default {
                   createdAt: new Date()
                 });
             } else {
-              db.collection("finalPresent")
-                .add({
-                  comment: this.comment3,
-                  status: this.status3,
-                  point: this.point3,
-                  projectId: this.projectProgress[0].projectId,
+              db.collection("finalPresent").add({
+                comment: this.comment3,
+                status: this.status3,
+                point: this.point3,
+                projectId: this.projectProgress[0].projectId,
+                createdAt: new Date()
+              });
+            }
+          });
+          alert("Update success");
+        })
+        .catch(error => {
+          console.log("Error getting documents: ", error);
+        });
+    },
+    updateFinalDocument() {
+      db.collection("finalDocument")
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            if (doc.id == this.finalDocument[0].id) {
+              db.collection("finalDocument")
+                .doc(doc.id)
+                .update({
+                  comment: this.comment4,
+                  status: this.status4,
+                  point: this.point4,
                   createdAt: new Date()
                 });
+            } else {
+              db.collection("finalDocument").add({
+                comment: this.comment4,
+                status: this.status4,
+                point: this.point4,
+                projectId: this.projectProgress[0].projectId,
+                createdAt: new Date()
+              });
             }
           });
           alert("Update success");

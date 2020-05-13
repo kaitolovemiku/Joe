@@ -19,12 +19,12 @@
         <div class="input-group mb-3">
           <multiselect v-model="search" :options="options" placeholder="Input a project name ..." style="width:90%;"></multiselect>
           <div class="input-group-append" style="width:10%;">
-            <button class="btn btn-info" type="button"><CIcon name="cil-magnifying-glass"/> Search</button>
+            <button v-on:click="searchProject()" class="btn btn-info" type="button"><CIcon name="cil-magnifying-glass"/> Search</button>
           </div>
         </div>
       </CCardBody>
     </CCard>
-    <div v-for="project in projects" v-bind:key="project.id">
+    <div v-for="project in searchObject" v-bind:key="project.id">
       <CCard class="zoom" v-on:click="routePage(project.id)">
         <CCardBody>
           <h3 style="padding:20px;">{{project.projectName}}</h3>
@@ -61,7 +61,8 @@ export default {
     return {
       projects: [],
       search: "",
-      options: []
+      options: [],
+      searchObject: []
     };
   },
   created() {
@@ -80,7 +81,7 @@ export default {
           });
           console.log(doc.id, " => ", doc.data());
         });
-        return this.projects;
+        return this.searchObject = this.projects;
       })
       .catch(error => {
         console.log("Error getting documents: ", error);
@@ -94,6 +95,19 @@ export default {
       });
   },
   methods: {
+    searchProject () {
+      this.searchObject = [];
+      if(this.search) {
+      this.projects.forEach(doc => {
+        if(this.search == doc.projectName){
+          this.searchObject.push(doc);
+        }
+      });
+      } else {
+        this.searchObject = this.projects;
+      }
+      return this.searchObject;
+    },
     routePage(id) {
       this.$router.replace('/menu/projectCheckingSystem/'+id);
     },
