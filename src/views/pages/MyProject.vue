@@ -25,6 +25,14 @@
                   alt="PDF file"
                   src="data:image/png;base64,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"
                 />
+                <div class="row">
+                  <div class="col-md-12" style="margin-top:10px;">
+                    <button
+                      class="btn btn-primary btn-block"
+                      v-on:click="downloadFile()"
+                    >Download file</button>
+                  </div>
+                </div>
               </div>
               <div v-for="project in projects" v-bind:key="project.id" class="col-md-9">
                 <h1>{{project.projectName}}</h1>
@@ -53,10 +61,6 @@
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Project Type:</label>
                         <div class="col-sm-9">{{project.projectType}}</div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Point:</label>
-                        <div class="col-sm-9">{{project.projectPoint}}</div>
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Project Status:</label>
@@ -103,9 +107,7 @@
                   />
                   <div class="input-group-append">
                     <select v-model="progressType">
-                        <option v-for="option in options" v-bind:key="option">
-                            {{ option }}
-                        </option>
+                      <option v-for="option in options" v-bind:key="option">{{ option }}</option>
                     </select>
                     <button v-on:click="onUpload()" class="btn btn-primary" type="button">Upload</button>
                   </div>
@@ -113,6 +115,87 @@
               </div>
               <div class="col-md-12">
                 <CProgress :value="uploadValue" :max="100" show-percentage animated></CProgress>
+              </div>
+            </div>
+          </div>
+        </CCardBody>
+      </CCard>
+      <CCard v-if="haveProjectOrNot">
+        <CCardHeader>
+          <CIcon name="cil-justify-center" />
+          <strong>Project progress document</strong>
+          <div class="card-header-actions">
+            <a
+              href="https://coreui.io/vue/docs/components/breadcrumb"
+              class="card-header-action"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
+              <small class="text-muted"></small>
+            </a>
+          </div>
+        </CCardHeader>
+        <CCardBody>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h3 class="center">Progress 1</h3>
+              </div>
+              <div class="col-md-12">
+                <h3
+                  v-if="!projectProgress"
+                  style="text-align:center"
+                >You didn't upload your progress1 document yet!</h3>
+              </div>
+              <div class="col-md-12" v-for="progress in projectProgress" v-bind:key="progress.id">
+                <div v-if="progress.progressType == 'progress1'" class="row">
+                  <div class="col-md-3">
+                    <img
+                      alt="PDF file"
+                      src="data:image/png;base64,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"
+                      style="width:100px;height:100px;"
+                    />
+                    <div class="row">
+                      <div class="col-md-12" style="margin-top:10px;">
+                        <button
+                          class="btn btn-primary btn-block"
+                          v-on:click="downloadProgressFile1()"
+                        >Download file</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <hr />
+              </div>
+              <div class="col-md-12">
+                <h3 class="center">Progress 2</h3>
+              </div>
+              <div class="col-md-12">
+                <h3
+                  v-if="!projectProgress"
+                  style="text-align:center"
+                >You didn't upload your progress1 document yet!</h3>
+              </div>
+              <div class="col-md-12" v-for="progress in projectProgress" v-bind:key="progress.id">
+                <div v-if="progress.progressType == 'progress2'" class="row">
+                  <div class="col-md-3">
+                    <img
+                      alt="PDF file"
+                      src="data:image/png;base64,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"
+                      style="width:100px;height:100px;"
+                    />
+                    <div class="row">
+                      <div class="col-md-12" style="margin-top:10px;">
+                        <button
+                          class="btn btn-primary btn-block"
+                          v-on:click="downloadProgressFile2()"
+                        >Download file</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -143,8 +226,11 @@ export default {
       projects: [],
       haveProjectOrNot: "",
       uploadValue: 0,
+      projectProgress: [],
+      finalPresent: [],
+      finalDocument: [],
       project: null,
-      progressType: 'progress1',
+      progressType: "progress1",
       projectFile: null
     };
   },
@@ -161,6 +247,7 @@ export default {
               projectAdvisor: doc.data().projectAdvisor,
               projectBg: doc.data().projectBg,
               projectType: doc.data().projectType,
+              projectFileName: doc.data().projectFileName,
               projectDuration: doc.data().projectDuration,
               projectPoint: doc.data().projectPoint,
               projectStatus: doc.data().projectStatus
@@ -174,6 +261,27 @@ export default {
       .catch(error => {
         console.log("Error getting documents: ", error);
       });
+    db.collection("projectProgress")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          if (doc.data().projectId == this.projects[0].id) {
+            this.projectProgress.push({
+              id: doc.id,
+              comment: doc.data().comment,
+              fileName: doc.data().fileName,
+              progressPoint: doc.data().progressPoint,
+              progressType: doc.data().progressType,
+              projectId: doc.data().projectId,
+              status: doc.data().status
+            });
+          }
+        });
+        return this.projectProgress;
+      })
+      .catch(error => {
+        console.log("Error getting documents: ", error);
+      });
   },
   methods: {
     previewFile(e) {
@@ -181,43 +289,87 @@ export default {
       this.project = null;
       this.projectFile = e.target.files[0];
     },
+    downloadProgressFile1() {
+      // Create a root reference
+      var storageRef = firebase.storage().ref();
+      storageRef
+        .child(this.projectProgress[0].fileName)
+        .getDownloadURL()
+        .then(function(url) {
+          // `url` is the download URL for 'images/stars.jpg'
+          window.open(url, "_blank");
+        })
+        .catch(error => {
+          console.log("Error getting files url: ", error);
+        });
+    },
+    downloadProgressFile2() {
+      // Create a root reference
+      var storageRef = firebase.storage().ref();
+
+      storageRef
+        .child(this.projectProgress[1].fileName)
+        .getDownloadURL()
+        .then(function(url) {
+          // `url` is the download URL for 'images/stars.jpg'
+          window.open(url, "_blank");
+        })
+        .catch(error => {
+          console.log("Error getting files url: ", error);
+        });
+    },
+    downloadFile() {
+      // Create a root reference
+      var storageRef = firebase.storage().ref();
+
+      storageRef
+        .child(this.projects[0].projectFileName)
+        .getDownloadURL()
+        .then(function(url) {
+          // `url` is the download URL for 'images/stars.jpg'
+          window.open(url, "_blank");
+        })
+        .catch(error => {
+          console.log("Error getting files url: ", error);
+        });
+    },
     onUpload() {
-        db.collection("projectProgress")
-          .add({
-            projectId: this.projects[0].id,
-            progressType: this.progressType,
-            progressPoint: 0,
-            status: 'waiting for teacher acception',
-            comment: '',
-            fileName: this.projectFile.name,
-            createdAt: new Date()
-          })
-          .then(() => {
-            console.log("Upload successed");
-          })
-          .catch(error => {
-            console.error("Error writing document: ", error);
-          });
-        const storageRef = firebase
-          .storage()
-          .ref(`${this.projectFile.name}`)
-          .put(this.projectFile);
-        storageRef.on(
-          `state_changed`,
-          snapshot => {
-            this.uploadValue =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          },
-          error => {
-            console.log(error.message);
-          },
-          () => {
-            this.uploadValue = 100;
-            this.$router.replace("/menu/seniorProjectStore");
-          }
-        );
-      }
+      db.collection("projectProgress")
+        .add({
+          projectId: this.projects[0].id,
+          progressType: this.progressType,
+          progressPoint: 0,
+          status: "waiting for teacher acception",
+          comment: "",
+          fileName: this.projectFile.name,
+          createdAt: new Date()
+        })
+        .then(() => {
+          console.log("Upload successed");
+        })
+        .catch(error => {
+          console.error("Error writing document: ", error);
+        });
+      const storageRef = firebase
+        .storage()
+        .ref(`${this.projectFile.name}`)
+        .put(this.projectFile);
+      storageRef.on(
+        `state_changed`,
+        snapshot => {
+          this.uploadValue =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        error => {
+          console.log(error.message);
+        },
+        () => {
+          this.uploadValue = 100;
+          this.$router.replace("/menu/seniorProjectStore");
+        }
+      );
     }
+  }
 };
 </script>
 

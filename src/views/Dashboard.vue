@@ -63,7 +63,7 @@
                 <p style="font-size:12px;text-align:center;">
                   <b>Project Status</b>
                 </p>
-                <h1 id="pAns" style="font-size:40px;margin-top:-10px;text-align:center;">Pass</h1>
+                <h1 id="pAns" style="font-size:40px;margin-top:-10px;text-align:center;">{{document[0].status?document[0].status:'-'}}</h1>
               </div>
             </div>
           </CCardBody>

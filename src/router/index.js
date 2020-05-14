@@ -56,6 +56,7 @@ const TeacherProjectStore = () => import('@/views/pages/TeacherProjectStore')
 const TeacherProjectDetails = () => import('@/views/pages/TeacherProjectDetails')
 const ProjectDetails = () => import('@/views/pages/ProjectDetails')
 const MyProject = () => import('@/views/pages/MyProject')
+const Profile = () => import('@/views/pages/Profile')
 
 // Users
 const Users = () => import('@/views/users/Users')
@@ -85,6 +86,11 @@ function configRoutes () {
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
+        },
+        {
+          path: 'profile',
+          name: 'Profile',
+          component: Profile
         },
         {
           path: 'menu',
