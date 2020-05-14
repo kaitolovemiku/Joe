@@ -49,12 +49,13 @@
             </CCardBody>
           </CCard>
           <CCard
-            color="primary"
+            color="white"
             text-color="white"
             class="text-center py-5 d-sm-down-none"
             body-wrapper
           >
-            <h2>Welcome to our website</h2>
+            <h2 style="color:gray">Senior Store</h2>
+            <img alt="SE" src="https://bit.ly/3fQQqLQ" style="width:150px;margin-top:20px;"/>
             <p v-if="error" class="alert alert-danger">{{error}}</p>
             <!--<CButton
               color="primary"

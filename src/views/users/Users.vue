@@ -41,7 +41,7 @@ export default {
       items: usersData,
       fields: [
         { key: 'username', label: 'Name', _classes: 'font-weight-bold' },
-        { key: 'registered' },
+        { key: 'email' },
         { key: 'role' },
         { key: 'status' }
       ],

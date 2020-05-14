@@ -63,7 +63,7 @@
                 <p style="font-size:12px;text-align:center;">
                   <b>Project Status</b>
                 </p>
-                <h1 id="pAns" style="font-size:40px;margin-top:-10px;text-align:center;">{{document[0].status?document[0].status:'-'}}</h1>
+                <h1 id="pAns" style="font-size:40px;margin-top:-10px;text-align:center;">{{projects[0].projectStatus?projects[0].projectStatus:'-'}}</h1>
               </div>
             </div>
           </CCardBody>
@@ -174,7 +174,7 @@
                     target="_blank"
                     style="color:black"
                   >
-                    {{finalPresent[0].point?finalPresent[0].point:'-'}}
+                    {{document?document[0].point:'-'}}
                     <small class="text-muted">point</small>
                   </a>
                 </div>
@@ -186,7 +186,7 @@
                   </label>
                   <p
                     id="inputEmail4"
-                  >{{finalPresent[0].comment?finalPresent[0].comment:'-'}}</p>
+                  >{{document?document[0].comment:'-'}}</p>
                 </div>
               </CCardBody>
             </CCard>
@@ -228,6 +228,7 @@ export default {
       document: [],
       progress1: [],
       progress2: [],
+      finalDocument: [],
       finalPresent: [],
       tableItems: [
         {

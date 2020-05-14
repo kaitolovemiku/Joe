@@ -1,12 +1,11 @@
 <template>
   <CFooter :fixed="false">
     <div>
-      <a href="https://coreui.io" target="_blank">CoreUI</a>
-      <span class="ml-1">&copy; {{new Date().getFullYear()}} creativeLabs.</span>
+      <a href="https://www.mfu.ac.th/mfu-landing-page.html" target="_blank">MFU</a>
+      <span class="ml-1">&copy; {{new Date().getFullYear()}} Mae Fah Luang University</span>
     </div>
     <div class="ml-auto">
-      <span class="mr-1">Powered by</span>
-      <a href="https://coreui.io/vue" target="_blank">CoreUI for Vue</a>
+      <a href="https://www.mfu.ac.th/mfu-landing-page.html" target="_blank">Senior Store</a>
     </div>
   </CFooter>
 </template>
