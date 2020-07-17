@@ -7,6 +7,7 @@ import { iconsSet as icons } from './assets/icons/icons.js'
 import store from './store'
 import * as firebase from "firebase";
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import VueSession from 'vue-session'
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -16,16 +17,17 @@ Vue.config.performance = true
 Vue.use(CoreuiVue)
 Vue.prototype.$log = console.log.bind(console)
 Vue.config.productionTip = false;
+Vue.use(VueSession)
 
   // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyCom18-KQlRySlCXb7rIHmeG519D93y4WM",
-    authDomain: "dmemo-68833.firebaseapp.com",
-    databaseURL: "https://dmemo-68833.firebaseio.com",
-    projectId: "dmemo-68833",
-    storageBucket: "dmemo-68833.appspot.com",
-    messagingSenderId: "626812106144",
-    appId: "1:626812106144:web:529447d9ca229524"
+    apiKey: "AIzaSyBhUVY9GJKhk6RAOAbsPHHr1Oti_z2roWU",
+    authDomain: "senior-store-bba07.firebaseapp.com",
+    databaseURL: "https://senior-store-bba07.firebaseio.com",
+    projectId: "senior-store-bba07",
+    storageBucket: "senior-store-bba07.appspot.com",
+    messagingSenderId: "161582892653",
+    appId: "1:161582892653:web:733e526783f30c5a34e164"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);

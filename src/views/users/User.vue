@@ -30,17 +30,18 @@
                 <input id="address" class="form-control" v-model="visibleData[3].value" />
               </td>
               <td scope="col">
-                <select id="role" class="form-control" :value="visibleData[4].value">
-                  <option>admin</option>
-                  <option>senior</option>
-                  <option>teacher</option>
-                  <option>user</option>
+                <select
+                  id="role"
+                  class="form-control"
+                  :value="visibleData[4].value"
+                  :options="role"
+                >
+                  <option v-for="option in role" v-bind:key="option">{{ option }}</option>
                 </select>
               </td>
               <td scope="col">
                 <select id="status" class="form-control" :value="visibleData[5].value">
-                  <option>online</option>
-                  <option>offline</option>
+                  <option v-for="option in status" v-bind:key="option">{{ option }}</option>
                 </select>
               </td>
             </tbody>
@@ -71,11 +72,12 @@ export default {
   data() {
     return {
       usersOpened: null,
+      user_data: [],
       phone: "",
       email: "",
       address: "",
       role: ["teacher", "senior", "admin", "guest"],
-      status: ["online", "offline"]
+      status: ["online", "block"]
     };
   },
   computed: {
@@ -107,24 +109,31 @@ export default {
         : this.$router.push({ path: "/users" });
     },
     editData() {
+      const id = this.$route.params.id;
+      let user = usersData.find((user, index) => index + 1 == id);
+      usersData.forEach((data) => {
+        if (data.id == user.id) {
+          (data.address = document.getElementById("address").value),
+            (data.email = document.getElementById("email").value),
+            (data.phone = document.getElementById("phone").value),
+            (data.role = document.getElementById("role").value),
+            (data.status = document.getElementById("status").value);
+        }
+      });
+
       db.collection("users")
-        .doc(document.getElementById("userId").innerHTML)
-        .update({
-          handPhone: document.getElementById("phone").value,
-          email: document.getElementById("email").value,
-          address: document.getElementById("address").value,
-          role: document.getElementById("role").value,
-          status: document.getElementById("status").value
-        })
-        .then(
-          () =>
-            function() {
-              alert("Upload success");
-            }
-        )
-        .catch(error => {
-          console.log("Error getting documents: ", error);
-        });
+      .doc(document.getElementById("userId").innerHTML)
+      .update({
+        handPhone: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+        address: document.getElementById("address").value,
+        role: document.getElementById("role").value,
+        status: document.getElementById("status").value
+      })
+      .then(() => {return window.alert("Update success"),this.goBack()})
+      .catch(error => {
+        console.log("Error getting documents: ", error);
+      });
     },
     deleteData() {
       if (window.confirm("Do you really want to delete?")) {

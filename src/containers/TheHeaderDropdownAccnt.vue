@@ -3,7 +3,11 @@
     <template #toggler>
       <CHeaderNavLink>
         <div class="c-avatar">
-          <img id="photo" src="img/avatars/6.jpg" class="c-avatar-img" />
+          <img
+            id="photo"
+            src="https://propholic.com/wp-content/themes/propholic/images/default-profile.jpg"
+            class="c-avatar-img"
+          />
         </div>
       </CHeaderNavLink>
     </template>
@@ -22,36 +26,32 @@
 
 <script>
 import firebase from "firebase/app";
+import Vue from "vue";
 const db = firebase.firestore();
-import { mapGetters } from "vuex";
 
 export default {
   name: "TheHeaderDropdownAccnt",
   data() {
     return {
+      user: Vue.prototype.$session.getAll().user.data,
+      userData: "",
       itemsCount: 42,
       photoUrl: ""
     };
-  },
-  computed: {
-    // map `this.user` to `this.$store.getters.user`
-    ...mapGetters({
-      user: "user"
-    })
   },
   created() {
     db.collection("users")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          if (this.user.data.email == doc.data().email) {
+          if (this.user.email == doc.data().email) {
             this.photoUrl = doc.data().photo;
             this.userData = doc.id;
           }
         });
         firebase
           .storage()
-          .ref()
+          .ref("images")
           .child(this.photoUrl)
           .getDownloadURL()
           .then(function(url) {
@@ -59,6 +59,7 @@ export default {
 
             // Or inserted into an <img> element:
             var img = document.getElementById("photo");
+            console.log(url);
             img.src = url;
           });
       })
@@ -71,12 +72,8 @@ export default {
       this.$router.replace("profile");
     },
     signOut() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace("/pages/login");
-        });
+      Vue.prototype.$session.destroy();
+      this.$router.replace("/pages/login");
     }
   }
 };

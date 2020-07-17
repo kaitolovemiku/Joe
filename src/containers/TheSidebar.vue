@@ -25,10 +25,7 @@ import nav from './_nav'
 import navAdmin from './_navAdmin'
 import navTeacher from './_navTeacher'
 import navSenior from './_navSenior'
-import { mapGetters } from "vuex";
-import firebase from "firebase";
-
-const db = firebase.firestore();
+import Vue from "vue";
 
 export default {
   name: 'TheSidebar',
@@ -43,32 +40,15 @@ export default {
     minimize () {
       return this.$store.state.sidebarMinimize 
     },
-    ...mapGetters({
-      user: "user"
-    })
   },
   data() {
     return {
       selected: "Month",
       userRole: [],
-      userData: firebase.auth().currentUser,
     };
   },
   created() {
-    db.collection("users")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          if (this.user.data.email == doc.data().email) {
-            this.userRole.push(doc.data().role);
-            this.user.data.puth({role:doc.data().role})
-          }
-        });
-        return this.userRole;
-      })
-      .catch(error => {
-        console.log("Error getting documents: ", error);
-      });
+    this.userRole.push(Vue.prototype.$session.getAll().user.data.role);
   }
 }
 </script>

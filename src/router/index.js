@@ -402,7 +402,7 @@ function configRoutes () {
 }
 
 router.beforeEach((to, from, next) => {
-    const currentUser = firebase.auth().currentUser;
+    const currentUser = Vue.prototype.$session.getAll().user;
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
     if ( requiresAuth && !currentUser ) next('/pages/login');
