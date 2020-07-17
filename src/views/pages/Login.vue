@@ -176,18 +176,20 @@ export default {
   },
   methods: {
     submitLogin() {
+      const lamduanEmail = this.lamduanMail + "@lamduan.mfu.ac.th";
+      const target = this.users.find(data => {
+            return data.email == lamduanEmail;
+          });
       if (this.lamduanMail !== "") {
-        const lamduanEmail = this.lamduanMail + "@lamduan.mfu.ac.th";
         if (
           this.lamduanPass == "" ||
           this.lamduanPass == null ||
           this.lamduanPass == undefined
         ) {
           this.lamduanPassError = "Please enter your password.";
+        } else if (this.lamduanPass != target.password) {
+          this.lamduanPassError = "Wrong password. Try again or click Forgot password to reset it.";
         } else {
-          const target = this.users.find(data => {
-            return data.email == lamduanEmail;
-          });
           const state = {
             loggedIn: true,
             data: {
