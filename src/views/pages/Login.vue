@@ -270,7 +270,7 @@ export default {
       });
       console.log(target, this.users);
       if (this.form.email != "" && this.form.password != "") {
-        if (target !== undefined && target.status != "block") {
+        if (target !== undefined && target.data.status !== 'block') {
           const state = {
             loggedIn: true,
             data: {
@@ -283,7 +283,7 @@ export default {
           this.$session.start();
           this.$session.set("user", state);
           this.$router.replace({ name: "Dashboard" });
-        } else if (target !== undefined && target.status == "block") {
+        } else if (target !== undefined && target.data.status === 'block') {
           window.alert("Ooh no! Your account have been blocked by admin!");
         } else {
           window.alert("Ooh no! There are no this record in database!");
