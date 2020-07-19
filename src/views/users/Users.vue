@@ -4,6 +4,9 @@
       <CCard>
         <CCardHeader>
           Users
+          <div class="card-header-actions">
+              <CButton size="sm" @click="addUser()" color="success" block><i class="fa fa-user-plus"></i> Add new user </CButton>
+          </div>
         </CCardHeader>
         <CCardBody>
           <CDataTable
@@ -20,9 +23,7 @@
           >
             <template #status="data">
               <td>
-                <CBadge :color="getBadge(data.item.status)">
-                  {{data.item.status}}
-                </CBadge>
+                <CBadge :color="getBadge(data.item.status)">{{data.item.status}}</CBadge>
               </td>
             </template>
           </CDataTable>
@@ -33,47 +34,55 @@
 </template>
 
 <script>
-import usersData from './UsersData'
+import usersData from "./UsersData";
 export default {
-  name: 'Users',
-  data () {
+  name: "Users",
+  data() {
     return {
       items: usersData,
       fields: [
-        { key: 'username', label: 'Name', _classes: 'font-weight-bold' },
-        { key: 'email' },
-        { key: 'role' },
-        { key: 'status' }
+        { key: "username", label: "Name", _classes: "font-weight-bold" },
+        { key: "email" },
+        { key: "role" },
+        { key: "status" }
       ],
       activePage: 1
-    }
+    };
   },
   watch: {
     $route: {
       immediate: true,
-      handler (route) {
+      handler(route) {
         if (route.query && route.query.page) {
-          this.activePage = Number(route.query.page)
+          this.activePage = Number(route.query.page);
         }
       }
     }
   },
   methods: {
-    getBadge (status) {
+    addUser() {
+      this.$router.replace({ name: "Add new user" });
+    },
+    getBadge(status) {
       switch (status) {
-        case 'Active': return 'success'
-        case 'Inactive': return 'secondary'
-        case 'Pending': return 'warning'
-        case 'Banned': return 'danger'
-        default: 'primary'
+        case "Active":
+          return "success";
+        case "Inactive":
+          return "secondary";
+        case "Pending":
+          return "warning";
+        case "Banned":
+          return "danger";
+        default:
+          "primary";
       }
     },
-    rowClicked (item, index) {
-      this.$router.push({path: `users/${index + 1}`})
+    rowClicked(item, index) {
+      this.$router.push({ path: `users/${index + 1}` });
     },
-    pageChange (val) {
-      this.$router.push({ query: { page: val }})
+    pageChange(val) {
+      this.$router.push({ query: { page: val } });
     }
   }
-}
+};
 </script>

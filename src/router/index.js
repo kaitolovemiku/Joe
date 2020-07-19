@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import firebase from 'firebase'
 
 // Containers
 const TheContainer = () => import('@/containers/TheContainer')
@@ -57,6 +56,8 @@ const TeacherProjectDetails = () => import('@/views/pages/TeacherProjectDetails'
 const ProjectDetails = () => import('@/views/pages/ProjectDetails')
 const MyProject = () => import('@/views/pages/MyProject')
 const Profile = () => import('@/views/pages/Profile')
+const ForgotPassword = () => import('@/views/pages/ForgotPassword')
+const AddNewUser = () => import('@/views/pages/AddNewUser')
 
 // Users
 const Users = () => import('@/views/users/Users')
@@ -164,6 +165,11 @@ function configRoutes () {
           path: 'charts',
           name: 'Charts',
           component: Charts
+        },
+        {
+          path: 'addUser',
+          name: 'Add new user',
+          component: AddNewUser
         },
         {
           path: 'widgets',
@@ -390,6 +396,11 @@ function configRoutes () {
           path: 'login',
           name: 'Login',
           component: Login
+        },
+        {
+          path: 'forgotPassword',
+          name: 'ForgotPassword',
+          component: ForgotPassword
         },
         {
           path: 'register',

@@ -18,6 +18,8 @@
                           append="@lamduan.mfu.ac.th"
                           placeholder="Student ID"
                           min="1"
+                          max="9999999999"
+                          maxlength="10"
                           name="email"
                           v-model="lamduanMail"
                           autocomplete="username email"
@@ -35,8 +37,8 @@
                         >Login</CButton>
                       </CCol>
                       <CCol col="6" class="text-right">
-                        <CButton color="link" class="px-0">Forgot password?</CButton>
-                        <CButton color="link" class="px-0">Register now!</CButton>
+                        <CButton color="link" v-on:click="forgotPassword()" class="px-0">Forgot password?</CButton>
+                        <CButton color="link" v-on:click="register()" class="px-0">Register now!</CButton>
                       </CCol>
                     </CRow>
                   </CCol>
@@ -75,8 +77,8 @@
                         >Login</CButton>
                       </CCol>
                       <CCol col="6" class="text-right">
-                        <CButton color="link" class="px-0">Forgot password?</CButton>
-                        <CButton color="link" class="px-0">Register now!</CButton>
+                        <CButton color="link" v-on:click="forgotPassword()" class="px-0">Forgot password?</CButton>
+                        <CButton color="link" v-on:click="register()" class="px-0">Register now!</CButton>
                       </CCol>
                     </CRow>
                   </CCol>
@@ -104,7 +106,7 @@
             body-wrapper
           >
             <h2 style="color:gray">Senior Store</h2>
-            <img alt="SE" src="https://bit.ly/3fQQqLQ" style="width:150px;margin-top:20px;" />
+            <img alt="SE" src="icon.png" style="width:150px;margin-top:20px;" />
             <p v-if="error" class="alert alert-danger">{{error}}</p>
             <!--<CButton
               color="primary"
@@ -231,6 +233,12 @@ export default {
         document.getElementById("loginType").innerHTML =
           "Login as administrator";
       }
+    },
+    register() {
+      this.$router.replace({ name: "Register" });
+    },
+    forgotPassword() {
+      this.$router.replace({ name: "ForgotPassword" });
     },
     submit() {
       const target = this.users.find(data => {

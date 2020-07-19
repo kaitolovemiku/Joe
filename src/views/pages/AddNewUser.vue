@@ -6,8 +6,8 @@
           <CCard class="mx-4 mb-0">
             <CCardBody class="p-4">
               <CForm>
-                <h1>Register</h1>
-                <p class="text-muted">Create your account</p>
+                <h1>Add new user</h1>
+                <p class="text-muted">Create user account</p>
                 <CInput v-model="username" placeholder="Username" autocomplete="username">
                   <template #prepend-content>
                     <CIcon name="cil-user" />
@@ -122,7 +122,7 @@
             <CCardFooter class="p-4">
               <CRow>
                 <CCol col="12">
-                  <CButton block @click="goBackToLogin()" color="twitter">Go back to login</CButton>
+                  <CButton block @click="goBack()" color="twitter">Go back to user management</CButton>
                 </CCol>
               </CRow>
             </CCardFooter>
@@ -138,7 +138,7 @@ import firebase from "firebase";
 const db = firebase.firestore();
 
 export default {
-  name: "Register",
+  name: "addNewUser",
   data() {
     return {
       username: "",
@@ -150,7 +150,7 @@ export default {
       address: "",
       users: [],
       answer: "",
-      role: ["teacher", "student"],
+      role: ["teacher", "guest", "senior", "admin"],
       questions: [{ id: 1, data: "Waiting for database loading." }],
       password: "",
       questionTarget: "",
@@ -231,13 +231,19 @@ export default {
         .ref("images")
         .child(this.userPhoto.name)
         .getDownloadURL()
-        .then(url => {return console.log(url),window.alert("Upload successed"),this.$router.replace({ name: "Login" })})
+        .then(url => {
+          return (
+            console.log(url),
+            window.alert("Upload successed"),
+            this.$router.replace({ name: "Users" })
+          );
+        })
         .catch(error => {
           console.log("Error getting image data: ", error);
         });
     },
-    goBackToLogin() {
-      this.$router.replace({ name: "Login" });
+    goBack() {
+      this.$router.replace({ name: "Users" });
     }
   }
 };

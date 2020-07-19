@@ -5,7 +5,7 @@
         <div class="c-avatar">
           <img
             id="photo"
-            src="https://propholic.com/wp-content/themes/propholic/images/default-profile.jpg"
+            :src="imageSrc"
             class="c-avatar-img"
           />
         </div>
@@ -36,7 +36,8 @@ export default {
       user: Vue.prototype.$session.getAll().user.data,
       userData: "",
       itemsCount: 42,
-      photoUrl: ""
+      photoUrl: "",
+      imageSrc: "default.jpg"
     };
   },
   created() {
@@ -54,13 +55,8 @@ export default {
           .ref("images")
           .child(this.photoUrl)
           .getDownloadURL()
-          .then(function(url) {
-            // `url` is the download URL for 'images/stars.jpg'
-
-            // Or inserted into an <img> element:
-            var img = document.getElementById("photo");
-            console.log(url);
-            img.src = url;
+          .then(url => {
+            return this.imageSrc = url;
           });
       })
       .catch(error => {
