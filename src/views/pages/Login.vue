@@ -37,7 +37,11 @@
                         >Login</CButton>
                       </CCol>
                       <CCol col="6" class="text-right">
-                        <CButton color="link" v-on:click="forgotPassword()" class="px-0">Forgot password?</CButton>
+                        <CButton
+                          color="link"
+                          v-on:click="forgotPassword()"
+                          class="px-0"
+                        >Forgot password?</CButton>
                         <CButton color="link" v-on:click="register()" class="px-0">Register now!</CButton>
                       </CCol>
                     </CRow>
@@ -77,7 +81,11 @@
                         >Login</CButton>
                       </CCol>
                       <CCol col="6" class="text-right">
-                        <CButton color="link" v-on:click="forgotPassword()" class="px-0">Forgot password?</CButton>
+                        <CButton
+                          color="link"
+                          v-on:click="forgotPassword()"
+                          class="px-0"
+                        >Forgot password?</CButton>
                         <CButton color="link" v-on:click="register()" class="px-0">Register now!</CButton>
                       </CCol>
                     </CRow>
@@ -180,8 +188,8 @@ export default {
     submitLogin() {
       const lamduanEmail = this.lamduanMail + "@lamduan.mfu.ac.th";
       const target = this.users.find(data => {
-            return data.email == lamduanEmail;
-          });
+        return data.email == lamduanEmail;
+      });
       if (this.lamduanMail !== "") {
         if (
           this.lamduanPass == "" ||
@@ -190,8 +198,12 @@ export default {
         ) {
           this.lamduanPassError = "Please enter your password.";
         } else if (this.lamduanPass != target.password) {
-          this.lamduanPassError = "Wrong password. Try again or click Forgot password to reset it.";
-        } else {
+          this.lamduanPassError =
+            "Wrong password. Try again or click Forgot password to reset it.";
+        } else if (target.status === "block") {
+          this.lamduanPassError =
+            "Your account have been blocked by admin. Please contact Senior Store System admin directly!";
+        } else if (target.status !== "block") {
           const state = {
             loggedIn: true,
             data: {
@@ -204,6 +216,8 @@ export default {
           this.$session.start();
           this.$session.set("user", state);
           this.$router.replace({ name: "Dashboard" });
+        } else {
+          this.lamduanPassError = "Ooh no!! There was something wrong ...";
         }
       }
     },
@@ -212,14 +226,22 @@ export default {
       const target = this.users.find(data => {
         return data.email == lamduanEmail;
       });
+
       if (this.lamduanMail.length == 10 && target !== undefined) {
-        target !== undefined
-          ? (this.myModal = true)
-          : window.alert("Ooh no! There are no this record in database!");
+        if (target.status === "block") {
+          window.alert(
+            "Oops!... \nYou account have been blocked by admin. Please contact Senior Store System admin directly!"
+          );
+        } else {
+          this.myModal = true;
+        }
       } else if (this.lamduanMail.length == 10 && target == undefined) {
-        window.alert(
+        const check = confirm(
           "Oops!... \nYou didn't register to be a membership of Senior Store Application yet. Let’s do it together!"
         );
+        if (check == true) {
+          this.$router.replace({ name: "Register" });
+        }
       } else {
         window.alert("Please input your MFU Student ID correctly!");
       }
@@ -246,9 +268,9 @@ export default {
           data.email == this.form.email && data.password == this.form.password
         );
       });
-      console.log(target, this.users)
+      console.log(target, this.users);
       if (this.form.email != "" && this.form.password != "") {
-        if (target !== undefined) {
+        if (target !== undefined && target.status != "block") {
           const state = {
             loggedIn: true,
             data: {
@@ -261,6 +283,8 @@ export default {
           this.$session.start();
           this.$session.set("user", state);
           this.$router.replace({ name: "Dashboard" });
+        } else if (target !== undefined && target.status == "block") {
+          window.alert("Ooh no! Your account have been blocked by admin!");
         } else {
           window.alert("Ooh no! There are no this record in database!");
         }
