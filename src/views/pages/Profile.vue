@@ -51,7 +51,7 @@
                       <input type="text" class="form-control" id="phone" v-model="companyPhone" />
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="phone">question</label>
+                      <label for="phone">Question</label>
                       <select class="form-control" v-model="questionTarget">
                         <option disabled value>Choice your question for password security</option>
                         <option v-for="option in questions" v-bind:key="option.id">{{ option.data }}</option>
