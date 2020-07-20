@@ -27,7 +27,7 @@
     <div v-for="project in searchObject" v-bind:key="project.id">
       <CCard class="zoom" v-on:click="routePage(project.id)">
         <CCardBody>
-          <h3 style="padding:20px;">{{project.projectName}}</h3>
+          <h3 style="padding:20px;">{{project.projectNameEn}} <i>({{project.projectNameTh}})</i></h3>
           <p style="padding-left:20px;paddig-bottom:10px;">{{project.projectBg}}</p>
           <p style="padding-left:20px;paddig-bottom:10px;">
             <b>Project type:</b>
@@ -72,7 +72,8 @@ export default {
         querySnapshot.forEach(doc => {
           this.projects.push({
             id: doc.id,
-            projectName: doc.data().projectName,
+            projectNameTh: doc.data().projectNameTh,
+            projectNameEn: doc.data().projectNameEn,
             projectBg: doc.data().projectBg,
             projectType: doc.data().projectType,
             projectDuration: doc.data().projectDuration,
@@ -90,7 +91,8 @@ export default {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.options.push(doc.data().projectName);
+          this.options.push(doc.data().projectNameEn);
+          this.options.push(doc.data().projectNameTh);
         });
       });
   },
@@ -99,7 +101,7 @@ export default {
       this.searchObject = [];
       if(this.search) {
       this.projects.forEach(doc => {
-        if(this.search == doc.projectName){
+        if(this.search == doc.projectNameTh || this.search == doc.projectNameEn){
           this.searchObject.push(doc);
         }
       });

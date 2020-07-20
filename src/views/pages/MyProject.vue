@@ -13,7 +13,7 @@
               rel="noreferrer noopener"
               target="_blank"
             >
-              <small class="text-muted">{{user.data.email}}</small>
+              <small class="text-muted">{{$session.getAll().user.data.email}}</small>
             </a>
           </div>
         </CCardHeader>
@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div v-for="project in projects" v-bind:key="project.id" class="col-md-9">
-                <h1>{{project.projectName}}</h1>
+                <h1>{{project.projectNameEn}}({{project.projectNameTh}})</h1>
                 <div class="row">
                   <div class="col-md-12">
                     <form>
@@ -49,6 +49,14 @@
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Project Advisor:</label>
                         <div class="col-sm-9">{{project.projectAdvisor}}</div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Co-Advisor:</label>
+                        <div class="col-sm-9">{{project.projectCoAdvisor}}</div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Committee:</label>
+                        <div class="col-sm-9">{{project.projectCommittee}}</div>
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Project Member:</label>
@@ -209,6 +217,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { mapGetters } from "vuex";
+import Vue from 'vue';
 
 const db = firebase.firestore();
 
@@ -228,6 +237,8 @@ export default {
       uploadValue: 0,
       projectProgress: [],
       finalPresent: [],
+      teachers: [],
+      students: [],
       finalDocument: [],
       project: null,
       progressType: "progress1",
@@ -235,16 +246,35 @@ export default {
     };
   },
   created() {
+    db.collection("users")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          return this.students.push({ id: doc.id, data: doc.data().username });
+        });
+      });
+    db.collection("teachers")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          return this.teachers.push({ id: doc.id, data: doc.data().teacherName });
+        });
+      });
     db.collection("projects")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          if (this.user.data.displayName == doc.data().projectMember) {
+          console.log('Look this->',Vue.prototype.$session.getAll().user.id, doc.data().projectMember)
+          if (doc.data().projectMember.find(item => {return item == Vue.prototype.$session.getAll().user.id})) {
+            console.log('successsssssssssssss')
             this.projects.push({
               id: doc.id,
-              projectName: doc.data().projectName,
-              projectMember: doc.data().projectMember,
-              projectAdvisor: doc.data().projectAdvisor,
+              projectNameTh: doc.data().projectNameTh,
+              projectNameEn: doc.data().projectNameEn,
+              projectMember: this.students.filter(item => doc.data().projectMember.includes(item.id)).map(item => {return item.data}),
+              projectAdvisor: this.teachers.filter(item => doc.data().projectAdvisor.includes(item.id)).map(item => {return item.data}),
+              projectCoAdvisor: this.teachers.filter(item => doc.data().projectCoAdvisor.includes(item.id)).map(item => {return item.data}),
+              projectCommittee: this.teachers.filter(item => doc.data().projectCommittee.includes(item.id)).map(item => {return item.data}),
               projectBg: doc.data().projectBg,
               projectType: doc.data().projectType,
               projectFileName: doc.data().projectFileName,
@@ -255,6 +285,7 @@ export default {
             this.haveProjectOrNot = true;
           }
           console.log(doc.id, " => ", doc.data());
+          
         });
         return this.projects;
       })

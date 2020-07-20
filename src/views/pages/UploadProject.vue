@@ -8,12 +8,28 @@
         <CForm>
           <div class="row">
             <div class="col-md-3">
-              <p for="projectName">project Name</p>
+              <p for="projectName">project Name (English)</p>
             </div>
             <div class="col-md-9 mb-3">
               <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
               <input
-                v-model="projectName"
+                v-model="projectNameEn"
+                type="text"
+                class="form-control"
+                id="projectName"
+                placeholder="Enter your project name ..."
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <p for="projectName">project Name (Thai)</p>
+            </div>
+            <div class="col-md-9 mb-3">
+              <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
+              <input
+                v-model="projectNameTh"
                 type="text"
                 class="form-control"
                 id="projectName"
@@ -27,7 +43,14 @@
               <p>Project Member</p>
             </div>
             <div class="col-md-9">
-              <multiselect placeholder="Search or add a member ..." v-model="projectMember" :options="member" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+              <multiselect
+                placeholder="Don't forget to add your name before add your friend."
+                v-model="projectMember"
+                :options="memberName"
+                :multiple="true"
+                :taggable="true"
+                @tag="addTag"
+              ></multiselect>
             </div>
           </div>
           <div class="row" style="padding-bottom:10px;">
@@ -46,20 +69,49 @@
               />
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="padding-bottom:10px;">
             <div class="col-md-3">
-              <p for="validationServer03">Proeject Advisor</p>
+              <p>Proeject Advisor</p>
             </div>
-            <div class="col-md-9 mb-3">
-              <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
-              <input
+            <div class="col-md-9">
+              <multiselect
+                placeholder="Search or add a advisor ..."
                 v-model="projectAdvisor"
-                type="text"
-                class="form-control"
-                id="projectFile"
-                placeholder="Mr.Tew Hongtong"
-                required
-              />
+                :options="teacherShow"
+                :multiple="true"
+                :taggable="true"
+                @tag="addTag"
+              ></multiselect>
+            </div>
+          </div>
+          <div class="row" style="padding-bottom:10px;">
+            <div class="col-md-3">
+              <p>Proeject Co-Advisor</p>
+            </div>
+            <div class="col-md-9">
+              <multiselect
+                placeholder="Search or add a co-advisor ..."
+                v-model="projectCoAdvisor"
+                :options="teacherShow"
+                :multiple="true"
+                :taggable="true"
+                @tag="addTag"
+              ></multiselect>
+            </div>
+          </div>
+          <div class="row" style="padding-bottom:10px;">
+            <div class="col-md-3">
+              <p>Proeject Committee</p>
+            </div>
+            <div class="col-md-9">
+              <multiselect
+                placeholder="Search or add a committee ..."
+                v-model="projectCommittee"
+                :options="teacherShow"
+                :multiple="true"
+                :taggable="true"
+                @tag="addTag"
+              ></multiselect>
             </div>
           </div>
           <div class="row" style="padding-bottom:10px;">
@@ -80,8 +132,7 @@
                 v-model="projectDStart"
                 type="date"
                 class="form-control"
-                id="projectFile"
-                placeholder="Mr.Tew Hongtong"
+                id="projectDStart"
                 required
               />
             </div>
@@ -96,8 +147,7 @@
                 v-model="projectDEnd"
                 type="date"
                 class="form-control"
-                id="projectFile"
-                placeholder="Mr.Tew Hongtong"
+                id="projectDEnd"
                 required
               />
             </div>
@@ -155,13 +205,23 @@ export default {
   data() {
     return {
       value: "",
-      projectName: "",
+      projectNameEn: "",
+      projectNameTh: "",
       projectType: "",
       projectPoint: "",
+      teachers: [{ id: 1, data: "Loading tesacher data ..." }],
       projectBg: "",
       projectStatus: "",
       projectDuration: "",
-      projectAdvisor: "",
+      teacherShow: [],
+      projectAdvisor: [],
+      projectCoAdvisor: [],
+      projectCommittee: [],
+      memberName: [],
+      advisor_for_save_data: [],
+      co_advisor_for_save_data: [],
+      committee_for_save_data: [],
+      member_for_save_data: [],
       projectMember: "",
       projectDStart: "",
       projectFileName: "",
@@ -184,27 +244,45 @@ export default {
       ]
     };
   },
-   created() {
+  created() {
+    db.collection("teachers")
+      .get()
+      .then(querySnapshot => {
+        this.teachers = [];
+        querySnapshot.forEach(doc => {
+          this.teacherShow.push(doc.data().teacherName);
+          this.teachers.push({ id: doc.id, data: doc.data().teacherName });
+        });
+        return this.teachers;
+      })
+      .catch(error => {
+        console.log("Error getting teachers: ", error);
+      });
     db.collection("users")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.member.push(doc.data().username);
+          this.memberName.push(doc.data().username);
+          this.member.push({id: doc.id , data: doc.data().username});
         });
         return this.member;
       })
       .catch(error => {
-        console.log("Error getting documents: ", error);
+        console.log("Error getting users: ", error);
       });
   },
   methods: {
-    addTag (newTag) {
+    testTeacher() {
+      this.projectDuration = this.projectDStart + " - " + this.projectDEnd;
+      console.log(this.projectDuration)
+    },
+    addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
-      }
-      this.options.push(tag)
-      this.value.push(tag)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+      };
+      this.options.push(tag);
+      this.value.push(tag);
     },
     previewFile(e) {
       this.uploadValue = 0;
@@ -213,21 +291,30 @@ export default {
     },
     onUpload() {
       if (
-        this.projectName != "" &&
+        this.projectNameEn != "" &&
+        this.projectNameTh != "" &&
         this.projectType != "" &&
         this.projectDStart != "" &&
         this.projectDEnd != ""
       ) {
         this.projectDuration = this.projectDStart + " - " + this.projectDEnd;
+        this.member_for_save_data = this.member.filter(item => this.projectMember.includes(item.data)).map(item => {return item.id});
+        this.advisor_for_save_data = this.teachers.filter(item => this.projectAdvisor.includes(item.data)).map(item => {return item.id});
+        this.co_advisor_for_save_data = this.teachers.filter(item => this.projectCoAdvisor.includes(item.data)).map(item => {return item.id});
+        this.committee_for_save_data = this.teachers.filter(item => this.projectCommittee.includes(item.data)).map(item => {return item.id});
+
         db.collection("projects")
           .add({
-            projectName: this.projectName,
+            projectNameEn: this.projectNameEn,
+            projectNameTh: this.projectNameTh,
             projectBg: this.projectBg,
             projectType: this.projectType,
-            projectMember: this.projectMember,
-            projectAdvisor: this.projectAdvisor,
+            projectMember: this.member_for_save_data,
+            projectAdvisor: this.advisor_for_save_data,
+            projectCoAdvisor: this.co_advisor_for_save_data,
+            projectCommittee: this.committee_for_save_data,
             projectPoint: 0,
-            projectStatus: "Waiting for teacher acception",
+            projectStatus: "Waiting for acception",
             projectDuration: this.projectDuration,
             projectFileName: this.projectFile.name,
             createdAt: new Date()

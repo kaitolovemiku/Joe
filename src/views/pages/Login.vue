@@ -180,7 +180,7 @@ export default {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.users.push(doc.data());
+          this.users.push({id: doc.id , data: doc.data()});
         });
       });
   },
@@ -188,7 +188,7 @@ export default {
     submitLogin() {
       const lamduanEmail = this.lamduanMail + "@lamduan.mfu.ac.th";
       const target = this.users.find(data => {
-        return data.email == lamduanEmail;
+        return data.data.email == lamduanEmail;
       });
       if (this.lamduanMail !== "") {
         if (
@@ -197,20 +197,21 @@ export default {
           this.lamduanPass == undefined
         ) {
           this.lamduanPassError = "Please enter your password.";
-        } else if (this.lamduanPass != target.password) {
+        } else if (this.lamduanPass != target.data.password) {
           this.lamduanPassError =
             "Wrong password. Try again or click Forgot password to reset it.";
-        } else if (target.status === "block") {
+        } else if (target.data.status === "block") {
           this.lamduanPassError =
             "Your account have been blocked by admin. Please contact Senior Store System admin directly!";
-        } else if (target.status !== "block") {
+        } else if (target.data.status !== "block") {
           const state = {
             loggedIn: true,
+            id: target.id,
             data: {
-              displayName: target.username,
-              email: target.email,
-              role: target.role,
-              userId: target.userId
+              displayName: target.data.username,
+              email: target.data.email,
+              role: target.data.role,
+              userId: target.data.userId
             }
           };
           this.$session.start();
@@ -224,7 +225,7 @@ export default {
     loginWithLamduanMail() {
       const lamduanEmail = this.lamduanMail + "@lamduan.mfu.ac.th";
       const target = this.users.find(data => {
-        return data.email == lamduanEmail;
+        return data.data.email == lamduanEmail;
       });
 
       if (this.lamduanMail.length == 10 && target !== undefined) {
@@ -263,27 +264,38 @@ export default {
       this.$router.replace({ name: "ForgotPassword" });
     },
     submit() {
-      const target = this.users.find(data => {
+      const targetl = this.users.find(data => {
         return (
-          data.email == this.form.email && data.password == this.form.password
+          data.data.email == this.form.email
         );
       });
+      let target = [];
+      if ( targetl !== undefined ) {
+        if (targetl.data.password === this.form.password) {
+          target = targetl;
+        } else {
+          window.alert("Incorrect email or password!");
+        }
+      } else {
+        window.alert("Incorrect email or password!");
+      }
       console.log(target, this.users);
       if (this.form.email != "" && this.form.password != "") {
-        if (target !== undefined && target.status !== 'block') {
+        if (target !== undefined && target.data.status !== 'block') {
           const state = {
             loggedIn: true,
+            id: target.id,
             data: {
-              displayName: target.username,
-              email: target.email,
-              role: target.role,
-              userId: target.userId
+              displayName: target.data.username,
+              email: target.data.email,
+              role: target.data.role,
+              userId: target.data.userId
             }
           };
           this.$session.start();
           this.$session.set("user", state);
           this.$router.replace({ name: "Dashboard" });
-        } else if (target !== undefined && target.status === 'block') {
+        } else if (target !== undefined && target.status == 'block') {
           window.alert("Ooh no! Your account have been blocked by admin!");
         } else {
           window.alert("Ooh no! There are no this record in database!");
