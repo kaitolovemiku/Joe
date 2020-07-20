@@ -12,29 +12,9 @@
                   <CCol v-if="checkLamduanMail" col="12">
                     <CRow>
                       <CCol col="12">
-                        <CInput
-                          id="email"
-                          type="number"
-                          append="@lamduan.mfu.ac.th"
-                          placeholder="Student ID"
-                          min="1"
-                          max="9999999999"
-                          maxlength="10"
-                          name="email"
-                          v-model="lamduanMail"
-                          autocomplete="username email"
-                        >
-                          <template #prepend-content>
-                            <CIcon name="cil-user" />
-                          </template>
-                        </CInput>
+                        <CButton class="px-4 btn btn-block" @click="googleLogin()" color="primary">Login widh Lamduan mail</CButton>
                       </CCol>
                       <CCol col="6">
-                        <CButton
-                          v-on:click="loginWithLamduanMail()"
-                          color="primary"
-                          class="px-4 btn btn-block"
-                        >Login</CButton>
                       </CCol>
                       <CCol col="6" class="text-right">
                         <CButton
@@ -126,6 +106,7 @@
         </CCardGroup>
       </CCol>
     </CRow>
+    
     <!-- Modal Component -->
     <CModal title="Enter your password" :show.sync="myModal">
       <CRow>
@@ -157,6 +138,7 @@
 
 <script>
 import firebase from "firebase";
+import axois from "axios";
 
 const db = firebase.firestore();
 export default {
@@ -180,11 +162,86 @@ export default {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.users.push({id: doc.id , data: doc.data()});
+          this.users.push({ id: doc.id, data: doc.data() });
         });
       });
   },
   methods: {
+    googleLogin() {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope("profile");
+      provider.addScope("email");
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(result => this.saveDataToDatabase(result));
+    },
+    saveDataToDatabase(result) {
+      //This gives you a Google Access Token.
+      //var token = result.credential.accessToken;
+      // The signed-in user info.
+      //var user = result.user;
+      var target = this.users.find(item => {
+        return item.data.email == result.additionalUserInfo.profile.email;
+      });
+
+      console.log("tartget->", target);
+
+      if (target === undefined) {
+        if (result.additionalUserInfo.profile.hd == "lamduan.mfu.ac.th") {
+          let obj = {
+            userId: result.additionalUserInfo.profile.id,
+            username: result.additionalUserInfo.profile.name,
+            email: result.additionalUserInfo.profile.email,
+            password: "",
+            photo: result.additionalUserInfo.profile.id,
+            // photo: result.additionalUserInfo.profile.picture,
+            role: "guest",
+            questionAns: "",
+            questionId: "",
+            jobPosition: "Student of software engineering",
+            createdAt: new Date(),
+            handPhone: "-",
+            companyPhone: "-",
+            status: "online"
+          };
+          db.collection("users").add(obj);
+          const state = {
+            loggedIn: true,
+            id: result.additionalUserInfo.profile.id,
+            data: {
+              displayName: result.additionalUserInfo.profile.name,
+              email: result.additionalUserInfo.profile.email,
+              role: 'guest',
+              photo: result.additionalUserInfo.profile.picture
+            }
+          };
+          this.$session.start();
+          this.$session.set("user", state);
+          this.$router.replace({ name: "Dashboard" });
+        } else {
+          window.alert("Sorry, Please login only with Lamduan mail!");
+        }
+      } else {
+        this.$session.start();
+        console.log('this is target->', target.data.role)
+
+         const state2 = {
+          loggedIn: true,
+          id: target.id,
+          data: {
+            displayName: target.data.username,
+            email: target.data.email,
+            role: target.data.role,
+            userId: target.data.userId,
+            photo: result.additionalUserInfo.profile.picture
+          }
+        };
+        this.$session.set("user", state2);
+        window.location.replace("http://localhost:8080/");
+      }
+      console.log("Look this ->", result);
+    },
     submitLogin() {
       const lamduanEmail = this.lamduanMail + "@lamduan.mfu.ac.th";
       const target = this.users.find(data => {
@@ -265,12 +322,10 @@ export default {
     },
     submit() {
       const targetl = this.users.find(data => {
-        return (
-          data.data.email == this.form.email
-        );
+        return data.data.email == this.form.email;
       });
       let target = [];
-      if ( targetl !== undefined ) {
+      if (targetl !== undefined) {
         if (targetl.data.password === this.form.password) {
           target = targetl;
         } else {
@@ -281,7 +336,7 @@ export default {
       }
       console.log(target, this.users);
       if (this.form.email != "" && this.form.password != "") {
-        if (target !== undefined && target.data.status !== 'block') {
+        if (target !== undefined && target.data.status !== "block") {
           const state = {
             loggedIn: true,
             id: target.id,
@@ -295,7 +350,7 @@ export default {
           this.$session.start();
           this.$session.set("user", state);
           this.$router.replace({ name: "Dashboard" });
-        } else if (target !== undefined && target.status == 'block') {
+        } else if (target !== undefined && target.status == "block") {
           window.alert("Ooh no! Your account have been blocked by admin!");
         } else {
           window.alert("Ooh no! There are no this record in database!");

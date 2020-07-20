@@ -25,9 +25,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
 import Vue from "vue";
-const db = firebase.firestore();
 
 export default {
   name: "TheHeaderDropdownAccnt",
@@ -41,27 +39,7 @@ export default {
     };
   },
   created() {
-    db.collection("users")
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          if (this.user.email == doc.data().email) {
-            this.photoUrl = doc.data().photo;
-            this.userData = doc.id;
-          }
-        });
-        firebase
-          .storage()
-          .ref("images")
-          .child(this.photoUrl)
-          .getDownloadURL()
-          .then(url => {
-            return this.imageSrc = url;
-          });
-      })
-      .catch(error => {
-        console.log("Error getting documents: ", error);
-      });
+    this.imageSrc = Vue.prototype.$session.getAll().user.data.photo;
   },
   methods: {
     profile() {
