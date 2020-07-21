@@ -144,6 +144,7 @@ export default {
           if (
             Vue.prototype.$session.getAll().user.data.email == doc.data().email
           ) {
+            
             this.username = doc.data().username;
             this.email = doc.data().email;
             this.handPhone = doc.data().handPhone;
@@ -155,8 +156,10 @@ export default {
             this.photoUrl = doc.data().photo;
             this.userData = doc.id;
             this.password = doc.data().password;
+            
           }
         });
+        if (Vue.prototype.$session.getAll().user.data.email.substring(10) !== "@lamduan.mfu.ac.th") {
         firebase
           .storage()
           .ref("images")
@@ -168,6 +171,9 @@ export default {
             // Or inserted into an <img> element:
             return (this.imageSrc = url);
           });
+        } else {
+          this.imageSrc = Vue.prototype.$session.getAll().user.data.photo;
+        }
       })
       .catch(error => {
         console.log("Error getting documents: ", error);

@@ -3,11 +3,7 @@
     <template #toggler>
       <CHeaderNavLink>
         <div class="c-avatar">
-          <img
-            id="photo"
-            :src="imageSrc"
-            class="c-avatar-img"
-          />
+          <img id="photo" :src="imageSrc" class="c-avatar-img" />
         </div>
       </CHeaderNavLink>
     </template>
@@ -25,7 +21,9 @@
 </template>
 
 <script>
+import firebase from "firebase/app";
 import Vue from "vue";
+const db = firebase.firestore();
 
 export default {
   name: "TheHeaderDropdownAccnt",
@@ -39,7 +37,35 @@ export default {
     };
   },
   created() {
-    this.imageSrc = Vue.prototype.$session.getAll().user.data.photo;
+    if (
+      Vue.prototype.$session.getAll().user.data.email.substring(10) !==
+      "@lamduan.mfu.ac.th"
+    ) {
+      db.collection("users")
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            if (this.user.email == doc.data().email) {
+              this.photoUrl = doc.data().photo;
+              this.userData = doc.id;
+            }
+          });
+
+          firebase
+            .storage()
+            .ref("images")
+            .child(this.photoUrl)
+            .getDownloadURL()
+            .then(url => {
+              return (this.imageSrc = url);
+            });
+        })
+        .catch(error => {
+          console.log("Error getting documents: ", error);
+        });
+    } else {
+      this.imageSrc = Vue.prototype.$session.getAll().user.data.photo
+    }
   },
   methods: {
     profile() {

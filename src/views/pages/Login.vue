@@ -107,38 +107,12 @@
       </CCol>
     </CRow>
     
-    <!-- Modal Component -->
-    <CModal title="Enter your password" :show.sync="myModal">
-      <CRow>
-        <CCol col="12" class="text-center">
-          <CInput
-            id="password"
-            name="password"
-            placeholder="Password"
-            type="password"
-            v-model="lamduanPass"
-            autocomplete="curent-password"
-          >
-            <template #prepend-content>
-              <CIcon name="cil-lock-locked" />
-            </template>
-          </CInput>
-          <p v-if="lamduanPassError" class="alert alert-danger">{{lamduanPassError}}</p>
-        </CCol>
-      </CRow>
-      <template #footer>
-        <CButton @click="darkModal = false" color="danger">Discard</CButton>
-        <CButton @click="submitLogin()" color="primary">Login</CButton>
-        <!-- <CButton @click="darkModal = false" color="primary">Login</CButton> -->
-      </template>
-    </CModal>
   </CContainer>
 </template>
 
 
 <script>
 import firebase from "firebase";
-import axois from "axios";
 
 const db = firebase.firestore();
 export default {
@@ -224,8 +198,6 @@ export default {
         }
       } else {
         this.$session.start();
-        console.log('this is target->', target.data.role)
-
          const state2 = {
           loggedIn: true,
           id: target.id,
@@ -241,68 +213,6 @@ export default {
         window.location.replace("http://localhost:8080/");
       }
       console.log("Look this ->", result);
-    },
-    submitLogin() {
-      const lamduanEmail = this.lamduanMail + "@lamduan.mfu.ac.th";
-      const target = this.users.find(data => {
-        return data.data.email == lamduanEmail;
-      });
-      if (this.lamduanMail !== "") {
-        if (
-          this.lamduanPass == "" ||
-          this.lamduanPass == null ||
-          this.lamduanPass == undefined
-        ) {
-          this.lamduanPassError = "Please enter your password.";
-        } else if (this.lamduanPass != target.data.password) {
-          this.lamduanPassError =
-            "Wrong password. Try again or click Forgot password to reset it.";
-        } else if (target.data.status === "block") {
-          this.lamduanPassError =
-            "Your account have been blocked by admin. Please contact Senior Store System admin directly!";
-        } else if (target.data.status !== "block") {
-          const state = {
-            loggedIn: true,
-            id: target.id,
-            data: {
-              displayName: target.data.username,
-              email: target.data.email,
-              role: target.data.role,
-              userId: target.data.userId
-            }
-          };
-          this.$session.start();
-          this.$session.set("user", state);
-          this.$router.replace({ name: "Dashboard" });
-        } else {
-          this.lamduanPassError = "Ooh no!! There was something wrong ...";
-        }
-      }
-    },
-    loginWithLamduanMail() {
-      const lamduanEmail = this.lamduanMail + "@lamduan.mfu.ac.th";
-      const target = this.users.find(data => {
-        return data.data.email == lamduanEmail;
-      });
-
-      if (this.lamduanMail.length == 10 && target !== undefined) {
-        if (target.status === "block") {
-          window.alert(
-            "Oops!... \nYou account have been blocked by admin. Please contact Senior Store System admin directly!"
-          );
-        } else {
-          this.myModal = true;
-        }
-      } else if (this.lamduanMail.length == 10 && target == undefined) {
-        const check = confirm(
-          "Oops!... \nYou didn't register to be a membership of Senior Store Application yet. Let’s do it together!"
-        );
-        if (check == true) {
-          this.$router.replace({ name: "Register" });
-        }
-      } else {
-        window.alert("Please input your MFU Student ID correctly!");
-      }
     },
     changeLoginType() {
       if (this.checkLamduanMail === true) {
@@ -321,21 +231,11 @@ export default {
       this.$router.replace({ name: "ForgotPassword" });
     },
     submit() {
-      const targetl = this.users.find(data => {
-        return data.data.email == this.form.email;
+      const target = this.users.find(data => {
+        return data.data.email === this.form.email && data.data.password === this.form.password;
       });
-      let target = [];
-      if (targetl !== undefined) {
-        if (targetl.data.password === this.form.password) {
-          target = targetl;
-        } else {
-          window.alert("Incorrect email or password!");
-        }
-      } else {
-        window.alert("Incorrect email or password!");
-      }
       console.log(target, this.users);
-      if (this.form.email != "" && this.form.password != "") {
+      if (this.form.email !== "" && this.form.password !== "") {
         if (target !== undefined && target.data.status !== "block") {
           const state = {
             loggedIn: true,
@@ -352,6 +252,8 @@ export default {
           this.$router.replace({ name: "Dashboard" });
         } else if (target !== undefined && target.status == "block") {
           window.alert("Ooh no! Your account have been blocked by admin!");
+        } else if (target === undefined) {
+          window.alert("Incorrect email or password!");
         } else {
           window.alert("Ooh no! There are no this record in database!");
         }
