@@ -51,7 +51,7 @@
                   </template>
                 </CInput>
 
-                <div class="input-group mb-3">
+                <!-- <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">
                       <i class="fa fa-flag-o"></i>
@@ -61,7 +61,7 @@
                     <option disabled value>Role</option>
                     <option v-for="option in role" v-bind:key="option">{{ option }}</option>
                   </select>
-                </div>
+                </div> -->
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">
@@ -203,7 +203,7 @@ export default {
         photo: this.userPhoto.name,
         questionAns: this.answer,
         questionId: this.questionTarget,
-        role: this.roleTarget == "student" ? "guest" : this.roleTarget,
+        role: "teacher",
         status: "online",
         userId: this.userId,
         username: this.username
