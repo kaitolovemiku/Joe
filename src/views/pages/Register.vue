@@ -128,7 +128,6 @@
 <script>
 import firebase from "firebase";
 const db = firebase.firestore();
-require("babel-core/register");
 require("babel-polyfill");
 
 export default {
