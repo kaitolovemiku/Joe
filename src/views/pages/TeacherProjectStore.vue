@@ -79,7 +79,7 @@ export default {
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
           if (
-            doc.data().projectAdvisor.includes(Vue.prototype.$session.getAll().user.id) === true
+            doc.data().projectAdvisor.includes(Vue.prototype.$session.getAll().user.data.userId) === true
           ) {
             this.projects.push({
               id: doc.id,

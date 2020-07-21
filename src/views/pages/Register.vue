@@ -13,15 +13,6 @@
                     <CIcon name="cil-user" />
                   </template>
                 </CInput>
-                <CInput
-                  v-model="userId"
-                  placeholder="Student ID or worker ID"
-                  autocomplete="username"
-                >
-                  <template #prepend-content>
-                    <CIcon name="cil-user" />
-                  </template>
-                </CInput>
                 <CInput v-model="address" placeholder="Address" autocomplete="address">
                   <template #prepend-content>
                     <i class="fa fa-address-card-o" aria-hidden="true"></i>
@@ -51,7 +42,7 @@
                   </template>
                 </CInput>
 
-                <!-- <div class="input-group mb-3">
+                <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">
                       <i class="fa fa-flag-o"></i>
@@ -61,7 +52,7 @@
                     <option disabled value>Role</option>
                     <option v-for="option in role" v-bind:key="option">{{ option }}</option>
                   </select>
-                </div> -->
+                </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">
@@ -123,6 +114,7 @@
               <CRow>
                 <CCol col="12">
                   <CButton block @click="goBackToLogin()" color="twitter">Go back to login</CButton>
+                  <CButton block @click="yoro()" color="twitter">Go back to login</CButton>
                 </CCol>
               </CRow>
             </CCardFooter>
@@ -136,6 +128,8 @@
 <script>
 import firebase from "firebase";
 const db = firebase.firestore();
+require("babel-core/register");
+require("babel-polyfill");
 
 export default {
   name: "Register",
@@ -150,7 +144,7 @@ export default {
       address: "",
       users: [],
       answer: "",
-      role: ["teacher", "student"],
+      role: ["teacher"],
       questions: [{ id: 1, data: "Waiting for database loading." }],
       password: "",
       questionTarget: "",
@@ -191,7 +185,20 @@ export default {
       this.profilePhoto = null;
       this.userPhoto = e.target.files[0];
     },
-    saveData() {
+    async saveData() {
+      
+      let userId = await db.collection("teachers")
+        .add({
+          companyPhone: this.companyPhone,
+          handPhone: this.handPhone,
+          email: this.email,
+          teacherName: this.username,
+          createdAt: new Date()
+        })
+        .catch(error => {
+          console.log("Error getting test data: ", error);
+        });
+
       db.collection("users").add({
         address: this.address,
         companyPhone: this.companyPhone,
@@ -203,9 +210,9 @@ export default {
         photo: this.userPhoto.name,
         questionAns: this.answer,
         questionId: this.questionTarget,
-        role: "teacher",
+        role: this.roleTarget == "student" ? "guest" : this.roleTarget,
         status: "online",
-        userId: this.userId,
+        userId: userId.id,
         username: this.username
       });
       const storageRef = firebase
@@ -231,7 +238,13 @@ export default {
         .ref("images")
         .child(this.userPhoto.name)
         .getDownloadURL()
-        .then(url => {return console.log(url),window.alert("Upload successed"),this.$router.replace({ name: "Login" })})
+        .then(url => {
+          return (
+            console.log(url),
+            window.alert("Upload successed"),
+            this.$router.replace({ name: "Login" })
+          );
+        })
         .catch(error => {
           console.log("Error getting image data: ", error);
         });
