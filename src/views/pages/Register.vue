@@ -114,7 +114,6 @@
               <CRow>
                 <CCol col="12">
                   <CButton block @click="goBackToLogin()" color="twitter">Go back to login</CButton>
-                  <CButton block @click="yoro()" color="twitter">Go back to login</CButton>
                 </CCol>
               </CRow>
             </CCardFooter>
