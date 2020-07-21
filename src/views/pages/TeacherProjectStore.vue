@@ -27,7 +27,7 @@
     <div v-for="project in searchObject" v-bind:key="project.id">
       <CCard class="zoom" v-on:click="routePage(project.id)">
         <CCardBody>
-          <h3 style="padding:20px;">{{project.projectName}}</h3>
+          <h3 style="padding:20px;">{{project.projectNameEn}} ({{project.projectNameTh}})</h3>
           <p style="padding-left:20px;paddig-bottom:10px;">{{project.projectBg}}</p>
           <p style="padding-left:20px;paddig-bottom:10px;">
             <b>Project type:</b>
@@ -72,7 +72,8 @@ export default {
         querySnapshot.forEach(doc => {
           this.projects.push({
             id: doc.id,
-            projectName: doc.data().projectName,
+            projectNameEn: doc.data().projectNameEn,
+            projectNameTh: doc.data().projectNameTh,
             projectBg: doc.data().projectBg,
             projectType: doc.data().projectType,
             projectDuration: doc.data().projectDuration,

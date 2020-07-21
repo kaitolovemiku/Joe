@@ -34,10 +34,10 @@
             {{project.projectType}}
             <b>Project duration:</b>
             {{project.projectDuration}}
-            <b>Project point:</b>
+            <!-- <b>Project point:</b>
             {{project.projectPoint}}
             <b>Project status:</b>
-            {{project.projectStatus}}
+            {{project.projectStatus}} -->
           </p>
         </CCardBody>
       </CCard>

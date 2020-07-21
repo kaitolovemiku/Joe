@@ -34,7 +34,7 @@
                 </div>
               </div>
               <div v-for="project in projects" v-bind:key="project.id" class="col-md-9">
-                <h1>{{project.projectName}}</h1>
+                <h1>{{project.projectNameEn}} ({{project.projectNameTh}})</h1>
                 <div class="row">
                   <div class="col-md-12">
                     <form>
@@ -69,11 +69,7 @@
                         <label for="staticEmail" class="col-sm-3 col-form-label">Project Status:</label>
                         <div class="col-sm-9">
                           <select class="form-control" v-model="projectStatus">
-                            <option
-                              disabled
-                              :value="project.projectStatus"
-                            >{{project.projectStatus}}</option>
-                            <option v-for="option in options" v-bind:key="option">{{ option }}</option>
+                            <option v-for="option in options" :key="option" value>{{ option }}</option>
                           </select>
                         </div>
                       </div>
@@ -331,6 +327,8 @@ export default {
       totalPoint: 0,
       point4: "",
       status3: "",
+      students: [],
+      teachers: [],
       projectStatus: "",
       point3: "",
       comment3: "",
@@ -343,6 +341,16 @@ export default {
     };
   },
   created() {
+    db.collection("users")
+      .get()
+      .then(querySnapshot => {querySnapshot.forEach(doc => {
+        this.students.push({id:doc.id , data: doc.data().username})
+      })});
+    db.collection("teachers")
+      .get()
+      .then(querySnapshot => {querySnapshot.forEach(doc => {
+        this.teachers.push({id:doc.id , data: doc.data().teacherName})
+      })});
     db.collection("projects")
       .get()
       .then(querySnapshot => {
@@ -350,9 +358,12 @@ export default {
           if (this.$route.params.projectId == doc.id) {
             this.projects.push({
               id: doc.id,
-              projectName: doc.data().projectName,
-              projectMember: doc.data().projectMember,
-              projectAdvisor: doc.data().projectAdvisor,
+              projectNameTh: doc.data().projectNameTh,
+              projectNameEn: doc.data().projectNameEn,
+              projectMember: this.students.filter(item => doc.data().projectMember.includes(item.id)).map(item => {return item.data}),
+              projectAdvisor: this.teachers.filter(item => doc.data().projectAdvisor.includes(item.id)).map(item => {return item.data}),
+              projectCoAdvisor: this.teachers.filter(item => doc.data().projectCoAdvisor.includes(item.id)).map(item => {return item.data}),
+              projectCommittee: this.teachers.filter(item => doc.data().projectCommittee.includes(item.id)).map(item => {return item.data}),
               projectBg: doc.data().projectBg,
               projectType: doc.data().projectType,
               projectDuration: doc.data().projectDuration,
