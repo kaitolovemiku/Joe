@@ -8,11 +8,15 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">phone</th>
-                <th scope="col">email</th>
-                <th scope="col">address</th>
-                <th scope="col">role</th>
-                <th scope="col">status</th>
+                <th scope="col">Hand phone</th>
+                <th scope="col">Company phone</th>
+                <th scope="col">Question</th>
+                <th scope="col">Answer</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Address</th>
+                <th scope="col">Role</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -21,26 +25,44 @@
                 <p id="userId" style="display:none">{{visibleData[0].value}}</p>
               </td>
               <td scope="col">
-                <input id="phone" class="form-control" v-model="visibleData[1].value" />
+                <input id="handPhone" class="form-control" v-model="visibleData[1].value" />
               </td>
               <td scope="col">
-                <input id="email" class="form-control" v-model="visibleData[2].value" />
+                <input id="companyPhone" class="form-control" v-model="visibleData[2].value" />
               </td>
               <td scope="col">
-                <input id="address" class="form-control" v-model="visibleData[3].value" />
+                <select
+                  id="question"
+                  class="form-control"
+                  :value="visibleData[4].value"
+                >
+                  <option v-for="option in questions" v-bind:key="option.id">{{ option.data }}</option>
+                </select>
+              </td>
+              <td scope="col">
+                <input id="answer" class="form-control" v-model="visibleData[5].value" />
+              </td>
+              <td scope="col">
+                <input id="email" class="form-control" v-model="visibleData[7].value" />
+              </td>
+              <td scope="col">
+                <input id="password" class="form-control" v-model="visibleData[8].value" />
+              </td>
+              <td scope="col">
+                <input id="address" class="form-control" v-model="visibleData[9].value" />
               </td>
               <td scope="col">
                 <select
                   id="role"
                   class="form-control"
-                  :value="visibleData[4].value"
+                  :value="visibleData[10].value"
                   :options="role"
                 >
                   <option v-for="option in role" v-bind:key="option">{{ option }}</option>
                 </select>
               </td>
               <td scope="col">
-                <select id="status" class="form-control" :value="visibleData[5].value">
+                <select id="status" class="form-control" :value="visibleData[11].value">
                   <option v-for="option in status" v-bind:key="option">{{ option }}</option>
                 </select>
               </td>
@@ -69,12 +91,25 @@ export default {
       vm.usersOpened = from.fullPath.includes("users");
     });
   },
+  created() {
+    db.collection("questions")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          this.questions.push({ id: doc.id, data: doc.data().questionDetail });
+        });
+      });
+  },
   data() {
     return {
       usersOpened: null,
       user_data: [],
       phone: "",
       email: "",
+      question: "",
+      questions: [],
+      answer: "",
+      password: "",
       address: "",
       role: ["teacher", "senior", "admin", "guest"],
       status: ["online", "block"]
@@ -115,7 +150,10 @@ export default {
         if (data.id == user.id) {
           (data.address = document.getElementById("address").value),
             (data.email = document.getElementById("email").value),
-            (data.phone = document.getElementById("phone").value),
+            (data.handPhone = document.getElementById("handPhone").value),
+            (data.companyPhone = document.getElementById("companyPhone").value),
+            (data.questionId = document.getElementById("question").value),
+            (data.questionAns = document.getElementById("answer").value),
             (data.role = document.getElementById("role").value),
             (data.status = document.getElementById("status").value);
         }
@@ -124,8 +162,12 @@ export default {
       db.collection("users")
       .doc(document.getElementById("userId").innerHTML)
       .update({
-        handPhone: document.getElementById("phone").value,
+        handPhone: document.getElementById("handPhone").value,
+        companyPhone: document.getElementById("companyPhone").value,
+        questionId: document.getElementById("question").value,
+        questionAns: document.getElementById("answer").value,
         email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
         address: document.getElementById("address").value,
         role: document.getElementById("role").value,
         status: document.getElementById("status").value

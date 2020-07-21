@@ -8,8 +8,14 @@ db.collection('users')
     usersData.push({
       id: doc.id,
       username: doc.data().username,
-      phone: doc.data().handPhone,
+      handPhone: doc.data().handPhone,
+      companyPhone: doc.data().companyPhone,
+      bio: doc.data().jobPosition,
+      questionId: doc.data().questionId,
+      questionAns: doc.data().questionAns,
+      userId: doc.data().userId,
       email: doc.data().email,
+      password: doc.data().password,
       address: doc.data().address,
       role: doc.data().role,
       status: doc.data().status
