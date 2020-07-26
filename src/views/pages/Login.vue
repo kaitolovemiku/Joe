@@ -234,7 +234,6 @@ export default {
       const target = this.users.find(data => {
         return data.data.email === this.form.email && data.data.password === this.form.password;
       });
-      console.log(target, this.users);
       if (this.form.email !== "" && this.form.password !== "") {
         if (target !== undefined && target.data.status !== "block") {
           const state = {

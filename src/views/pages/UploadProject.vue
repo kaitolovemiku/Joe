@@ -204,6 +204,7 @@ export default {
   },
   data() {
     return {
+      testDate: '2017-07-04',
       value: "",
       projectNameEn: "",
       projectNameTh: "",
