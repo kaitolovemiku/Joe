@@ -27,7 +27,7 @@
             <CCardBody>
               <div class="row">
                 <div class="col-md-12">
-                  <h2>{{this.projects[0].projectName}}</h2>
+                  <h2>{{this.projects[0].projectNameEn}} ({{this.projects[0].projectNameTh}})</h2>
                 </div>
                 <div class="col-md-12">{{this.projects[0].projectBg}}</div>
                 <div class="col-md-12">
@@ -321,9 +321,10 @@ export default {
           .get()
           .then(querySnapshot => {
             querySnapshot.forEach(doc => {
-              if (this.user.userId == doc.data().projectMember) {
+              if (Vue.prototype.$session.getAll().user.id == doc.data().projectMember) {
                 (this.projects[0].id = doc.id),
-                  (this.projects[0].projectName = doc.data().projectName),
+                  (this.projects[0].projectNameEn = doc.data().projectNameEn),
+                  (this.projects[0].projectNameTh = doc.data().projectNameTh),
                   (this.projects[0].projectBg = doc.data().projectBg),
                   (this.projects[0].projectType = doc.data().projectType),
                   (this.projects[0].projectDuration = doc.data().projectDuration),
