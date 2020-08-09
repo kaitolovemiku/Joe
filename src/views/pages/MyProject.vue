@@ -315,6 +315,7 @@
                           placeholder="Progress 1"
                           aria-label="Progress 1"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <button
@@ -354,6 +355,7 @@
                           placeholder="Progress 2"
                           aria-label="progress 2"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <button
@@ -393,6 +395,7 @@
                           placeholder="Final Presentation"
                           aria-label="Final Presentation"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <button
@@ -432,6 +435,7 @@
                           placeholder="Final Document"
                           aria-label="Final Document"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <button
@@ -541,6 +545,7 @@
                           placeholder="Progress 1"
                           aria-label="Progress 1"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <button
@@ -580,6 +585,7 @@
                           placeholder="Progress 2"
                           aria-label="Progress 2"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <button
@@ -619,6 +625,7 @@
                           placeholder="Final Presentation"
                           aria-label="Final Presentation"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <button
@@ -658,6 +665,7 @@
                           placeholder="Final Document"
                           aria-label="Final Document"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <button

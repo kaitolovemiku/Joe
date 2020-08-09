@@ -34,7 +34,7 @@
                 <h1>{{project.projectNameEn}} ({{project.projectNameTh}})</h1>
                 <div class="row">
                   <div class="col-md-12">
-                    <form>
+                    <form @submit.prevent="updateProject()">
                       <div class="form-group row">
                         <label
                           for="staticEmail"
@@ -59,23 +59,18 @@
                         <div class="col-sm-9">{{project.projectType}}</div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Point:</label>
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Point SP1:</label>
                         <div class="col-sm-9">{{project.projectPoint}}</div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Status:</label>
-                        <div class="col-sm-9">
-                          <select class="form-control" v-model="projectStatus">
-                            <option v-for="option in options" :key="option" value>{{ option }}</option>
-                          </select>
-                        </div>
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Point SP2:</label>
+                        <div class="col-sm-9">{{project.projectPoint}}</div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
                           <button
-                            @click="testUpdate()"
                             class="btn btn-primary btn-block"
-                          >Update project data</button>
+                          >Update project point</button>
                         </div>
                       </div>
                     </form>
@@ -536,9 +531,6 @@
                     required
                     style="display:none;"
                   />
-                </div>
-                <div class="form-group">
-                  <label>Advisor Point</label>
                   <input
                     type="number"
                     class="form-control"
@@ -597,9 +589,6 @@
                     required
                     style="display:none;"
                   />
-                </div>
-                <div class="form-group">
-                  <label>Advisor Point</label>
                   <input
                     type="number"
                     class="form-control"
@@ -763,9 +752,6 @@
                     required
                     style="display:none;"
                   />
-                </div>
-                <div class="form-group">
-                  <label>Advisor Point</label>
                   <input
                     type="number"
                     class="form-control"
@@ -916,6 +902,8 @@ export default {
         senior1: { progress1: {}, progress2: {}, finalPre: {}, finalDoc: {} },
         senior2: { progress1: {}, progress2: {}, finalPre: {}, finalDoc: {} },
       },
+      projectPointSP1: 0,
+      projectPointSP2: 0,
       students: [],
       teachers: [],
       projectStatus: "",
@@ -977,6 +965,8 @@ export default {
               projectType: doc.data().projectType,
               projectDuration: doc.data().projectDuration,
               projectPoint: doc.data().projectPoint,
+              projectPointSP1: doc.data().projectPointSP1,
+              projectPointSP2: doc.data().projectPointSP2,
               projectStatus: doc.data().projectStatus,
             });
           }
@@ -1166,39 +1156,45 @@ export default {
           console.log("Error getting documents: ", error);
         });
     },
+    testUpdateMustBeSuccess() {
+      console.log('test');
+    },
     updateProject() {
-      this.totalPoint = 0;
-      this.totalPoint =
-        parseInt(
-          this.projectProgress[0].progressPoint
-            ? this.projectProgress[0].progressPoint
-            : 0
-        ) +
-        parseInt(
-          this.projectProgress[1].progressPoint
-            ? this.projectProgress[1].progressPoint
-            : 0
-        ) +
-        parseInt(this.finalPresent[0].point ? this.finalPresent[0].point : 0) +
-        parseInt(this.finalDocument[0].point ? this.finalDocument[0].point : 0);
-      db.collection("projects")
+      db.collection("projectProgress")
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            if (doc.id == this.projects[0].id) {
-              db.collection("projects").doc(doc.id).update({
-                projectPoint: this.totalPoint,
-                projectStatus: this.projectStatus,
-                createdAt: new Date(),
-              });
+            if (
+              doc.data().projectId == this.projects[0].id &&
+              doc.data().progressType.includes("progress1")
+            ) {
+              this.projectPointSP1 =
+                doc.data().advisorPoint +
+                doc.data().committee1Point +
+                doc.data().committee2Point;
+            }
+            if (
+              doc.data().projectId == this.projects[0].id &&
+              doc.data().progressType.includes("progress2")
+            ) {
+              this.projectPointSP2 =
+                doc.data().advisorPoint +
+                doc.data().committee1Point +
+                doc.data().committee2Point;
             }
           });
-          alert("Update success");
+          db.collection("projects").doc(this.projects[0].id).update({
+            projectPointSP1: this.projectPointSP1,
+            projectPointSP2: this.projectPointSP2,
+            createdAt: new Date(),
+          });
+          window.alert('Update project point success!');
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);
         });
-    },
+        location.reload();
+    }
   },
 };
 </script>

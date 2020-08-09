@@ -315,6 +315,8 @@ export default {
             projectCoAdvisor: this.co_advisor_for_save_data,
             projectCommittee: this.committee_for_save_data,
             projectPoint: 0,
+            projectPointSP1: 0,
+            projectPointSP2: 0,
             projectStatus: "Waiting for acception",
             projectDuration: this.projectDuration,
             projectFileName: this.projectFile.name,
