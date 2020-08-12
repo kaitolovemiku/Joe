@@ -1203,7 +1203,6 @@ export default {
             projectPointSP2: this.projectPointSP2,
             createdAt: new Date(),
           });
-          window.alert('Update project point PS1 and PS2 successed!');
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);
