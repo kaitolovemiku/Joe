@@ -26,7 +26,7 @@
                 />
                 <div class="row">
                   <div class="col-md-12" style="margin-top:10px;">
-                    <button class="btn btn-primary btn-block" @click="downloadFile()">Download file</button>
+                    <button class="btn btn-primary btn-block" @click="downloadFile(projects[0].projectFileName)">Download file</button>
                   </div>
                 </div>
               </div>
@@ -60,19 +60,17 @@
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Project Point SP1:</label>
-                        <div class="col-sm-9">{{project.projectPoint}}</div>
+                        <div class="col-sm-9">{{project.projectPointSP1}}</div>
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label">Project Point SP2:</label>
-                        <div class="col-sm-9">{{project.projectPoint}}</div>
+                        <div class="col-sm-9">{{project.projectPointSP2}}</div>
                       </div>
-                      <div class="row">
+                      <!-- <div class="row">
                         <div class="col-md-12">
-                          <button
-                            class="btn btn-primary btn-block"
-                          >Update project point</button>
+                          <button class="btn btn-primary btn-block">Update project point</button>
                         </div>
-                      </div>
+                      </div> -->
                     </form>
                   </div>
                 </div>
@@ -112,7 +110,10 @@
                     <img src="pdf.png" style="width:100%" />
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-block">Download file</button>
+                    <button
+                      class="btn btn-primary btn-block"
+                      @click="downloadProgress(progress)"
+                    >Download file</button>
                   </div>
                 </div>
               </div>
@@ -173,7 +174,10 @@
                     <img src="pdf.png" style="width:100%" />
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-block">Download file</button>
+                    <button
+                      class="btn btn-primary btn-block"
+                      @click="downloadProgress(progress)"
+                    >Download file</button>
                   </div>
                 </div>
               </div>
@@ -234,7 +238,10 @@
                     <img src="pdf.png" style="width:100%" />
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-block">Download file</button>
+                    <button
+                      class="btn btn-primary btn-block"
+                      @click="downloadProgress(progress)"
+                    >Download file</button>
                   </div>
                 </div>
               </div>
@@ -339,7 +346,10 @@
                     <img src="pdf.png" style="width:100%" />
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-block">Download file</button>
+                    <button
+                      class="btn btn-primary btn-block"
+                      @click="downloadProgress(progress)"
+                    >Download file</button>
                   </div>
                 </div>
               </div>
@@ -515,7 +525,10 @@
                     <img src="pdf.png" style="width:100%" />
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-block">Download file</button>
+                    <button
+                      class="btn btn-primary btn-block"
+                      @click="downloadProgress(progress)"
+                    >Download file</button>
                   </div>
                 </div>
               </div>
@@ -573,7 +586,10 @@
                     <img src="pdf.png" style="width:100%" />
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-block">Download file</button>
+                    <button
+                      class="btn btn-primary btn-block"
+                      @click="downloadProgress(progress)"
+                    >Download file</button>
                   </div>
                 </div>
               </div>
@@ -631,7 +647,10 @@
                     <img src="pdf.png" style="width:100%" />
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-block">Download file</button>
+                    <button
+                      class="btn btn-primary btn-block"
+                      @click="downloadProgress(progress)"
+                    >Download file</button>
                   </div>
                 </div>
               </div>
@@ -736,7 +755,10 @@
                     <img src="pdf.png" style="width:100%" />
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-block">Download file</button>
+                    <button
+                      class="btn btn-primary btn-block"
+                      @click="downloadProgress(progress)"
+                    >Download file</button>
                   </div>
                 </div>
               </div>
@@ -962,17 +984,18 @@ export default {
                   return item.data;
                 }),
               projectBg: doc.data().projectBg,
+              projectFileName: doc.data().projectFileName,
               projectType: doc.data().projectType,
               projectDuration: doc.data().projectDuration,
               projectPoint: doc.data().projectPoint,
               projectPointSP1: doc.data().projectPointSP1,
               projectPointSP2: doc.data().projectPointSP2,
               projectStatus: doc.data().projectStatus,
-            });
+            })
           }
           console.log(this.projects);
         });
-        return this.projects;
+        return this.projects, this.updateProject();
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -1036,12 +1059,12 @@ export default {
       });
   },
   methods: {
-    downloadFile() {
-      // Create a root reference
+    downloadFile(item) {
+      //Create a root reference
       var storageRef = firebase.storage().ref();
 
       storageRef
-        .child(this.projects[0].projectFileName)
+        .child(item)
         .getDownloadURL()
         .then(function (url) {
           // `url` is the download URL for 'images/stars.jpg'
@@ -1156,44 +1179,35 @@ export default {
           console.log("Error getting documents: ", error);
         });
     },
-    testUpdateMustBeSuccess() {
-      console.log('test');
-    },
     updateProject() {
       db.collection("projectProgress")
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             if (
-              doc.data().projectId == this.projects[0].id &&
+              doc.data().projectId == this.$route.params.projectId &&
               doc.data().progressType.includes("progress1")
             ) {
-              this.projectPointSP1 =
-                doc.data().advisorPoint +
-                doc.data().committee1Point +
-                doc.data().committee2Point;
+              this.projectPointSP1 = parseInt(doc.data().advisorPoint) + parseInt(doc.data().committee1Point) + parseInt(doc.data().committee2Point);
             }
             if (
-              doc.data().projectId == this.projects[0].id &&
+              doc.data().projectId == this.$route.params.projectId &&
               doc.data().progressType.includes("progress2")
             ) {
-              this.projectPointSP2 =
-                doc.data().advisorPoint +
-                doc.data().committee1Point +
-                doc.data().committee2Point;
+              this.projectPointSP2 = parseInt(doc.data().advisorPoint) + parseInt(doc.data().committee1Point) + parseInt(doc.data().committee2Point);
             }
           });
-          db.collection("projects").doc(this.projects[0].id).update({
+          console.log(this.projectPointSP1, this.projectPointSP2);
+          db.collection("projects").doc(this.$route.params.projectId).update({
             projectPointSP1: this.projectPointSP1,
             projectPointSP2: this.projectPointSP2,
             createdAt: new Date(),
           });
-          window.alert('Update project point success!');
+          window.alert('Update project point PS1 and PS2 successed!');
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);
         });
-        location.reload();
     }
   },
 };
