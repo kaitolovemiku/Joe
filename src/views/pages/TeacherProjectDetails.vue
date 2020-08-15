@@ -657,9 +657,6 @@
                     required
                     style="display:none;"
                   />
-                </div>
-                <div class="form-group">
-                  <label>Advisor Point</label>
                   <input
                     type="number"
                     class="form-control"
