@@ -31,11 +31,7 @@
                 <input id="companyPhone" class="form-control" v-model="visibleData[2].value" />
               </td>
               <td scope="col">
-                <select
-                  id="question"
-                  class="form-control"
-                  :value="visibleData[4].value"
-                >
+                <select id="question" class="form-control" :value="visibleData[4].value">
                   <option v-for="option in questions" v-bind:key="option.id">{{ option.data }}</option>
                 </select>
               </td>
@@ -87,15 +83,15 @@ const db = firebase.firestore();
 export default {
   name: "User",
   beforeRouteEnter(to, from, next) {
-    next(vm => {
+    next((vm) => {
       vm.usersOpened = from.fullPath.includes("users");
     });
   },
   created() {
     db.collection("questions")
       .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           this.questions.push({ id: doc.id, data: doc.data().questionDetail });
         });
       });
@@ -112,14 +108,14 @@ export default {
       password: "",
       address: "",
       role: ["teacher", "senior", "admin", "guest"],
-      status: ["online", "block"]
+      status: ["online", "block"],
     };
   },
   computed: {
     fields() {
       return [
         { key: "key", label: this.username, _style: "width:150px" },
-        { key: "value", label: "", _style: "width:150px;" }
+        { key: "value", label: "", _style: "width:150px;" },
       ];
     },
     userData() {
@@ -131,11 +127,11 @@ export default {
       });
     },
     visibleData() {
-      return this.userData.filter(param => param.key !== "username");
+      return this.userData.filter((param) => param.key !== "username");
     },
     username() {
-      return this.userData.filter(param => param.key === "username")[0].value;
-    }
+      return this.userData.filter((param) => param.key === "username")[0].value;
+    },
   },
   methods: {
     goBack() {
@@ -160,37 +156,40 @@ export default {
       });
 
       db.collection("users")
-      .doc(document.getElementById("userId").innerHTML)
-      .update({
-        handPhone: document.getElementById("handPhone").value,
-        companyPhone: document.getElementById("companyPhone").value,
-        questionId: document.getElementById("question").value,
-        questionAns: document.getElementById("answer").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
-        address: document.getElementById("address").value,
-        role: document.getElementById("role").value,
-        status: document.getElementById("status").value
-      })
-      .then(() => {return window.alert("Update success"),this.goBack()})
-      .catch(error => {
-        console.log("Error getting documents: ", error);
-      });
+        .doc(document.getElementById("userId").innerHTML)
+        .update({
+          handPhone: document.getElementById("handPhone").value,
+          companyPhone: document.getElementById("companyPhone").value,
+          questionId: document.getElementById("question").value,
+          questionAns: document.getElementById("answer").value,
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value,
+          address: document.getElementById("address").value,
+          role: document.getElementById("role").value,
+          status: document.getElementById("status").value,
+        })
+        .then(() => {
+          return window.alert("Update success"), this.goBack();
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
     },
     deleteData() {
       if (window.confirm("Do you really want to delete?")) {
+        usersData.splice(this.$route.params.id,1);
         db.collection("users")
           .doc(document.getElementById("userId").innerHTML)
           .delete()
           .then(() => {
-            alert("Document deleted!");
+            alert("Delete user successed!");
             this.goBack();
           })
-          .catch(error => {
+          .catch((error) => {
             console.error(error);
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
