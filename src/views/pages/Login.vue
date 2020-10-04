@@ -169,7 +169,7 @@ export default {
             password: "",
             photo: result.additionalUserInfo.profile.id,
             // photo: result.additionalUserInfo.profile.picture,
-            role: result.additionalUserInfo.profile.email.substring(0,2) == "60"||result.additionalUserInfo.profile.substring(0,2) == "59"||result.additionalUserInfo.profile.substring(0,2) == "58"? "senior" : "guest",
+            role: parseInt(result.additionalUserInfo.profile.email.substring(0,2)) <= 60? "senior" : "guest",
             questionAns: "",
             questionId: "",
             jobPosition: "Student of software engineering",
@@ -209,7 +209,7 @@ export default {
           }
         };
         this.$session.set("user", state2);
-        window.location.replace("http://localhost:8080/");
+        window.location.replace("http://localhost:8081/");
       }
       console.log("Look this ->", result);
     },

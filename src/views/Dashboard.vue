@@ -8,6 +8,8 @@
         <div class="col-md-12">
           <hr />
         </div>
+        <TeacherDashboard />
+        <StudentDownloadReport />
         <div class="col-md-8" v-if="userData[0].role == 'senior'">
           <CCard>
             <CCardHeader>
@@ -215,12 +217,17 @@
 //import WidgetsBrand from './widgets/WidgetsBrand'
 import firebase from "firebase";
 import Vue from "vue";
+import TeacherDashboard from "./pages/TeacherDashboardPage";
+import StudentDownloadReport from "./pages/StudentDownloadReport.vue"
+
 console.log(Vue.prototype.$session.getAll().user.data);
 const db = firebase.firestore();
 
 export default {
   name: "Dashboard",
   components: {
+    TeacherDashboard,
+    StudentDownloadReport,
     //MainChartExample,
     //WidgetsDropdown,
     //WidgetsBrand
