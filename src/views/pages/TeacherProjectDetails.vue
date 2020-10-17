@@ -168,9 +168,8 @@
                   <input
                     type="number"
                     class="form-control"
-                    :value="
-                      user.senior1.progress1.AdvisorPoint =
-                        progress.data.advisorPoint"
+                    v-model="user.senior1.progress1.AdvisorPoint"
+                    :placeholder="progress.data.advisorPoint"
                     required
                   />
                 </div>
@@ -180,8 +179,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    :value="user.senior1.progress1.AdvisorComment =
-                        progress.data.advisorComment"
+                    v-model="user.senior1.progress1.AdvisorComment"
+                    :placeholder="progress.data.advisorComment"
                     required
                   />
                 </div>
@@ -245,9 +244,8 @@
                   <input
                     type="number"
                     class="form-control"
-                    :value="
-                      user.senior1.progress2.AdvisorPoint =
-                        progress.data.advisorPoint"
+                    v-model="user.senior1.progress2.AdvisorPoint"
+                    :placeholder="progress.data.advisorPoint"
                     required
                   />
                 </div>
@@ -257,9 +255,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    :value="
-                      user.senior1.progress2.AdvisorComment =
-                        progress.data.advisorComment"
+                    v-model="user.senior1.progress2.AdvisorComment"
+                    :placeholder="progress.data.advisorComment"
                     required
                   />
                 </div>
@@ -320,9 +317,8 @@
                   <input
                     type="number"
                     class="form-control"
-                    :value="
-                      user.senior1.finalPre.AdvisorPoint =
-                        progress.data.advisorPoint"
+                    v-model="user.senior1.finalPre.AdvisorPoint"
+                    :placeholder="progress.data.advisorPoint"
                     required
                   />
                 </div>
@@ -332,8 +328,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    :value="user.senior1.finalPre.AdvisorComment =
-                        progress.data.advisorComment"
+                    v-model="user.senior1.finalPre.AdvisorComment"
+                    :placeholder="progress.data.advisorComment"
                     required
                   />
                 </div>
@@ -349,8 +345,8 @@
                     <input
                       type="text"
                       class="form-control"
-                      :value="user.senior1.finalPre.Committee1Point =
-                          progress.data.Committee1Point"
+                      v-model="user.senior1.finalPre.Committee1Point"
+                      :placeholder="progress.data.Committee1Point"
                       required
                     />
                   </div>
@@ -360,8 +356,8 @@
                     <input
                       type="text"
                       class="form-control"
-                      :value="user.senior1.finalPre.Committee1Comment =
-                          progress.data.Committee1Comment"
+                      v-model="user.senior1.finalPre.Committee1Comment"
+                      :placeholder="progress.data.Committee1Comment"
                       required
                     />
                   </div>
@@ -371,8 +367,8 @@
                     <input
                       type="number"
                       class="form-control"
-                      :value="user.senior1.finalPre.Committee2Point =
-                          progress.data.Committee2Point"
+                      v-model="user.senior1.finalPre.Committee2Point"
+                      :placeholder="progress.data.Committee2Point"
                       required
                     />
                   </div>
@@ -382,8 +378,8 @@
                     <input
                       type="text"
                       class="form-control"
-                      :value="user.senior1.finalPre.Committee2Comment =
-                          progress.data.Committee2Comment"
+                      v-model="user.senior1.finalPre.Committee2Comment"
+                      :placeholder="progress.data.Committee2Comment"
                       required
                     />
                   </div>
@@ -445,8 +441,8 @@
                   <input
                     type="advisorPoint"
                     class="form-control"
-                    :value="user.senior1.finalDoc.AdvisorPoint =
-                        progress.data.advisorPoint"
+                    v-model="user.senior1.finalDoc.AdvisorPoint"
+                    :placeholder="progress.data.advisorPoint"
                     required
                   />
                 </div>
@@ -456,8 +452,8 @@
                   <input
                     type="advisorComment"
                     class="form-control"
-                    :value="user.senior1.finalDoc.AdvisorComment =
-                        progress.data.advisorComment"
+                    v-model="user.senior1.finalDoc.AdvisorComment"
+                    :placeholder="progress.data.advisorComment"
                     required
                   />
                 </div>
@@ -473,8 +469,8 @@
                     <input
                       type="Committee1Point"
                       class="form-control"
-                      :value="user.senior1.finalDoc.Committee1Point =
-                          progress.data.Committee1Point"
+                      v-model="user.senior1.finalDoc.Committee1Point"
+                      :placeholder="progress.data.Committee1Point"
                       required
                     />
                   </div>
@@ -484,8 +480,8 @@
                     <input
                       type="Committee1Comment"
                       class="form-control"
-                      :value="user.senior1.finalDoc.Committee1Comment =
-                          progress.data.Committee1Comment"
+                      v-model="user.senior1.finalDoc.Committee1Comment"
+                      :placeholder="progress.data.Committee1Comment"
                       required
                     />
                   </div>
@@ -495,8 +491,8 @@
                     <input
                       type="Committee2Point"
                       class="form-control"
-                      :value="user.senior1.finalDoc.Committee2Point =
-                          progress.data.Committee2Point"
+                      v-model="user.senior1.finalDoc.Committee2Point"
+                      :placeholder="progress.data.Committee2Point"
                       required
                     />
                   </div>
@@ -506,8 +502,8 @@
                     <input
                       type="Committee2Comment"
                       class="form-control"
-                      :value="user.senior1.finalDoc.Committee2Comment =
-                          progress.data.Committee2Comment"
+                      v-model="user.senior1.finalDoc.Committee2Comment"
+                      :placeholder="progress.data.Committee2Comment"
                       required
                     />
                   </div>
@@ -668,9 +664,8 @@
                   <input
                     type="number"
                     class="form-control"
-                    :value="
-                      user.senior2.progress1.AdvisorPoint =
-                        progress.data.advisorPoint"
+                    v-model="user.senior2.progress1.AdvisorPoint"
+                    :placeholder="progress.data.advisorPoint"
                     required
                   />
                 </div>
@@ -680,9 +675,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    :value="
-                      user.senior2.progress1.AdvisorComment =
-                        progress.data.advisorComment"
+                    v-model="user.senior2.progress1.AdvisorComment"
+                    :placeholder="progress.data.advisorComment"
                     required
                   />
                 </div>
@@ -743,9 +737,8 @@
                   <input
                     type="number"
                     class="form-control"
-                    :value="
-                      user.senior2.progress2.AdvisorPoint =
-                        progress.data.advisorPoint"
+                    v-model="user.senior2.progress2.AdvisorPoint"
+                    :placeholder="progress.data.advisorPoint"
                     required
                   />
                 </div>
@@ -755,9 +748,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    :value="
-                      user.senior2.progress2.AdvisorComment =
-                        progress.data.advisorComment"
+                    v-model="user.senior2.progress2.AdvisorComment"
+                    :placeholder="progress.data.advisorComment"
                     required
                   />
                 </div>
@@ -818,10 +810,8 @@
                   <input
                     type="number"
                     class="form-control"
-                    :value="
-                      (user.senior2.finalPre.AdvisorPoint =
-                        progress.data.advisorPoint)
-                    "
+                    v-model="user.senior2.finalPre.AdvisorPoint"
+                    :placeholder="progress.data.advisorPoint"
                     required
                   />
                 </div>
@@ -831,10 +821,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    :value="
-                      (user.senior2.finalPre.AdvisorComment =
-                        progress.data.advisorComment)
-                    "
+                    v-model="user.senior2.finalPre.AdvisorComment"
+                    :placeholder="progress.data.advisorComment"
                     required
                   />
                 </div>
@@ -850,10 +838,8 @@
                     <input
                       type="number"
                       class="form-control"
-                      :value="
-                        (user.senior2.finalPre.Committee1Point =
-                          progress.data.Committee1Point)
-                      "
+                      v-model="user.senior2.finalPre.Committee1Point"
+                      :placeholder="progress.data.Committee1Point"
                       required
                     />
                   </div>
@@ -863,10 +849,8 @@
                     <input
                       type="text"
                       class="form-control"
-                      :value="
-                        (user.senior2.finalPre.Committee1Comment =
-                          progress.data.Committee1Comment)
-                      "
+                      v-model="user.senior2.finalPre.Committee1Comment"
+                      :placeholder="progress.data.Committee1Comment"
                       required
                     />
                   </div>
@@ -876,10 +860,8 @@
                     <input
                       type="number"
                       class="form-control"
-                      :value="
-                        (user.senior2.finalPre.Committee2Point =
-                          progress.data.Committee2Point)
-                      "
+                      v-model="user.senior2.finalPre.Committee2Point"
+                      :placeholder="progress.data.Committee2Point"
                       required
                     />
                   </div>
@@ -889,10 +871,8 @@
                     <input
                       type="text"
                       class="form-control"
-                      :value="
-                        (user.senior2.finalPre.Committee2Comment =
-                          progress.data.Committee2Comment)
-                      "
+                      v-model="user.senior2.finalPre.Committee2Comment"
+                      :placeholder="progress.data.Committee2Comment"
                       required
                     />
                   </div>
@@ -954,10 +934,8 @@
                   <input
                     type="number"
                     class="form-control"
-                    :value="
-                      (user.senior2.finalDoc.AdvisorPoint =
-                        progress.data.advisorPoint)
-                    "
+                    v-model="user.senior2.finalDoc.AdvisorPoint"
+                    :placeholder="progress.data.advisorPoint"
                     required
                   />
                 </div>
@@ -967,10 +945,8 @@
                   <input
                     type="text"
                     class="form-control"
-                    :value="
-                      (user.senior2.finalDoc.AdvisorComment =
-                        progress.data.advisorComment)
-                    "
+                    v-model="user.senior2.finalDoc.AdvisorComment"
+                    :placeholder="progress.data.advisorComment"
                     required
                   />
                 </div>
@@ -986,10 +962,8 @@
                     <input
                       type="number"
                       class="form-control"
-                      :value="
-                        (user.senior2.finalDoc.Committee1Point =
-                          progress.data.Committee1Point)
-                      "
+                      v-model="user.senior2.finalDoc.Committee1Point"
+                      :placeholder="progress.data.Committee1Point"
                       required
                     />
                   </div>
@@ -999,10 +973,8 @@
                     <input
                       type="text"
                       class="form-control"
-                      :value="
-                        (user.senior2.finalDoc.Committee1Comment =
-                          progress.data.Committee1Comment)
-                      "
+                      v-model="user.senior2.finalDoc.Committee1Comment"
+                      :placeholder="progress.data.Committee1Comment"
                       required
                     />
                   </div>
@@ -1012,10 +984,8 @@
                     <input
                       type="number"
                       class="form-control"
-                      :value="
-                        (user.senior2.finalDoc.Committee2Point =
-                          progress.data.Committee2Point)
-                      "
+                      v-model="user.senior2.finalDoc.Committee2Point"
+                      :placeholder="progress.data.Committee2Point"
                       required
                     />
                   </div>
@@ -1025,10 +995,8 @@
                     <input
                       type="text"
                       class="form-control"
-                      :value="
-                        (user.senior2.finalDoc.Committee2Comment =
-                          progress.data.Committee2Comment)
-                      "
+                      v-model="user.senior2.finalDoc.Committee2Comment"
+                      :placeholder="progress.data.Committee2Comment"
                       required
                     />
                   </div>
@@ -1135,7 +1103,6 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
-
 const db = firebase.firestore();
 export default {
   name: "Breadcrumbs",
@@ -1290,13 +1257,11 @@ export default {
     downloadFile(item) {
       //Create a root reference
       var storageRef = firebase.storage().ref();
-
       storageRef
         .child(item)
         .getDownloadURL()
         .then(function (url) {
           // `url` is the download URL for 'images/stars.jpg'
-
           window.open(url, "_blank");
           return (this.projectUrl = url);
         })
@@ -1309,26 +1274,22 @@ export default {
       //   .get()
       //   .then((querySnapshot) => {
       //     querySnapshot.forEach((doc) => {
-
       //     db.collection("projects").doc(this.$route.params.projectId).update({
       //       projectPointSP1: this.projectPointSP1,
       //       projectPointSP2: this.projectPointSP2,
       //       createdAt: new Date(),
       //     });
-
       //   })
       //   .catch((error) => {
       //     console.log("Error getting documents: ", error);
       //   });
       // Create a root reference
       var storageRef = firebase.storage().ref();
-
       storageRef
         .child(item.data.fileName)
         .getDownloadURL()
         .then(function (url) {
           // `url` is the download URL for 'images/stars.jpg'
-
           window.open(url, "_blank");
           return (this.projectUrl = url);
         })
@@ -1370,7 +1331,7 @@ export default {
           advisorPoint: data.AdvisorPoint,
           createdAt: new Date(),
         })
-        .then(() => window.alert("Update progress successed!"))
+        .then(() => {window.alert("Update progress successed!"), console.log("this is sended data=>",data.AdvisorComment,data.AdvisorPoint)})
         .catch((error) => {
           console.log("Error getting documents: ", error);
         });
