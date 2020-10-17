@@ -169,6 +169,7 @@
                     type="number"
                     class="form-control"
                     min="0"
+                    max="20"
                     v-model="user.senior1.progress1.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -245,6 +246,7 @@
                     type="number"
                     class="form-control"
                     min="0"
+                    max="20"
                     v-model="user.senior1.progress2.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -318,6 +320,7 @@
                     type="number"
                     class="form-control"
                     min="0"
+                    max="20"
                     v-model="user.senior1.finalPre.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -346,6 +349,7 @@
                       type="text"
                       class="form-control"
                       min="0"
+                      max="10"
                       v-model="user.senior1.finalPre.Committee1Point"
                       :placeholder="progress.data.Committee1Point"
                       required
@@ -368,6 +372,7 @@
                       type="number"
                       class="form-control"
                       min="0"
+                      max="10"
                       v-model="user.senior1.finalPre.Committee2Point"
                       :placeholder="progress.data.Committee2Point"
                       required
@@ -442,6 +447,7 @@
                     type="advisorPoint"
                     class="form-control"
                     min="0"
+                    max="10"
                     v-model="user.senior1.finalDoc.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -470,6 +476,7 @@
                       type="Committee1Point"
                       class="form-control"
                       min="0"
+                      max="5"
                       v-model="user.senior1.finalDoc.Committee1Point"
                       :placeholder="progress.data.Committee1Point"
                       required
@@ -492,6 +499,7 @@
                       type="Committee2Point"
                       class="form-control"
                       min="0"
+                      max="5"
                       v-model="user.senior1.finalDoc.Committee2Point"
                       :placeholder="progress.data.Committee2Point"
                       required
@@ -665,6 +673,7 @@
                     type="number"
                     class="form-control"
                     min="0"
+                    max="20"
                     v-model="user.senior2.progress1.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -738,6 +747,7 @@
                     type="number"
                     class="form-control"
                     min="0"
+                    max="20"
                     v-model="user.senior2.progress2.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -811,6 +821,7 @@
                     type="number"
                     class="form-control"
                     min="0"
+                    max="20"
                     v-model="user.senior2.finalPre.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -839,6 +850,7 @@
                       type="number"
                       class="form-control"
                       min="0"
+                      max="10"
                       v-model="user.senior2.finalPre.Committee1Point"
                       :placeholder="progress.data.Committee1Point"
                       required
@@ -861,6 +873,7 @@
                       type="number"
                       class="form-control"
                       min="0"
+                      max="10"
                       v-model="user.senior2.finalPre.Committee2Point"
                       :placeholder="progress.data.Committee2Point"
                       required
@@ -935,6 +948,7 @@
                     type="number"
                     class="form-control"
                     min="0"
+                    max="10"
                     v-model="user.senior2.finalDoc.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -963,6 +977,7 @@
                       type="number"
                       class="form-control"
                       min="0"
+                      max="5"
                       v-model="user.senior2.finalDoc.Committee1Point"
                       :placeholder="progress.data.Committee1Point"
                       required
@@ -985,6 +1000,7 @@
                       type="number"
                       class="form-control"
                       min="0"
+                      max="5"
                       v-model="user.senior2.finalDoc.Committee2Point"
                       :placeholder="progress.data.Committee2Point"
                       required
@@ -1188,7 +1204,7 @@ export default {
               projectStatus: doc.data().projectStatus,
             });
           }
-          console.log(this.projects);
+          
         });
         return this.projects, this.updateProject();
       })
@@ -1297,30 +1313,33 @@ export default {
           console.log("Error getting files url: ", error);
         });
     },
+    loadOnce:function(){
+      location.reload();
+    },
     updateProgress(item) {
       if (item.senior1.progress1.id !== undefined) {
-        this.updateProgress1(item.senior1.progress1);
+        this.updateProgress1(item.senior1.progress1).then(this.loadOnce());
       }
       if (item.senior1.progress2.id !== undefined) {
-        this.updateProgress2(item.senior1.progress2);
+        this.updateProgress2(item.senior1.progress2).then(this.loadOnce());
       }
       if (item.senior1.finalPre.id !== undefined) {
-        this.updateFinalPre(item.senior1.finalPre);
+        this.updateFinalPre(item.senior1.finalPre).then(this.loadOnce());
       }
       if (item.senior1.finalDoc.id !== undefined) {
-        this.updateFinalDoc(item.senior1.finalDoc);
+        this.updateFinalDoc(item.senior1.finalDoc).then(this.loadOnce());
       }
       if (item.senior2.progress1.id !== undefined) {
-        this.updateProgress1(item.senior2.progress1);
+        this.updateProgress1(item.senior2.progress1).then(this.loadOnce());
       }
       if (item.senior2.progress2.id !== undefined) {
-        this.updateProgress2(item.senior2.progress2);
+        this.updateProgress2(item.senior2.progress2).then(this.loadOnce());
       }
       if (item.senior2.finalPre.id !== undefined) {
-        this.updateFinalPre(item.senior2.finalPre);
+        this.updateFinalPre(item.senior2.finalPre).then(this.loadOnce());
       }
       if (item.senior2.finalDoc.id !== undefined) {
-        this.updateFinalDoc(item.senior2.finalDoc);
+        this.updateFinalDoc(item.senior2.finalDoc).then(this.loadOnce());
       }
     },
     updateProgress1(data) {
