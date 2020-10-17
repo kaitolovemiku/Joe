@@ -328,7 +328,8 @@ export default {
           .get()
           .then(querySnapshot => {
             querySnapshot.forEach(doc => {
-              if (Vue.prototype.$session.getAll().user.id == doc.data().projectMember) {
+              console.log('Look at this=>',Vue.prototype.$session.getAll().user.id,doc.data().projectMember)
+              if (doc.data().projectMember.find(item => item === Vue.prototype.$session.getAll().user.id)) {
                 (this.projects[0].id = doc.id),
                   (this.projects[0].projectNameEn = doc.data().projectNameEn),
                   (this.projects[0].projectNameTh = doc.data().projectNameTh),
@@ -337,6 +338,7 @@ export default {
                   (this.projects[0].projectDuration = doc.data().projectDuration),
                   (this.projects[0].projectPoint = doc.data().projectPoint),
                   (this.projects[0].projectStatus = doc.data().projectStatus);
+                  console.log('This is project data',this.projects[0])
               }
             });
             db.collection("projectProgress")

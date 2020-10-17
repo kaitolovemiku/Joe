@@ -231,7 +231,6 @@
             <div class="col-md-9">
               <form @submit.prevent="updateProgress(user)">
                 <div class="form-group">
-                  <label>Advisor Point</label>
                   <input
                     type="text"
                     class="form-control"
