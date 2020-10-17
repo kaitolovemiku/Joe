@@ -168,6 +168,7 @@
                   <input
                     type="number"
                     class="form-control"
+                    min="0"
                     v-model="user.senior1.progress1.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -181,7 +182,6 @@
                     class="form-control"
                     v-model="user.senior1.progress1.AdvisorComment"
                     :placeholder="progress.data.advisorComment"
-                    required
                   />
                 </div>
 
@@ -244,6 +244,7 @@
                   <input
                     type="number"
                     class="form-control"
+                    min="0"
                     v-model="user.senior1.progress2.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -257,7 +258,6 @@
                     class="form-control"
                     v-model="user.senior1.progress2.AdvisorComment"
                     :placeholder="progress.data.advisorComment"
-                    required
                   />
                 </div>
 
@@ -317,6 +317,7 @@
                   <input
                     type="number"
                     class="form-control"
+                    min="0"
                     v-model="user.senior1.finalPre.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -330,7 +331,6 @@
                     class="form-control"
                     v-model="user.senior1.finalPre.AdvisorComment"
                     :placeholder="progress.data.advisorComment"
-                    required
                   />
                 </div>
 
@@ -345,6 +345,7 @@
                     <input
                       type="text"
                       class="form-control"
+                      min="0"
                       v-model="user.senior1.finalPre.Committee1Point"
                       :placeholder="progress.data.Committee1Point"
                       required
@@ -358,7 +359,6 @@
                       class="form-control"
                       v-model="user.senior1.finalPre.Committee1Comment"
                       :placeholder="progress.data.Committee1Comment"
-                      required
                     />
                   </div>
 
@@ -367,6 +367,7 @@
                     <input
                       type="number"
                       class="form-control"
+                      min="0"
                       v-model="user.senior1.finalPre.Committee2Point"
                       :placeholder="progress.data.Committee2Point"
                       required
@@ -380,7 +381,6 @@
                       class="form-control"
                       v-model="user.senior1.finalPre.Committee2Comment"
                       :placeholder="progress.data.Committee2Comment"
-                      required
                     />
                   </div>
                 </div>
@@ -441,6 +441,7 @@
                   <input
                     type="advisorPoint"
                     class="form-control"
+                    min="0"
                     v-model="user.senior1.finalDoc.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -454,7 +455,6 @@
                     class="form-control"
                     v-model="user.senior1.finalDoc.AdvisorComment"
                     :placeholder="progress.data.advisorComment"
-                    required
                   />
                 </div>
 
@@ -469,6 +469,7 @@
                     <input
                       type="Committee1Point"
                       class="form-control"
+                      min="0"
                       v-model="user.senior1.finalDoc.Committee1Point"
                       :placeholder="progress.data.Committee1Point"
                       required
@@ -482,7 +483,6 @@
                       class="form-control"
                       v-model="user.senior1.finalDoc.Committee1Comment"
                       :placeholder="progress.data.Committee1Comment"
-                      required
                     />
                   </div>
 
@@ -491,6 +491,7 @@
                     <input
                       type="Committee2Point"
                       class="form-control"
+                      min="0"
                       v-model="user.senior1.finalDoc.Committee2Point"
                       :placeholder="progress.data.Committee2Point"
                       required
@@ -504,7 +505,6 @@
                       class="form-control"
                       v-model="user.senior1.finalDoc.Committee2Comment"
                       :placeholder="progress.data.Committee2Comment"
-                      required
                     />
                   </div>
                 </div>
@@ -664,6 +664,7 @@
                   <input
                     type="number"
                     class="form-control"
+                    min="0"
                     v-model="user.senior2.progress1.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -677,7 +678,6 @@
                     class="form-control"
                     v-model="user.senior2.progress1.AdvisorComment"
                     :placeholder="progress.data.advisorComment"
-                    required
                   />
                 </div>
 
@@ -737,6 +737,7 @@
                   <input
                     type="number"
                     class="form-control"
+                    min="0"
                     v-model="user.senior2.progress2.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -750,7 +751,6 @@
                     class="form-control"
                     v-model="user.senior2.progress2.AdvisorComment"
                     :placeholder="progress.data.advisorComment"
-                    required
                   />
                 </div>
 
@@ -810,6 +810,7 @@
                   <input
                     type="number"
                     class="form-control"
+                    min="0"
                     v-model="user.senior2.finalPre.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -823,7 +824,6 @@
                     class="form-control"
                     v-model="user.senior2.finalPre.AdvisorComment"
                     :placeholder="progress.data.advisorComment"
-                    required
                   />
                 </div>
 
@@ -838,6 +838,7 @@
                     <input
                       type="number"
                       class="form-control"
+                      min="0"
                       v-model="user.senior2.finalPre.Committee1Point"
                       :placeholder="progress.data.Committee1Point"
                       required
@@ -851,7 +852,6 @@
                       class="form-control"
                       v-model="user.senior2.finalPre.Committee1Comment"
                       :placeholder="progress.data.Committee1Comment"
-                      required
                     />
                   </div>
 
@@ -860,6 +860,7 @@
                     <input
                       type="number"
                       class="form-control"
+                      min="0"
                       v-model="user.senior2.finalPre.Committee2Point"
                       :placeholder="progress.data.Committee2Point"
                       required
@@ -873,7 +874,6 @@
                       class="form-control"
                       v-model="user.senior2.finalPre.Committee2Comment"
                       :placeholder="progress.data.Committee2Comment"
-                      required
                     />
                   </div>
                 </div>
@@ -934,6 +934,7 @@
                   <input
                     type="number"
                     class="form-control"
+                    min="0"
                     v-model="user.senior2.finalDoc.AdvisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
@@ -947,7 +948,6 @@
                     class="form-control"
                     v-model="user.senior2.finalDoc.AdvisorComment"
                     :placeholder="progress.data.advisorComment"
-                    required
                   />
                 </div>
 
@@ -962,6 +962,7 @@
                     <input
                       type="number"
                       class="form-control"
+                      min="0"
                       v-model="user.senior2.finalDoc.Committee1Point"
                       :placeholder="progress.data.Committee1Point"
                       required
@@ -975,7 +976,6 @@
                       class="form-control"
                       v-model="user.senior2.finalDoc.Committee1Comment"
                       :placeholder="progress.data.Committee1Comment"
-                      required
                     />
                   </div>
 
@@ -984,6 +984,7 @@
                     <input
                       type="number"
                       class="form-control"
+                      min="0"
                       v-model="user.senior2.finalDoc.Committee2Point"
                       :placeholder="progress.data.Committee2Point"
                       required
@@ -997,7 +998,6 @@
                       class="form-control"
                       v-model="user.senior2.finalDoc.Committee2Comment"
                       :placeholder="progress.data.Committee2Comment"
-                      required
                     />
                   </div>
                 </div>
@@ -1331,7 +1331,7 @@ export default {
           advisorPoint: data.AdvisorPoint,
           createdAt: new Date(),
         })
-        .then(() => {window.alert("Update progress successed!"), console.log("this is sended data=>",data.AdvisorComment,data.AdvisorPoint)})
+        .then(() => {window.alert("Update progress successed!")})
         .catch((error) => {
           console.log("Error getting documents: ", error);
         });
