@@ -155,13 +155,13 @@
               </div>
             </div>
             <div class="col-md-9">
-              <form @submit.prevent="updateProgress(user)">
+              <form @submit.prevent="updateProgress(user, 'senior1Progress1')">
                 <div class="form-group">
                   <label>Advisor Point</label>
                   <input
                     type="text"
                     class="form-control"
-                    :value="user.senior1.progress1.id = progress.id"
+                    :value="(user.senior1.progress1.id = progress.id)"
                     required
                     style="display: none"
                   />
@@ -170,7 +170,7 @@
                     class="form-control"
                     min="0"
                     max="20"
-                    v-model="user.senior1.progress1.AdvisorPoint"
+                    v-model="user.senior1.progress1.advisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
                   />
@@ -181,7 +181,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    v-model="user.senior1.progress1.AdvisorComment"
+                    v-model="user.senior1.progress1.advisorComment"
                     :placeholder="progress.data.advisorComment"
                   />
                 </div>
@@ -229,24 +229,22 @@
               </div>
             </div>
             <div class="col-md-9">
-              <form @submit.prevent="updateProgress(user)">
+              <form @submit.prevent="updateProgress(user, 'senior1Progress2')">
                 <div class="form-group">
+                  <label>Advisor Point</label>
                   <input
                     type="text"
                     class="form-control"
-                    :value="user.senior1.progress2.id = progress.id"
+                    :value="(user.senior1.progress2.id = progress.id)"
                     required
                     style="display: none"
                   />
-                </div>
-                <div class="form-group">
-                  <label>Advisor Point</label>
                   <input
                     type="number"
                     class="form-control"
                     min="0"
                     max="20"
-                    v-model="user.senior1.progress2.AdvisorPoint"
+                    v-model="user.senior1.progress2.advisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
                   />
@@ -257,7 +255,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    v-model="user.senior1.progress2.AdvisorComment"
+                    v-model="user.senior1.progress2.advisorComment"
                     :placeholder="progress.data.advisorComment"
                   />
                 </div>
@@ -305,13 +303,13 @@
               </div>
             </div>
             <div class="col-md-9">
-              <form @submit.prevent="updateProgress(user)">
+              <form @submit.prevent="updateProgress(user, 'senior1FinalPre')">
                 <div class="form-group">
                   <label>Advisor Point</label>
                   <input
                     type="text"
                     class="form-control"
-                    :value="user.senior1.finalPre.id = progress.id"
+                    :value="(user.senior1.finalPre.id = progress.id)"
                     required
                     style="display: none"
                   />
@@ -320,7 +318,7 @@
                     class="form-control"
                     min="0"
                     max="20"
-                    v-model="user.senior1.finalPre.AdvisorPoint"
+                    v-model="user.senior1.finalPre.advisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
                   />
@@ -331,7 +329,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    v-model="user.senior1.finalPre.AdvisorComment"
+                    v-model="user.senior1.finalPre.advisorComment"
                     :placeholder="progress.data.advisorComment"
                   />
                 </div>
@@ -432,13 +430,13 @@
               </div>
             </div>
             <div class="col-md-9">
-              <form @submit.prevent="updateProgress(user)">
+              <form @submit.prevent="updateProgress(user, 'senior1FinalDoc')">
                 <div class="form-group">
                   <label>Advisor Point</label>
                   <input
                     type="advisorPoint"
                     class="form-control"
-                    :value="user.senior1.finalDoc.id = progress.id"
+                    :value="(user.senior1.finalDoc.id = progress.id)"
                     required
                     style="display: none"
                   />
@@ -447,7 +445,7 @@
                     class="form-control"
                     min="0"
                     max="10"
-                    v-model="user.senior1.finalDoc.AdvisorPoint"
+                    v-model="user.senior1.finalDoc.advisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
                   />
@@ -458,7 +456,7 @@
                   <input
                     type="advisorComment"
                     class="form-control"
-                    v-model="user.senior1.finalDoc.AdvisorComment"
+                    v-model="user.senior1.finalDoc.advisorComment"
                     :placeholder="progress.data.advisorComment"
                   />
                 </div>
@@ -658,13 +656,13 @@
               </div>
             </div>
             <div class="col-md-9">
-              <form @submit.prevent="updateProgress(user)">
+              <form @submit.prevent="updateProgress(user, 'senior2Progress1')">
                 <div class="form-group">
                   <label>Advisor Point</label>
                   <input
                     type="text"
                     class="form-control"
-                    :value="user.senior2.progress1.id = progress.id"
+                    :value="(user.senior2.progress1.id = progress.id)"
                     required
                     style="display: none"
                   />
@@ -673,7 +671,7 @@
                     class="form-control"
                     min="0"
                     max="20"
-                    v-model="user.senior2.progress1.AdvisorPoint"
+                    v-model="user.senior2.progress1.advisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
                   />
@@ -684,7 +682,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    v-model="user.senior2.progress1.AdvisorComment"
+                    v-model="user.senior2.progress1.advisorComment"
                     :placeholder="progress.data.advisorComment"
                   />
                 </div>
@@ -732,13 +730,13 @@
               </div>
             </div>
             <div class="col-md-9">
-              <form @submit.prevent="updateProgress(user)">
+              <form @submit.prevent="updateProgress(user, 'senior2Progress2')">
                 <div class="form-group">
                   <label>Advisor Point</label>
                   <input
                     type="text"
                     class="form-control"
-                    :value="user.senior2.progress2.id = progress.id"
+                    :value="(user.senior2.progress2.id = progress.id)"
                     required
                     style="display: none"
                   />
@@ -747,7 +745,7 @@
                     class="form-control"
                     min="0"
                     max="20"
-                    v-model="user.senior2.progress2.AdvisorPoint"
+                    v-model="user.senior2.progress2.advisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
                   />
@@ -758,7 +756,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    v-model="user.senior2.progress2.AdvisorComment"
+                    v-model="user.senior2.progress2.advisorComment"
                     :placeholder="progress.data.advisorComment"
                   />
                 </div>
@@ -806,13 +804,13 @@
               </div>
             </div>
             <div class="col-md-9">
-              <form @submit.prevent="updateProgress(user)">
+              <form @submit.prevent="updateProgress(user, 'senior2finalPre')">
                 <div class="form-group">
                   <label>Advisor Point</label>
                   <input
                     type="text"
                     class="form-control"
-                    :value="user.senior2.finalPre.id = progress.id"
+                    :value="(user.senior2.finalPre.id = progress.id)"
                     required
                     style="display: none"
                   />
@@ -821,7 +819,7 @@
                     class="form-control"
                     min="0"
                     max="20"
-                    v-model="user.senior2.finalPre.AdvisorPoint"
+                    v-model="user.senior2.finalPre.advisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
                   />
@@ -832,7 +830,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    v-model="user.senior2.finalPre.AdvisorComment"
+                    v-model="user.senior2.finalPre.advisorComment"
                     :placeholder="progress.data.advisorComment"
                   />
                 </div>
@@ -933,7 +931,7 @@
               </div>
             </div>
             <div class="col-md-9">
-              <form @submit.prevent="updateProgress(user)">
+              <form @submit.prevent="updateProgress(user, 'senior2FinalDoc')">
                 <div class="form-group">
                   <label>Advisor Point</label>
                   <input
@@ -948,7 +946,7 @@
                     class="form-control"
                     min="0"
                     max="10"
-                    v-model="user.senior2.finalDoc.AdvisorPoint"
+                    v-model="user.senior2.finalDoc.advisorPoint"
                     :placeholder="progress.data.advisorPoint"
                     required
                   />
@@ -959,7 +957,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    v-model="user.senior2.finalDoc.AdvisorComment"
+                    v-model="user.senior2.finalDoc.advisorComment"
                     :placeholder="progress.data.advisorComment"
                   />
                 </div>
@@ -1118,6 +1116,7 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
+import { flagSet } from "@coreui/icons";
 const db = firebase.firestore();
 export default {
   name: "Breadcrumbs",
@@ -1203,7 +1202,6 @@ export default {
               projectStatus: doc.data().projectStatus,
             });
           }
-          
         });
         return this.projects, this.updateProject();
       })
@@ -1312,93 +1310,128 @@ export default {
           console.log("Error getting files url: ", error);
         });
     },
-    loadOnce:function(){
+    loadOnce: function () {
       location.reload();
     },
-    updateProgress(item) {
-      if (item.senior1.progress1.id !== undefined) {
-        this.updateProgress1(item.senior1.progress1).then(this.loadOnce());
-      }
-      if (item.senior1.progress2.id !== undefined) {
-        this.updateProgress2(item.senior1.progress2).then(this.loadOnce());
-      }
-      if (item.senior1.finalPre.id !== undefined) {
-        this.updateFinalPre(item.senior1.finalPre).then(this.loadOnce());
-      }
-      if (item.senior1.finalDoc.id !== undefined) {
-        this.updateFinalDoc(item.senior1.finalDoc).then(this.loadOnce());
-      }
-      if (item.senior2.progress1.id !== undefined) {
-        this.updateProgress1(item.senior2.progress1).then(this.loadOnce());
-      }
-      if (item.senior2.progress2.id !== undefined) {
-        this.updateProgress2(item.senior2.progress2).then(this.loadOnce());
-      }
-      if (item.senior2.finalPre.id !== undefined) {
-        this.updateFinalPre(item.senior2.finalPre).then(this.loadOnce());
-      }
-      if (item.senior2.finalDoc.id !== undefined) {
-        this.updateFinalDoc(item.senior2.finalDoc).then(this.loadOnce());
+    updateProgress(item, type) {
+      if (type === "senior1Progress1") {
+        let res = this.updateProgress1(item.senior1.progress1);
+        if (res) {
+          this.loadOnce();
+        }
+      } else if (type === "senior1Progress2") {
+        let res = this.updateProgress2(item.senior1.progress2);
+        if (res) {
+          this.loadOnce();
+        }
+      } else if (type === "senior1FinalPre") {
+        let res = this.updateFinalPre(item.senior1.finalPre);
+        if (res) {
+          this.loadOnce();
+        }
+      } else if (type === "senior1FinalDoc") {
+        let res = this.updateFinalDoc(item.senior1.finalDoc);
+        if (res) {
+          this.loadOnce();
+        }
+      } else if (type === "senior2Progress1") {
+        let res = this.updateProgress1(item.senior2.progress1);
+        if (res) {
+          this.loadOnce();
+        }
+      } else if (type === "senior2Progress2") {
+        let res = this.updateProgress1(item.senior2.progress2);
+        if (res) {
+          this.loadOnce();
+        }
+      } else if (type === "senior2FinalPre") {
+        let res = this.updateFinalPre(item.senior2.finalPre);
+        if (res) {
+          this.loadOnce();
+        }
+      } else if (type === "senior2FinalDoc") {
+        let res = this.updateFinalPre(item.senior2.finalDoc);
+        if (res) {
+          this.loadOnce();
+        }
+      } else {
+        alert("Sorry! there is something wrong in update progress system.");
       }
     },
     updateProgress1(data) {
       db.collection("projectProgress")
         .doc(data.id)
         .update({
-          advisorComment: data.AdvisorComment,
-          advisorPoint: data.AdvisorPoint,
+          advisorComment: data.advisorComment,
+          advisorPoint: data.advisorPoint,
           createdAt: new Date(),
         })
-        .then(() => {window.alert("Update progress successed!")})
+        .then(() => {
+          window.alert("Update progress successed!");
+          return true;
+        })
         .catch((error) => {
           console.log("Error getting documents: ", error);
+          return false;
         });
     },
     updateProgress2(data) {
       db.collection("projectProgress")
         .doc(data.id)
         .update({
-          advisorComment: data.AdvisorComment,
-          advisorPoint: data.AdvisorPoint,
+          advisorComment: data.advisorComment,
+          advisorPoint: data.advisorPoint,
           createdAt: new Date(),
         })
-        .then(() => window.alert("Update progress successed!"))
+        .then(() => {
+          window.alert("Update progress successed!");
+          return true;
+        })
         .catch((error) => {
           console.log("Error getting documents: ", error);
+          return false;
         });
     },
     updateFinalPre(data) {
       db.collection("projectProgress")
         .doc(data.id)
         .update({
-          advisorComment: data.AdvisorComment,
-          advisorPoint: data.AdvisorPoint,
+          advisorComment: data.advisorComment,
+          advisorPoint: data.advisorPoint,
           committee1Comment: data.Committee1Comment,
           committee1Point: data.Committee1Point,
           committee2Comment: data.Committee2Comment,
           committee2Point: data.Committee2Point,
           createdAt: new Date(),
         })
-        .then(() => window.alert("Update progress successed!"))
+        .then(() => {
+          window.alert("Update progress successed!");
+          return true;
+        })
         .catch((error) => {
           console.log("Error getting documents: ", error);
+          return false;
         });
     },
     updateFinalDoc(data) {
       db.collection("projectProgress")
         .doc(data.id)
         .update({
-          advisorComment: data.AdvisorComment,
-          advisorPoint: data.AdvisorPoint,
+          advisorComment: data.advisorComment,
+          advisorPoint: data.advisorPoint,
           committee1Comment: data.Committee1Comment,
           committee1Point: data.Committee1Point,
           committee2Comment: data.Committee2Comment,
           committee2Point: data.Committee2Point,
           createdAt: new Date(),
         })
-        .then(() => window.alert("Update progress successed!"))
+        .then(() => {
+          window.alert("Update progress successed!");
+          return true;
+        })
         .catch((error) => {
           console.log("Error getting documents: ", error);
+          return false;
         });
     },
     updateProject() {
