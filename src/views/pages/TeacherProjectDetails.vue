@@ -1493,6 +1493,7 @@ export default {
           db.collection("projects").doc(this.$route.params.projectId).update({
             projectPointSP1: this.projectPointSP1,
             projectPointSP2: this.projectPointSP2,
+            projectPoint: (this.projectPointSP1+this.projectPointSP2)/2,
             createdAt: new Date(),
           });
           location.reload();
