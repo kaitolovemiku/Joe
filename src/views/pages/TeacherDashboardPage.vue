@@ -138,7 +138,8 @@ export default {
       userData: [],
       fields: [
         { key: "projectNameEn", label: "Project Name" },
-        { key: "projectPoint", label: "Score" },
+        { key: "projectPointSP1", label: "Semester 1 (Score)" },
+        { key: "projectPointSP2", label: "Semester 2 (Score)" },
         { key: "projectStatus", label: "Status" },
       ],
       items: searchData,
