@@ -209,7 +209,7 @@ export default {
           }
         };
         this.$session.set("user", state2);
-        window.location.replace("http://localhost:8081/");
+        window.location.replace("http://localhost:8080/");
       }
       console.log("Look this ->", result);
     },
