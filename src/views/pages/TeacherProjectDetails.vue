@@ -368,7 +368,7 @@
                       min="0"
                       max="10"
                       v-model="user.senior1.finalPre.Committee1Point"
-                      :placeholder="progress.data.Committee1Point"
+                      :placeholder="progress.data.committee1Point"
                       required
                     />
                   </div>
@@ -379,7 +379,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior1.finalPre.Committee1Comment"
-                      :placeholder="progress.data.Committee1Comment"
+                      :placeholder="progress.data.committee1Comment"
                     />
                   </div>
 
@@ -391,7 +391,7 @@
                       min="0"
                       max="10"
                       v-model="user.senior1.finalPre.Committee2Point"
-                      :placeholder="progress.data.Committee2Point"
+                      :placeholder="progress.data.committee2Point"
                       required
                     />
                   </div>
@@ -402,7 +402,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior1.finalPre.Committee2Comment"
-                      :placeholder="progress.data.Committee2Comment"
+                      :placeholder="progress.data.committee2Comment"
                     />
                   </div>
                 </div>
@@ -495,7 +495,7 @@
                       min="0"
                       max="5"
                       v-model="user.senior1.finalDoc.Committee1Point"
-                      :placeholder="progress.data.Committee1Point"
+                      :placeholder="progress.data.committee1Point"
                       required
                     />
                   </div>
@@ -506,7 +506,7 @@
                       type="Committee1Comment"
                       class="form-control"
                       v-model="user.senior1.finalDoc.Committee1Comment"
-                      :placeholder="progress.data.Committee1Comment"
+                      :placeholder="progress.data.committee1Comment"
                     />
                   </div>
 
@@ -518,7 +518,7 @@
                       min="0"
                       max="5"
                       v-model="user.senior1.finalDoc.Committee2Point"
-                      :placeholder="progress.data.Committee2Point"
+                      :placeholder="progress.data.committee2Point"
                       required
                     />
                   </div>
@@ -529,7 +529,7 @@
                       type="Committee2Comment"
                       class="form-control"
                       v-model="user.senior1.finalDoc.Committee2Comment"
-                      :placeholder="progress.data.Committee2Comment"
+                      :placeholder="progress.data.committee2Comment"
                     />
                   </div>
                 </div>
@@ -869,7 +869,7 @@
                       min="0"
                       max="10"
                       v-model="user.senior2.finalPre.Committee1Point"
-                      :placeholder="progress.data.Committee1Point"
+                      :placeholder="progress.data.committee1Point"
                       required
                     />
                   </div>
@@ -880,7 +880,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior2.finalPre.Committee1Comment"
-                      :placeholder="progress.data.Committee1Comment"
+                      :placeholder="progress.data.committee1Comment"
                     />
                   </div>
 
@@ -892,7 +892,7 @@
                       min="0"
                       max="10"
                       v-model="user.senior2.finalPre.Committee2Point"
-                      :placeholder="progress.data.Committee2Point"
+                      :placeholder="progress.data.committee2Point"
                       required
                     />
                   </div>
@@ -903,7 +903,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior2.finalPre.Committee2Comment"
-                      :placeholder="progress.data.Committee2Comment"
+                      :placeholder="progress.data.committee2Comment"
                     />
                   </div>
                 </div>
@@ -996,7 +996,7 @@
                       min="0"
                       max="5"
                       v-model="user.senior2.finalDoc.Committee1Point"
-                      :placeholder="progress.data.Committee1Point"
+                      :placeholder="progress.data.committee1Point"
                       required
                     />
                   </div>
@@ -1007,7 +1007,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior2.finalDoc.Committee1Comment"
-                      :placeholder="progress.data.Committee1Comment"
+                      :placeholder="progress.data.committee1Comment"
                     />
                   </div>
 
@@ -1019,7 +1019,7 @@
                       min="0"
                       max="5"
                       v-model="user.senior2.finalDoc.Committee2Point"
-                      :placeholder="progress.data.Committee2Point"
+                      :placeholder="progress.data.committee2Point"
                       required
                     />
                   </div>
@@ -1030,7 +1030,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior2.finalDoc.Committee2Comment"
-                      :placeholder="progress.data.Committee2Comment"
+                      :placeholder="progress.data.committee2Comment"
                     />
                   </div>
                 </div>
@@ -1169,122 +1169,7 @@ export default {
     };
   },
   created() {
-    db.collection("users")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.students.push({ id: doc.id, data: doc.data().username });
-        });
-      });
-    db.collection("teachers")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.teachers.push({ id: doc.id, data: doc.data().teacherName });
-        });
-      });
-    db.collection("projects")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (this.$route.params.projectId == doc.id) {
-            this.projects.push({
-              id: doc.id,
-              projectNameTh: doc.data().projectNameTh,
-              projectNameEn: doc.data().projectNameEn,
-              projectMember: this.students
-                .filter((item) => doc.data().projectMember.includes(item.id))
-                .map((item) => {
-                  return item.data;
-                }),
-              projectAdvisor: this.teachers
-                .filter((item) => doc.data().projectAdvisor.includes(item.id))
-                .map((item) => {
-                  return item.data;
-                }),
-              projectCoAdvisor: this.teachers
-                .filter((item) => doc.data().projectCoAdvisor.includes(item.id))
-                .map((item) => {
-                  return item.data;
-                }),
-              projectCommittee: this.teachers
-                .filter((item) => doc.data().projectCommittee.includes(item.id))
-                .map((item) => {
-                  return item.data;
-                }),
-              projectBg: doc.data().projectBg,
-              projectFileName: doc.data().projectFileName,
-              projectType: doc.data().projectType,
-              projectDuration: doc.data().projectDuration,
-              projectPoint: doc.data().projectPoint,
-              projectPointSP1: doc.data().projectPointSP1,
-              projectPointSP2: doc.data().projectPointSP2,
-              projectStatus: doc.data().projectStatus,
-            });
-          }
-        });
-        return this.projects, this.updateProject();
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-    db.collection("projectProgress")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          console.log(
-            "progress test naja ->",
-            doc.data().projectId,
-            this.projects[0].id,
-            doc.data().projectId === this.projects[0].id
-          );
-          if (doc.data().projectId === this.projects[0].id) {
-            this.projectProgress.push({ id: doc.id, data: doc.data() });
-          }
-        });
-        return this.projectProgress;
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-    db.collection("finalPresent")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (doc.data().projectId == this.projects[0].id) {
-            this.finalPresent.push({
-              id: doc.id,
-              comment: doc.data().comment,
-              point: doc.data().point,
-              status: doc.data().status,
-              projectId: doc.data().projectId,
-            });
-          }
-        });
-        return this.finalPresent;
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-    db.collection("finalDocument")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (doc.data().projectId == this.projects[0].id) {
-            this.finalDocument.push({
-              id: doc.id,
-              comment: doc.data().comment,
-              point: doc.data().point,
-              status: doc.data().status,
-              projectId: doc.data().projectId,
-            });
-          }
-        });
-        return this.finalDocument;
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
+    this.loadingProject();
   },
   methods: {
     downloadFile(item) {
@@ -1330,8 +1215,8 @@ export default {
           console.log("Error getting files url: ", error);
         });
     },
-    loadOnce: function () {
-      location.reload();
+    loadOnce() {
+      this.updateProject();
     },
     updateProgress(item, type) {
       if (type === "senior1Progress1") {
@@ -1394,6 +1279,7 @@ export default {
           console.log("Error getting documents: ", error);
           return false;
         });
+      return true;
     },
     updateProgress2(data) {
       db.collection("projectProgress")
@@ -1411,6 +1297,7 @@ export default {
           console.log("Error getting documents: ", error);
           return false;
         });
+      return true;
     },
     updateFinalPre(data) {
       db.collection("projectProgress")
@@ -1432,6 +1319,7 @@ export default {
           console.log("Error getting documents: ", error);
           return false;
         });
+      return true;
     },
     updateFinalDoc(data) {
       db.collection("projectProgress")
@@ -1452,6 +1340,129 @@ export default {
         .catch((error) => {
           console.log("Error getting documents: ", error);
           return false;
+        });
+      return true;
+    },
+    loadingProject() {
+      db.collection("users")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            this.students.push({ id: doc.id, data: doc.data().username });
+          });
+        });
+      db.collection("teachers")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            this.teachers.push({ id: doc.id, data: doc.data().teacherName });
+          });
+        });
+      db.collection("projects")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            if (this.$route.params.projectId == doc.id) {
+              this.projects.push({
+                id: doc.id,
+                projectNameTh: doc.data().projectNameTh,
+                projectNameEn: doc.data().projectNameEn,
+                projectMember: this.students
+                  .filter((item) => doc.data().projectMember.includes(item.id))
+                  .map((item) => {
+                    return item.data;
+                  }),
+                projectAdvisor: this.teachers
+                  .filter((item) => doc.data().projectAdvisor.includes(item.id))
+                  .map((item) => {
+                    return item.data;
+                  }),
+                projectCoAdvisor: this.teachers
+                  .filter((item) =>
+                    doc.data().projectCoAdvisor.includes(item.id)
+                  )
+                  .map((item) => {
+                    return item.data;
+                  }),
+                projectCommittee: this.teachers
+                  .filter((item) =>
+                    doc.data().projectCommittee.includes(item.id)
+                  )
+                  .map((item) => {
+                    return item.data;
+                  }),
+                projectBg: doc.data().projectBg,
+                projectFileName: doc.data().projectFileName,
+                projectType: doc.data().projectType,
+                projectDuration: doc.data().projectDuration,
+                projectPoint: doc.data().projectPoint,
+                projectPointSP1: doc.data().projectPointSP1,
+                projectPointSP2: doc.data().projectPointSP2,
+                projectStatus: doc.data().projectStatus,
+              });
+            }
+          });
+          return this.projects;
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+      db.collection("projectProgress")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(
+              "progress test naja ->",
+              doc.data().projectId,
+              this.projects[0].id,
+              doc.data().projectId === this.projects[0].id
+            );
+            if (doc.data().projectId === this.projects[0].id) {
+              this.projectProgress.push({ id: doc.id, data: doc.data() });
+            }
+          });
+          return this.projectProgress;
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+      db.collection("finalPresent")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            if (doc.data().projectId == this.projects[0].id) {
+              this.finalPresent.push({
+                id: doc.id,
+                comment: doc.data().comment,
+                point: doc.data().point,
+                status: doc.data().status,
+                projectId: doc.data().projectId,
+              });
+            }
+          });
+          return this.finalPresent;
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+      db.collection("finalDocument")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            if (doc.data().projectId == this.projects[0].id) {
+              this.finalDocument.push({
+                id: doc.id,
+                comment: doc.data().comment,
+                point: doc.data().point,
+                status: doc.data().status,
+                projectId: doc.data().projectId,
+              });
+            }
+          });
+          return this.finalDocument;
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
         });
     },
     updateProject() {
@@ -1478,11 +1489,13 @@ export default {
                 parseInt(doc.data().committee2Point);
             }
           });
+
           db.collection("projects").doc(this.$route.params.projectId).update({
             projectPointSP1: this.projectPointSP1,
             projectPointSP2: this.projectPointSP2,
             createdAt: new Date(),
           });
+          location.reload();
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);
