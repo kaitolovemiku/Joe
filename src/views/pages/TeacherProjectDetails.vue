@@ -1245,7 +1245,7 @@ export default {
           this.loadOnce();
         }
       } else if (type === "senior2Progress2") {
-        let res = this.updateProgress1(item.senior2.progress2);
+        let res = this.updateProgress2(item.senior2.progress2);
         if (res) {
           this.loadOnce();
         }
@@ -1475,18 +1475,18 @@ export default {
               doc.data().seniorType.includes("senior1")
             ) {
               this.projectPointSP1 +=
-                parseInt(doc.data().advisorPoint) +
-                parseInt(doc.data().committee1Point) +
-                parseInt(doc.data().committee2Point);
+                parseInt(doc.data().advisorPoint === undefined? 0: doc.data().advisorPoint) +
+                parseInt(doc.data().committee1Point === undefined? 0: doc.data().committee1Point) +
+                parseInt(doc.data().committee2Point === undefined? 0: doc.data().committee2Point);
             }
             if (
               doc.data().projectId == this.$route.params.projectId &&
-              doc.data().seniorType.includes("senior2")
+              doc.data().seniorType.includes("senior2") 
             ) {
               this.projectPointSP2 +=
-                parseInt(doc.data().advisorPoint) +
-                parseInt(doc.data().committee1Point) +
-                parseInt(doc.data().committee2Point);
+                parseInt(doc.data().advisorPoint === undefined? 0: doc.data().advisorPoint) +
+                parseInt(doc.data().committee1Point === undefined? 0: doc.data().committee1Point) +
+                parseInt(doc.data().committee2Point === undefined? 0: doc.data().committee2Point);
             }
           });
 
