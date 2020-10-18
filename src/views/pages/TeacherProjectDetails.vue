@@ -56,13 +56,33 @@
                         <label for="staticEmail" class="col-sm-3 col-form-label"
                           >Project Advisor:</label
                         >
-                        <div class="col-sm-9">{{ project.projectAdvisor }}</div>
+                        <div class="col-sm-9">
+                          <div class="row">
+                            <div
+                              class="col-sm-4"
+                              v-for="item in project.projectAdvisor"
+                              :key="item"
+                            >
+                              <p>{{ item }}</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label"
                           >Project Member:</label
                         >
-                        <div class="col-sm-9">{{ project.projectMember }}</div>
+                        <div class="col-sm-9">
+                          <div class="row">
+                            <div
+                              class="col-sm-4"
+                              v-for="item in project.projectMember"
+                              :key="item"
+                            >
+                              <p>{{ item }}</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label"
