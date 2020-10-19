@@ -18,6 +18,8 @@ db.collection('projects')
       projectDuration: doc.data().projectDuration,
       projectBg: doc.data().projectBg,
       projectStatus: doc.data().projectStatus,
+      projectStatusSemester1: doc.data().projectStatusSemester1,
+      projectStatusSemester2: doc.data().projectStatusSemester2,
       download: doc.data().download
     });
   });

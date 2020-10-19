@@ -1411,12 +1411,12 @@ export default {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            console.log(
-              "progress test naja ->",
-              doc.data().projectId,
-              this.projects[0].id,
-              doc.data().projectId === this.projects[0].id
-            );
+            // console.log(
+            //   "progress test naja ->",
+            //   doc.data().projectId,
+            //   this.projects[0].id,
+            //   doc.data().projectId === this.projects[0].id
+            // );
             if (doc.data().projectId === this.projects[0].id) {
               this.projectProgress.push({ id: doc.id, data: doc.data() });
             }
@@ -1491,9 +1491,13 @@ export default {
           });
 
           db.collection("projects").doc(this.$route.params.projectId).update({
+            //"Passed""In progress""Failed"
             projectPointSP1: this.projectPointSP1,
             projectPointSP2: this.projectPointSP2,
             projectPoint: (this.projectPointSP1+this.projectPointSP2)/2,
+            projectStatus: (this.projectPointSP1+this.projectPointSP2)/2 >= 60? "Passed": "In progress",
+            projectStatusSemester1: this.projectPointSP1 >= 60? "Passed": "In progress",
+            projectStatusSemester2: this.projectPointSP2 >= 60? "Passed": "In progress",
             createdAt: new Date(),
           });
           location.reload();

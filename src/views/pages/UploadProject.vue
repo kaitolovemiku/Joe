@@ -8,7 +8,7 @@
         <CForm>
           <div class="row">
             <div class="col-md-3">
-              <p for="projectName">project Name (English)</p>
+              <p for="projectName">Project Name (English)</p>
             </div>
             <div class="col-md-9 mb-3">
               <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -24,7 +24,7 @@
           </div>
           <div class="row">
             <div class="col-md-3">
-              <p for="projectName">project Name (Thai)</p>
+              <p for="projectName">Project Name (Thai)</p>
             </div>
             <div class="col-md-9 mb-3">
               <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -213,6 +213,8 @@ export default {
       teachers: [{ id: 1, data: "Loading tesacher data ..." }],
       projectBg: "",
       projectStatus: "",
+      projectStatusSemester1: "",
+      projectStatusSemester2: "",
       projectDuration: "",
       teacherShow: [],
       projectAdvisor: [],
@@ -318,6 +320,8 @@ export default {
             projectPointSP1: 0,
             projectPointSP2: 0,
             projectStatus: "Waiting for acception",
+            projectStatusSemester1: "In progress",
+            projectStatusSemester2: "Waiting",
             projectDuration: this.projectDuration,
             projectFileName: this.projectFile.name,
             createdAt: new Date()
