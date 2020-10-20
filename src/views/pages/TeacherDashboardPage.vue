@@ -87,7 +87,7 @@
           <CDataTable
             hover
             striped
-            :items="items"
+            :items="items1"
             :fields="fieldsS1"
             :items-per-page="5"
             clickable-rows
@@ -162,7 +162,7 @@
           <multiselect
             v-model="searchProjectNameData"
             @input="rowClicked"
-            :options="items"
+            :options="items2"
             placeholder="Search a project ..."
             label="projectNameEn"
             track-by="projectNameEn"
@@ -172,7 +172,7 @@
           <CDataTable
             hover
             striped
-            :items="items"
+            :items="items2"
             :fields="fieldsS2"
             :items-per-page="5"
             clickable-rows
@@ -210,7 +210,8 @@ import Multiselect from "vue-multiselect";
 import projectData from "./projectData";
 
 const db = firebase.firestore();
-let searchData = projectData;
+let itemProject1 = projectData;
+let itemProject2 = projectData;
 
 export default {
   name: "TeacherDashboard",
@@ -245,7 +246,8 @@ export default {
         { key: "projectPointSP2", label: "Semester 2 (Score)" },
         { key: "projectStatusSemester2", label: "Status" },
       ],
-      items: searchData,
+      items1: itemProject1,
+      items2: itemProject2,
       activePage: 1,
     };
   },
@@ -294,46 +296,50 @@ export default {
     filterProjectData(semester, type) {
       if (semester === "semester1") {
         if (type === "All Project") {
-          this.items = projectData;
+          this.items1 = itemProject1;
         } else if (type === "Passed") {
-          this.items = projectData.filter(
+          this.items1 = itemProject1.filter(
             (item) => item.projectStatusSemester1 === "Passed"
           );
         } else if (type === "In progress") {
-          this.items = projectData.filter(
+          this.items1 = itemProject1.filter(
             (item) => item.projectStatusSemester1 === "In progress"
           );
         } else if (type === "Failed") {
-          this.items = projectData.filter(
+          this.items1 = itemProject1.filter(
             (item) => item.projectStatusSemester1 === "Failed"
           );
         } else {
-          this.items = projectData;
+          this.items1 = itemProject1;
         }
       } else if (semester === "semester2") {
         if (type === "All Project") {
-          this.items = projectData;
+          this.items2 = itemProject2;
         } else if (type === "Passed") {
-          this.items = projectData.filter(
+          this.items2 = projectData.filter(
             (item) => item.projectStatusSemester2 === "Passed"
           );
         } else if (type === "In progress") {
-          this.items = projectData.filter(
+          this.items2 = itemProject2.filter(
             (item) => item.projectStatusSemester2 === "In progress"
           );
         } else if (type === "Failed") {
-          this.items = projectData.filter(
+          this.items2 = itemProject2.filter(
             (item) => item.projectStatusSemester2 === "Failed"
           );
         } else {
-          this.items = projectData;
+          this.items2 = itemProject2;
         }
       } else {
-        this.items = projectData;
+        this.items1 = itemProject1;
+        this.items2 = itemProject2;
       }
     },
     searchAcademicYear() {
-      this.items = projectData.filter(
+      this.items1 = itemProject1.filter(
+        (item) => item.academicYear == this.academicYear
+      );
+      this.items2 = itemProject2.filter(
         (item) => item.academicYear == this.academicYear
       );
     },
