@@ -114,11 +114,73 @@
                           {{ project.projectPointSP2 }}
                         </div>
                       </div>
-                      <!-- <div class="row">
-                        <div class="col-md-12">
-                          <button class="btn btn-primary btn-block">Update project point</button>
+                      <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Senior1 Status:</label
+                        >
+                        <div class="col-sm-9">
+                          <CDropdown
+                            :togglerText="projectSenior1Status"
+                            color="warning"
+                          >
+                            <CDropdownItem
+                              v-on:click="onPickProjectStatus((type = 'P'))"
+                            >
+                              P
+                            </CDropdownItem>
+                            <CDropdownDivider />
+                            <CDropdownItem
+                              v-on:click="onPickProjectStatus((type = 'I'))"
+                            >
+                              I
+                            </CDropdownItem>
+                            <CDropdownDivider />
+                            <CDropdownItem
+                              v-on:click="onPickProjectStatus((type = 'U'))"
+                            >
+                              U
+                            </CDropdownItem>
+                          </CDropdown>
                         </div>
-                      </div> -->
+                      </div>
+                      <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Senior2 Status:</label
+                        >
+                        <div class="col-sm-9">
+                          <CDropdown
+                            :togglerText="projectSenior2Status"
+                            color="warning"
+                          >
+                            <CDropdownItem
+                              v-on:click="onPickProjectStatus2((type = 'P'))"
+                            >
+                              P
+                            </CDropdownItem>
+                            <CDropdownDivider />
+                            <CDropdownItem
+                              v-on:click="onPickProjectStatus2((type = 'I'))"
+                            >
+                              I
+                            </CDropdownItem>
+                            <CDropdownDivider />
+                            <CDropdownItem
+                              v-on:click="onPickProjectStatus2((type = 'U'))"
+                            >
+                              U
+                            </CDropdownItem>
+                          </CDropdown>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button
+                            class="btn btn-primary btn-block"
+                          >
+                            Update Project Status
+                          </button>
+                        </div>
+                      </div>
                     </form>
                   </div>
                 </div>
@@ -1136,7 +1198,6 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { flagSet } from "@coreui/icons";
 const db = firebase.firestore();
 export default {
   name: "Breadcrumbs",
@@ -1148,6 +1209,8 @@ export default {
       finalDocument: [],
       options: ["P", "S", "U", "I"],
       totalPoint: 0,
+      projectSenior1Status: "",
+      projectSenior2Status: "",
       status3: "",
       user: {
         senior1: { progress1: {}, progress2: {}, finalPre: {}, finalDoc: {} },
@@ -1263,6 +1326,12 @@ export default {
         alert("Sorry! there is something wrong in update progress system.");
       }
     },
+    onPickProjectStatus(type) {
+      this.projectSenior1Status = type;
+    },
+    onPickProjectStatus2(type) {
+      this.projectSenior2Status = type;
+    },
     updateProgress1(data) {
       db.collection("projectProgress")
         .doc(data.id)
@@ -1363,6 +1432,8 @@ export default {
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             if (this.$route.params.projectId == doc.id) {
+              this.projectSenior1Status = doc.data().projectStatusSemester1;
+              this.projectSenior2Status = doc.data().projectStatusSemester2;
               this.projects.push({
                 id: doc.id,
                 projectNameTh: doc.data().projectNameTh,
@@ -1465,6 +1536,17 @@ export default {
           console.log("Error getting documents: ", error);
         });
     },
+    calculateStatus(status, score) {
+      if (status == 'I' || status == 'U') {
+        return status
+      } else {
+        if (score >=70){
+          return 'S'
+        } else {
+          return 'P'
+        }
+      }
+    },
     updateProject() {
       db.collection("projectProgress")
         .get()
@@ -1475,32 +1557,64 @@ export default {
               doc.data().seniorType.includes("senior1")
             ) {
               this.projectPointSP1 +=
-                parseInt(doc.data().advisorPoint === undefined? 0: doc.data().advisorPoint) +
-                parseInt(doc.data().committee1Point === undefined? 0: doc.data().committee1Point) +
-                parseInt(doc.data().committee2Point === undefined? 0: doc.data().committee2Point);
+                parseInt(
+                  doc.data().advisorPoint === undefined
+                    ? 0
+                    : doc.data().advisorPoint
+                ) +
+                parseInt(
+                  doc.data().committee1Point === undefined
+                    ? 0
+                    : doc.data().committee1Point
+                ) +
+                parseInt(
+                  doc.data().committee2Point === undefined
+                    ? 0
+                    : doc.data().committee2Point
+                );
             }
             if (
               doc.data().projectId == this.$route.params.projectId &&
-              doc.data().seniorType.includes("senior2") 
+              doc.data().seniorType.includes("senior2")
             ) {
               this.projectPointSP2 +=
-                parseInt(doc.data().advisorPoint === undefined? 0: doc.data().advisorPoint) +
-                parseInt(doc.data().committee1Point === undefined? 0: doc.data().committee1Point) +
-                parseInt(doc.data().committee2Point === undefined? 0: doc.data().committee2Point);
+                parseInt(
+                  doc.data().advisorPoint === undefined
+                    ? 0
+                    : doc.data().advisorPoint
+                ) +
+                parseInt(
+                  doc.data().committee1Point === undefined
+                    ? 0
+                    : doc.data().committee1Point
+                ) +
+                parseInt(
+                  doc.data().committee2Point === undefined
+                    ? 0
+                    : doc.data().committee2Point
+                );
             }
           });
 
-          db.collection("projects").doc(this.$route.params.projectId).update({
-            //"Passed""In progress""Failed"
-            projectPointSP1: this.projectPointSP1,
-            projectPointSP2: this.projectPointSP2,
-            projectPoint: (this.projectPointSP1+this.projectPointSP2)/2,
-            projectStatus: (this.projectPointSP1+this.projectPointSP2)/2 >= 60? "Passed": "In progress",
-            projectStatusSemester1: this.projectPointSP1 >= 60? "Passed": "In progress",
-            projectStatusSemester2: this.projectPointSP2 >= 60? "Passed": "In progress",
-            createdAt: new Date(),
-          });
-          location.reload();
+          db.collection("projects")
+            .doc(this.$route.params.projectId)
+            .update({
+              //"Passed""In progress""Failed"
+              projectPointSP1: this.projectPointSP1,
+              projectPointSP2: this.projectPointSP2,
+              projectPoint: (this.projectPointSP1 + this.projectPointSP2) / 2,
+              projectStatus:
+                (this.projectPointSP1 + this.projectPointSP2) / 2 >= 60
+                  ? "S"
+                  : "U",
+              projectStatusSemester1: this.calculateStatus(this.projectSenior1Status, this.projectPointSP1),
+              projectStatusSemester2: this.calculateStatus(this.projectSenior2Status, this.projectPointSP2),
+              createdAt: new Date(),
+            });
+            alert('Update project success!')
+            // if (confirm('Update project success!')) {
+            //   location.reload()
+            // }
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);
