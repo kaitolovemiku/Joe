@@ -80,26 +80,34 @@
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester1', 'Passed')">
+          <div v-on:click="filterProjectData('semester1', 'S')">
             <CNavItem>
               <CCallout color="success">
-                <small class="text-muted">Passed Projects</small><br />
+                <small class="text-muted">Satisfactory Projects</small><br />
                 <strong class="h4">{{ passedProject }}</strong>
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester1', 'In progress')">
+          <div v-on:click="filterProjectData('semester1', 'P')">
             <CNavItem>
-              <CCallout color="warning">
-                <small class="text-muted">Inprogress Projects</small><br />
+              <CCallout color="info">
+                <small class="text-muted">In Progress Projects</small><br />
                 <strong class="h4">{{ inprogressProject }}</strong>
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester1', 'Failed')">
+          <div v-on:click="filterProjectData('semester1', 'I')">
+            <CNavItem>
+              <CCallout color="warning">
+                <small class="text-muted">Incomplete Projects</small><br />
+                <strong class="h4">{{ inCompleteProject }}</strong>
+              </CCallout>
+            </CNavItem>
+          </div>
+          <div v-on:click="filterProjectData('semester1', 'U')">
             <CNavItem>
               <CCallout color="danger">
-                <small class="text-muted">Fail Projects</small><br />
+                <small class="text-muted">Unsatisfactory Projects</small><br />
                 <strong class="h4">{{ unPassProject }}</strong>
               </CCallout>
             </CNavItem>
@@ -165,26 +173,34 @@
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester2', 'Passed')">
+          <div v-on:click="filterProjectData('semester2', 'S')">
             <CNavItem>
               <CCallout color="success">
-                <small class="text-muted">Passed Projects</small><br />
+                <small class="text-muted">Satisfactory Projects</small><br />
                 <strong class="h4">{{ passedProjectS2 }}</strong>
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester2', 'In progress')">
+          <div v-on:click="filterProjectData('semester2', 'P')">
             <CNavItem>
-              <CCallout color="warning">
-                <small class="text-muted">Inprogress Projects</small><br />
+              <CCallout color="info">
+                <small class="text-muted">In Progress Projects</small><br />
                 <strong class="h4">{{ inprogressProjectS2 }}</strong>
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester2', 'Failed')">
+          <div v-on:click="filterProjectData('semester2', 'I')">
+            <CNavItem>
+              <CCallout color="warning">
+                <small class="text-muted">Incomplete Projects</small><br />
+                <strong class="h4">{{ inCompleteProject2 }}</strong>
+              </CCallout>
+            </CNavItem>
+          </div>
+          <div v-on:click="filterProjectData('semester2', 'U')">
             <CNavItem>
               <CCallout color="danger">
-                <small class="text-muted">Fail Projects</small><br />
+                <small class="text-muted">Unsatisfactory Projects</small><br />
                 <strong class="h4">{{ unPassProjectS2 }}</strong>
               </CCallout>
             </CNavItem>
@@ -281,9 +297,11 @@ export default {
       allProjectS2: 0,
       passedProject: 0,
       inprogressProject: 0,
+      inCompleteProject: 0,
       unPassProject: 0,
       passedProjectS2: 0,
       inprogressProjectS2: 0,
+      inCompleteProject2: 0,
       unPassProjectS2: 0,
       userData: [],
       fieldsS1: [
@@ -314,22 +332,28 @@ export default {
     this.allProject = projectData.length;
     this.allProjectS2 = projectData.length;
     this.passedProject = projectData.filter(
-      (item) => item.projectStatusSemester1 === "Passed"
+      (item) => item.projectStatusSemester1 === "S"
     ).length;
     this.inprogressProject = projectData.filter(
-      (item) => item.projectStatusSemester1 === "In progress"
+      (item) => item.projectStatusSemester1 === "P"
+    ).length;
+    this.inCompleteProject = projectData.filter(
+      (item) => item.projectStatusSemester1 === "I"
     ).length;
     this.unPassProject = projectData.filter(
-      (item) => item.projectStatusSemester1 === "Failed"
+      (item) => item.projectStatusSemester1 === "U"
     ).length;
     this.passedProjectS2 = projectData.filter(
-      (item) => item.projectStatusSemester2 === "Passed"
+      (item) => item.projectStatusSemester2 === "S"
     ).length;
     this.inprogressProjectS2 = projectData.filter(
-      (item) => item.projectStatusSemester2 === "In progress"
+      (item) => item.projectStatusSemester2 === "P"
+    ).length;
+    this.inCompleteProject2 = projectData.filter(
+      (item) => item.projectStatusSemester2 === "I"
     ).length;
     this.unPassProjectS2 = projectData.filter(
-      (item) => item.projectStatusSemester2 === "Failed"
+      (item) => item.projectStatusSemester2 === "U"
     ).length;
   },
   watch: {
@@ -457,17 +481,21 @@ export default {
       if (semester === "semester1") {
         if (type === "All Project") {
           this.items1 = itemProject1;
-        } else if (type === "Passed") {
+        } else if (type === "S") {
           this.items1 = itemProject1.filter(
-            (item) => item.projectStatusSemester1 === "Passed"
+            (item) => item.projectStatusSemester1 === "S"
           );
-        } else if (type === "In progress") {
+        } else if (type === "P") {
           this.items1 = itemProject1.filter(
-            (item) => item.projectStatusSemester1 === "In progress"
+            (item) => item.projectStatusSemester1 === "P"
           );
-        } else if (type === "Failed") {
+        } else if (type === "I") {
           this.items1 = itemProject1.filter(
-            (item) => item.projectStatusSemester1 === "Failed"
+            (item) => item.projectStatusSemester1 === "I"
+          );
+        } else if (type === "U") {
+          this.items1 = itemProject1.filter(
+            (item) => item.projectStatusSemester1 === "U"
           );
         } else {
           this.items1 = itemProject1;
@@ -475,17 +503,21 @@ export default {
       } else if (semester === "semester2") {
         if (type === "All Project") {
           this.items2 = itemProject2;
-        } else if (type === "Passed") {
+        } else if (type === "S") {
           this.items2 = projectData.filter(
-            (item) => item.projectStatusSemester2 === "Passed"
+            (item) => item.projectStatusSemester2 === "S"
           );
-        } else if (type === "In progress") {
+        } else if (type === "P") {
           this.items2 = itemProject2.filter(
-            (item) => item.projectStatusSemester2 === "In progress"
+            (item) => item.projectStatusSemester2 === "P"
           );
-        } else if (type === "Failed") {
+        } else if (type === "I") {
+          this.items1 = itemProject1.filter(
+            (item) => item.projectStatusSemester1 === "I"
+          );
+        } else if (type === "U") {
           this.items2 = itemProject2.filter(
-            (item) => item.projectStatusSemester2 === "Failed"
+            (item) => item.projectStatusSemester2 === "U"
           );
         } else {
           this.items2 = itemProject2;
