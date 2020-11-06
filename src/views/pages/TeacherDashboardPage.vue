@@ -1,5 +1,8 @@
 <template>
-  <div class="col-md-12" v-if="userData[0].role == 'teacher'">
+  <div
+    class="col-md-12"
+    v-if="userData[0].role == 'teacher' || userData[0].role == 'admin'"
+  >
     <CCard>
       <CCardHeader>
         <CIcon name="cil-file" />
@@ -26,6 +29,41 @@
               >
             </template>
           </CInput>
+          <p>Export student score as Excel file</p>
+          <CInput
+            class="mb-3 autocomplete"
+            type="number"
+            v-model="downloadAcademicYear"
+            min="1"
+          >
+            <template #prepend-content
+              ><small class="text-muted"
+                >Academic Year/ Posted Year</small
+              ></template
+            >
+            <template #append>
+              <CDropdown :togglerText="downloadSemesterType" color="warning">
+                <CDropdownItem
+                  v-on:click="onPickDownloadSemesterType((type = 'Semester 1'))"
+                >
+                  Semester 1
+                </CDropdownItem>
+                <CDropdownDivider />
+                <CDropdownItem
+                  v-on:click="onPickDownloadSemesterType((type = 'Semester 2'))"
+                >
+                  Semester 2
+                </CDropdownItem>
+              </CDropdown>
+              <CButton color="primary" @click="filterDownloadStudentScore()"
+                ><CIcon
+                  style="width: 10px; height: 10px"
+                  name="cil-chart-pie"
+                />
+                Download Report</CButton
+              >
+            </template>
+          </CInput>
         </div>
       </CCardHeader>
       <CCardBody>
@@ -34,7 +72,7 @@
           <hr />
         </div>
         <CNav justified variant="tabs">
-          <div v-on:click="filterProjectData('semester1','All Project')">
+          <div v-on:click="filterProjectData('semester1', 'All Project')">
             <CNavItem active>
               <CCallout color="info">
                 <small class="text-muted">All Project</small><br />
@@ -42,7 +80,7 @@
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester1','Passed')">
+          <div v-on:click="filterProjectData('semester1', 'Passed')">
             <CNavItem>
               <CCallout color="success">
                 <small class="text-muted">Passed Projects</small><br />
@@ -50,7 +88,7 @@
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester1','In progress')">
+          <div v-on:click="filterProjectData('semester1', 'In progress')">
             <CNavItem>
               <CCallout color="warning">
                 <small class="text-muted">Inprogress Projects</small><br />
@@ -58,7 +96,7 @@
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester1','Failed')">
+          <div v-on:click="filterProjectData('semester1', 'Failed')">
             <CNavItem>
               <CCallout color="danger">
                 <small class="text-muted">Fail Projects</small><br />
@@ -119,7 +157,7 @@
           <hr />
         </div>
         <CNav justified variant="tabs">
-          <div v-on:click="filterProjectData('semester2','All Project')">
+          <div v-on:click="filterProjectData('semester2', 'All Project')">
             <CNavItem active>
               <CCallout color="info">
                 <small class="text-muted">All Project</small><br />
@@ -127,7 +165,7 @@
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester2','Passed')">
+          <div v-on:click="filterProjectData('semester2', 'Passed')">
             <CNavItem>
               <CCallout color="success">
                 <small class="text-muted">Passed Projects</small><br />
@@ -135,7 +173,7 @@
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester2','In progress')">
+          <div v-on:click="filterProjectData('semester2', 'In progress')">
             <CNavItem>
               <CCallout color="warning">
                 <small class="text-muted">Inprogress Projects</small><br />
@@ -143,7 +181,7 @@
               </CCallout>
             </CNavItem>
           </div>
-          <div v-on:click="filterProjectData('semester2','Failed')">
+          <div v-on:click="filterProjectData('semester2', 'Failed')">
             <CNavItem>
               <CCallout color="danger">
                 <small class="text-muted">Fail Projects</small><br />
@@ -208,10 +246,19 @@ import firebase from "firebase";
 import Vue from "vue";
 import Multiselect from "vue-multiselect";
 import projectData from "./projectData";
+import XLSX from "xlsx";
 
 const db = firebase.firestore();
 let itemProject1 = projectData;
 let itemProject2 = projectData;
+
+const testEmpty = (data) => {
+  if (data === undefined || data === null || data === "") {
+    return false;
+  } else {
+    return true;
+  }
+};
 
 export default {
   name: "TeacherDashboard",
@@ -227,6 +274,9 @@ export default {
       searchProjectNameData: "",
       searchKey: "",
       academicYear: new Date().getFullYear(),
+      downloadSemesterType: "Semester 1",
+      downloadAcademicYear: "2020",
+      exportExcelData: [],
       allProject: 0,
       allProjectS2: 0,
       passedProject: 0,
@@ -293,6 +343,116 @@ export default {
     },
   },
   methods: {
+    onPickDownloadSemesterType(type) {
+      if (type === "Semester 1") {
+        this.downloadSemesterType = "Semester 1";
+      } else if (type === "Semester 2") {
+        this.downloadSemesterType = "Semester 2";
+      } else {
+        alert(
+          "Sorry! there are something wrong in downloading score report system."
+        );
+      }
+    },
+    filterDownloadStudentScore() {
+      if (
+        testEmpty(this.downloadSemesterType) ||
+        testEmpty(this.downloadAcademicYear)
+      ) {
+        db.collection("projects")
+          .get()
+          .then((querySnapshot) => {
+            querySnapshot.forEach((projectsDoc) => {
+              if (this.academicYear == projectsDoc.data().academicYear) {
+                if (this.downloadSemesterType === "Semester 1") {
+                   db.collection("users")
+                    .get()
+                    .then((usersQuerySnapshot) => {
+                      usersQuerySnapshot.forEach((usersDoc) => {
+                        for (
+                          let i = 0;
+                          i < projectsDoc.data().projectMember.length;
+                          i++
+                        ) {
+                          if (
+                            usersDoc.id == projectsDoc.data().projectMember[i]
+                          ) {
+                            let data = {
+                              id: usersDoc.data().userId,
+                              name: usersDoc.data().username,
+                              score: projectsDoc.data().projectPointSP1,
+                              grade: projectsDoc.data().projectStatusSemester1,
+                            };
+                            this.exportExcelData.push(data);
+                          }
+                        }
+                      });
+                    });
+                } else if (this.downloadSemesterType === "Semester 2") {
+                   db.collection("users")
+                    .get()
+                    .then((usersQuerySnapshot) => {
+                      usersQuerySnapshot.forEach((usersDoc) => {
+                        for (
+                          let i = 0;
+                          i < projectsDoc.data().projectMember.length;
+                          i++
+                        ) {
+                          if (
+                            usersDoc.id == projectsDoc.data().projectMember[i]
+                          ) {
+                            let data = {
+                              id: usersDoc.data().userId,
+                              name: usersDoc.data().username,
+                              score: projectsDoc.data().projectPointSP2,
+                              grade: projectsDoc.data().projectStatusSemester2,
+                            };
+                            this.exportExcelData.push(data);
+                          }
+                        }
+                      });
+                    });
+                }
+              }
+            });
+          });
+        let res = JSON.parse(JSON.stringify(this.exportExcelData.__ob__.value));
+        if (res.length > 1) {
+          this.onExport(res);
+        }
+      } else {
+        alert("Please insert data before click download report.");
+      }
+    },
+    log(data) {
+      for (let i = 0; i < data.length; i += 1) {
+        if (typeof data[i] === "object") {
+          try {
+            data[i] = JSON.parse(JSON.stringify(data[i]));
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+      return data;
+    },
+    wait(ms) {
+      var start = new Date().getTime();
+      var end = start;
+      while (end < start + ms) {
+        end = new Date().getTime();
+      }
+    },
+    onExport(data) {
+      const dataWS = XLSX.utils.json_to_sheet(data);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, dataWS);
+      XLSX.writeFile(
+        wb,
+        `seniorProjectStudentAcademicYear${this.downloadAcademicYear}${this.downloadSemesterType}.xlsx`
+      );
+      this.exportExcelData = [];
+    },
     filterProjectData(semester, type) {
       if (semester === "semester1") {
         if (type === "All Project") {
@@ -343,29 +503,6 @@ export default {
         (item) => item.academicYear == this.academicYear
       );
     },
-    // searchProject() {
-    //   var logTime = {};
-    //   logTime.start = Date.now();
-    //   let result = [];
-    //   let searchDataInFunction = this.searchProjectNameData;
-    //   let key = this.searchKey;
-    //   let data = 'Test002'
-    //   projectData.forEach(search);
-    //   function search(i, item) {
-    //     //console.log(this[searchKey].indexOf(searchString));
-
-    //     if (key === "" || key === undefined || key === null) {
-    //       if (data.toLowerCase().indexOf(searchDataInFunction) > 0) {
-    //         result.push(item);
-    //       }
-    //     } else {
-    //       if (key.toLowerCase().indexOf(searchDataInFunction) > 0) {
-    //         result.push(item);
-    //       }
-    //     }
-    //     searchData = result;
-    //   }
-    // },
     getBadge(status) {
       switch (status) {
         case "Active":
@@ -380,7 +517,7 @@ export default {
           "primary";
       }
     },
-    rowClicked(item, index) {
+    rowClicked(item) {
       this.$router.push({ path: `menu/projectCheckingSystem/${item.id}` });
     },
     pageChange(val) {

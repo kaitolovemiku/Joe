@@ -1,23 +1,23 @@
 <template>
-  <div class="col-md-12" v-if="userData[0].role == 'teacher'">
+  <div
+    class="col-md-12"
+    v-if="userData[0].role == 'teacher' || userData[0].role == 'admin'"
+  >
     <CCard>
       <CCardHeader>
         <CIcon name="cil-justify-center" />
         <strong>Document Downloading Report</strong>
-        <div class="card-header-actions">
-          <a
-            href="https://coreui.io/vue/docs/components/breadcrumb"
-            class="card-header-action"
-            rel="noreferrer noopener"
-            target="_blank"
-          >
-            <small class="text-muted"></small>
-          </a>
-        </div>
       </CCardHeader>
       <CCardBody>
-        <div class="col-md-12" style="margin-bottom:20px;">
-          <multiselect v-model="searchProjectNameData" @input="rowClicked" :options="items" placeholder="Search a project ..." label="projectNameEn" track-by="projectNameEn"></multiselect>
+        <div class="col-md-12" style="margin-bottom: 20px">
+          <multiselect
+            v-model="searchProjectNameData"
+            @input="rowClicked"
+            :options="items"
+            placeholder="Search a project ..."
+            label="projectNameEn"
+            track-by="projectNameEn"
+          ></multiselect>
         </div>
         <div class="col-md-12">
           <CDataTable
@@ -29,7 +29,7 @@
             clickable-rows
             :active-page="activePage"
             @row-clicked="rowClicked"
-            :pagination="{ doubleArrows: false, align: 'center'}"
+            :pagination="{ doubleArrows: false, align: 'center' }"
             @page-change="pageChange"
           >
             <template #example="{ item }">
@@ -74,9 +74,14 @@ export default {
       userName: [],
       searchProjectNameData: "",
       userData: [],
+      json: [
+        { id: "1", name: "Dady", score: "21", grade: "I" },
+        { id: "2", name: "Jonh", score: "25", grade: "I" },
+        { id: "3", name: "James", score: "17", grade: "I" },
+      ],
       fields: [
-        { key: 'projectNameEn', label: 'Project Name' },
-        { key: 'download', label: 'Downloading Rate' }
+        { key: "projectNameEn", label: "Project Name" },
+        { key: "download", label: "Downloading Rate" },
       ],
       items: projectData,
     };
@@ -110,13 +115,13 @@ export default {
           "primary";
       }
     },
-    rowClicked(item, index) {
+    rowClicked(item) {
       this.$router.push({ path: `menu/projectCheckingSystem/${item.id}` });
     },
     pageChange(val) {
       this.$router.push({ query: { page: val } });
-    }
-  }
+    },
+  },
 };
 </script>
 
