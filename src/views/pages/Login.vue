@@ -12,17 +12,27 @@
                   <CCol v-if="checkLamduanMail" col="12">
                     <CRow>
                       <CCol col="12">
-                        <CButton class="px-4 btn btn-block" @click="googleLogin()" color="primary">Login widh Lamduan mail</CButton>
+                        <CButton
+                          class="px-4 btn btn-block"
+                          @click="googleLogin()"
+                          color="primary"
+                          >Login widh Lamduan mail</CButton
+                        >
                       </CCol>
-                      <CCol col="6">
-                      </CCol>
+                      <CCol col="6"> </CCol>
                       <CCol col="6" class="text-right">
                         <CButton
                           color="link"
                           v-on:click="forgotPassword()"
                           class="px-0"
-                        >Forgot password?</CButton>
-                        <CButton color="link" v-on:click="register()" class="px-0">Register for teacher!</CButton>
+                          >Forgot password?</CButton
+                        >
+                        <CButton
+                          color="link"
+                          v-on:click="register()"
+                          class="px-0"
+                          >Register for teacher!</CButton
+                        >
                       </CCol>
                     </CRow>
                   </CCol>
@@ -58,15 +68,22 @@
                           v-on:click="submit()"
                           color="primary"
                           class="px-4 btn btn-block"
-                        >Login</CButton>
+                          >Login</CButton
+                        >
                       </CCol>
                       <CCol col="6" class="text-right">
                         <CButton
                           color="link"
                           v-on:click="forgotPassword()"
                           class="px-0"
-                        >Forgot password?</CButton>
-                        <CButton color="link" v-on:click="register()" class="px-0">Register for teacher!</CButton>
+                          >Forgot password?</CButton
+                        >
+                        <CButton
+                          color="link"
+                          v-on:click="register()"
+                          class="px-0"
+                          >Register for teacher!</CButton
+                        >
                       </CCol>
                     </CRow>
                   </CCol>
@@ -81,7 +98,8 @@
                       id="loginType"
                       color="info"
                       class="active mt-3 btn-block"
-                    >Login as administrator</CButton>
+                      >Login as administrator</CButton
+                    >
                   </CCol>
                 </CRow>
               </CForm>
@@ -93,9 +111,13 @@
             class="text-center py-5 d-sm-down-none"
             body-wrapper
           >
-            <h2 style="color:gray">Senior Store</h2>
-            <img alt="SE" src="icon.png" style="width:150px;margin-top:20px;" />
-            <p v-if="error" class="alert alert-danger">{{error}}</p>
+            <h2 style="color: gray">Senior Store</h2>
+            <img
+              alt="SE"
+              src="icon.png"
+              style="width: 150px; margin-top: 20px"
+            />
+            <p v-if="error" class="alert alert-danger">{{ error }}</p>
             <!--<CButton
               color="primary"
               class="active mt-3"
@@ -106,7 +128,6 @@
         </CCardGroup>
       </CCol>
     </CRow>
-    
   </CContainer>
 </template>
 
@@ -126,16 +147,16 @@ export default {
       lamduanPass: "",
       form: {
         email: "",
-        password: ""
+        password: "",
       },
-      error: null
+      error: null,
     };
   },
   created() {
     db.collection("users")
       .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
           this.users.push({ id: doc.id, data: doc.data() });
         });
       });
@@ -148,14 +169,14 @@ export default {
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then(result => this.saveDataToDatabase(result));
+        .then((result) => this.saveDataToDatabase(result));
     },
-    saveDataToDatabase(result) {
+    async saveDataToDatabase(result) {
       //This gives you a Google Access Token.
       //var token = result.credential.accessToken;
       // The signed-in user info.
       //var user = result.user;
-      var target = this.users.find(item => {
+      var target = this.users.find((item) => {
         return item.data.email == result.additionalUserInfo.profile.email;
       });
 
@@ -169,14 +190,19 @@ export default {
             password: "",
             photo: result.additionalUserInfo.profile.id,
             // photo: result.additionalUserInfo.profile.picture,
-            role: parseInt(result.additionalUserInfo.profile.email.substring(0,2)) <= 60? "senior" : "guest",
+            role:
+              parseInt(
+                result.additionalUserInfo.profile.email.substring(0, 2)
+              ) <= 60
+                ? "senior"
+                : "guest",
             questionAns: "",
             questionId: "",
             jobPosition: "Student of software engineering",
             createdAt: new Date(),
             handPhone: "-",
             companyPhone: "-",
-            status: "online"
+            status: "online",
           };
           db.collection("users").add(obj);
           const state = {
@@ -185,9 +211,51 @@ export default {
             data: {
               displayName: result.additionalUserInfo.profile.name,
               email: result.additionalUserInfo.profile.email,
-              role: 'guest',
-              photo: result.additionalUserInfo.profile.picture
-            }
+              role: "guest",
+              photo: result.additionalUserInfo.profile.picture,
+            },
+          };
+          this.$session.start();
+          this.$session.set("user", state);
+          this.$router.replace({ name: "Dashboard" });
+        } else if (result.additionalUserInfo.profile.hd == "mfu.ac.th") {
+          let userId = await db.collection("teachers")
+            .add({
+              companyPhone: "",
+              handPhone: "",
+              email: result.additionalUserInfo.profile.email,
+              teacherName: result.additionalUserInfo.profile.name,
+              createdAt: new Date()
+            })
+            .catch(error => {
+              console.log("Error getting test data: ", error);
+            });
+          let obj = {
+            userId: userId.id,
+            username: result.additionalUserInfo.profile.name,
+            email: result.additionalUserInfo.profile.email,
+            password: "",
+            photo: result.additionalUserInfo.profile.id,
+            // photo: result.additionalUserInfo.profile.picture,
+            role: "teacher",
+            questionAns: "",
+            questionId: "",
+            jobPosition: "Teacher of software engineering",
+            createdAt: new Date(),
+            handPhone: "-",
+            companyPhone: "-",
+            status: "online",
+          };
+          db.collection("users").add(obj);
+          const state = {
+            loggedIn: true,
+            id: userId.id,
+            data: {
+              displayName: result.additionalUserInfo.profile.name,
+              email: result.additionalUserInfo.profile.email,
+              role: "teacher",
+              photo: result.additionalUserInfo.profile.picture,
+            },
           };
           this.$session.start();
           this.$session.set("user", state);
@@ -197,7 +265,7 @@ export default {
         }
       } else {
         this.$session.start();
-         const state2 = {
+        const state2 = {
           loggedIn: true,
           id: target.id,
           data: {
@@ -205,8 +273,8 @@ export default {
             email: target.data.email,
             role: target.data.role,
             userId: target.data.userId,
-            photo: result.additionalUserInfo.profile.picture
-          }
+            photo: result.additionalUserInfo.profile.picture,
+          },
         };
         this.$session.set("user", state2);
         window.location.replace("http://localhost:8080/");
@@ -230,8 +298,11 @@ export default {
       this.$router.replace({ name: "ForgotPassword" });
     },
     submit() {
-      const target = this.users.find(data => {
-        return data.data.email === this.form.email && data.data.password === this.form.password;
+      const target = this.users.find((data) => {
+        return (
+          data.data.email === this.form.email &&
+          data.data.password === this.form.password
+        );
       });
       if (this.form.email !== "" && this.form.password !== "") {
         if (target !== undefined && target.data.status !== "block") {
@@ -242,8 +313,8 @@ export default {
               displayName: target.data.username,
               email: target.data.email,
               role: target.data.role,
-              userId: target.data.userId
-            }
+              userId: target.data.userId,
+            },
           };
           this.$session.start();
           this.$session.set("user", state);
@@ -262,7 +333,7 @@ export default {
       } else {
         window.alert("Incorrect email or password!");
       }
-    }
-  }
+    },
+  },
 };
 </script>
