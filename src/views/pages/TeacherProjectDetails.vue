@@ -1537,7 +1537,7 @@ export default {
         });
     },
     calculateStatus(status, score) {
-      if (status == 'I' || status == 'U') {
+      if (status == 'I' || status == 'U' || status == 'Waiting') {
         return status
       } else {
         if (score >=70){
@@ -1604,7 +1604,7 @@ export default {
               projectPointSP2: this.projectPointSP2,
               projectPoint: (this.projectPointSP1 + this.projectPointSP2) / 2,
               projectStatus:
-                (this.projectPointSP1 + this.projectPointSP2) / 2 >= 60
+                (this.projectPointSP1 + this.projectPointSP2) / 2 >= 70
                   ? "S"
                   : "U",
               projectStatusSemester1: this.calculateStatus(this.projectSenior1Status, this.projectPointSP1),

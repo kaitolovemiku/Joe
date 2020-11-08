@@ -320,7 +320,7 @@ export default {
             projectPointSP1: 0,
             projectPointSP2: 0,
             projectStatus: "Waiting for acception",
-            projectStatusSemester1: "In progress",
+            projectStatusSemester1: "P",
             projectStatusSemester2: "Waiting",
             projectDuration: this.projectDuration,
             projectFileName: this.projectFile.name,
