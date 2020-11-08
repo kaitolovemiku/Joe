@@ -21,7 +21,7 @@
                       </CCol>
                       <CCol col="6"> </CCol>
                       <CCol col="6" class="text-right">
-                        <CButton
+                        <!-- <CButton
                           color="link"
                           v-on:click="forgotPassword()"
                           class="px-0"
@@ -32,7 +32,7 @@
                           v-on:click="register()"
                           class="px-0"
                           >Register for teacher!</CButton
-                        >
+                        > -->
                       </CCol>
                     </CRow>
                   </CCol>
@@ -72,7 +72,7 @@
                         >
                       </CCol>
                       <CCol col="6" class="text-right">
-                        <CButton
+                        <!-- <CButton
                           color="link"
                           v-on:click="forgotPassword()"
                           class="px-0"
@@ -83,7 +83,7 @@
                           v-on:click="register()"
                           class="px-0"
                           >Register for teacher!</CButton
-                        >
+                        > -->
                       </CCol>
                     </CRow>
                   </CCol>

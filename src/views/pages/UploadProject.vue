@@ -220,6 +220,7 @@ export default {
       projectAdvisor: [],
       projectCoAdvisor: [],
       projectCommittee: [],
+      userData: [],
       memberName: [],
       advisor_for_save_data: [],
       co_advisor_for_save_data: [],
@@ -264,11 +265,16 @@ export default {
     db.collection("users")
       .get()
       .then(querySnapshot => {
+        querySnapshot.forEach((doc) => {
+          if (this.user.email == doc.data().email) {
+            this.userData.push(doc.data());
+          }
+        });
         querySnapshot.forEach(doc => {
           this.memberName.push(doc.data().username);
           this.member.push({id: doc.id , data: doc.data().username});
         });
-        return this.member;
+        return this.member, this.userData;
       })
       .catch(error => {
         console.log("Error getting users: ", error);
@@ -322,6 +328,7 @@ export default {
             projectStatus: "Waiting for acception",
             projectStatusSemester1: "P",
             projectStatusSemester2: "Waiting",
+            isTeacherProject: this.userData[0].role == "teacher" ? 1 : 0,
             projectDuration: this.projectDuration,
             projectFileName: this.projectFile.name,
             createdAt: new Date()
