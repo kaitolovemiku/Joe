@@ -1,9 +1,7 @@
 <template>
   <div>
     <CCard>
-      <CCardHeader>
-        <CIcon name="cil-cursor" />Upload File
-      </CCardHeader>
+      <CCardHeader> <CIcon name="cil-cursor" />Upload File </CCardHeader>
       <CCardBody>
         <CForm>
           <div class="row">
@@ -38,7 +36,7 @@
               />
             </div>
           </div>
-          <div class="row" style="padding-bottom:10px;">
+          <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
               <p>Project Member</p>
             </div>
@@ -53,7 +51,7 @@
               ></multiselect>
             </div>
           </div>
-          <div class="row" style="padding-bottom:10px;">
+          <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
               <p>Project description</p>
             </div>
@@ -69,7 +67,7 @@
               />
             </div>
           </div>
-          <div class="row" style="padding-bottom:10px;">
+          <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
               <p>Proeject Advisor</p>
             </div>
@@ -84,7 +82,7 @@
               ></multiselect>
             </div>
           </div>
-          <div class="row" style="padding-bottom:10px;">
+          <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
               <p>Proeject Co-Advisor</p>
             </div>
@@ -99,7 +97,7 @@
               ></multiselect>
             </div>
           </div>
-          <div class="row" style="padding-bottom:10px;">
+          <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
               <p>Proeject Committee</p>
             </div>
@@ -114,12 +112,15 @@
               ></multiselect>
             </div>
           </div>
-          <div class="row" style="padding-bottom:10px;">
+          <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
               <p>Project type</p>
             </div>
             <div class="col-md-9">
-              <multiselect v-model="projectType" :options="options"></multiselect>
+              <multiselect
+                v-model="projectType"
+                :options="options"
+              ></multiselect>
             </div>
           </div>
           <div class="row">
@@ -171,16 +172,26 @@
           </div>
           <div class="row">
             <div class="col-md-3">
-              <p>Progress: {{uploadValue.toFixed()+"%"}}</p>
+              <p>Progress: {{ uploadValue.toFixed() + "%" }}</p>
             </div>
             <div class="col-md-9">
-              <CProgress :value="uploadValue" :max="100" show-percentage animated></CProgress>
+              <CProgress
+                :value="uploadValue"
+                :max="100"
+                show-percentage
+                animated
+              ></CProgress>
             </div>
           </div>
         </CForm>
       </CCardBody>
       <CCardFooter>
-        <CButton v-on:click="onUpload()" type="submit" size="sm" color="primary">
+        <CButton
+          v-on:click="onUpload()"
+          type="submit"
+          size="sm"
+          color="primary"
+        >
           <CIcon name="cil-check-circle" />Submit
         </CButton>
         <CButton type="reset" size="sm" color="danger">
@@ -194,18 +205,20 @@
 <script>
 import firebase from "firebase";
 import Multiselect from "vue-multiselect";
+import Vue from "vue";
 
 const db = firebase.firestore();
 
 export default {
   name: "UploadProject",
   components: {
-    Multiselect
+    Multiselect,
   },
   data() {
     return {
-      testDate: '2017-07-04',
+      testDate: "2017-07-04",
       value: "",
+      user: Vue.prototype.$session.getAll().user.data,
       projectNameEn: "",
       projectNameTh: "",
       projectType: "",
@@ -244,51 +257,51 @@ export default {
         "POS system",
         "Pet",
         "Restaurant",
-        "Study"
-      ]
+        "Study",
+      ],
     };
   },
   created() {
     db.collection("teachers")
       .get()
-      .then(querySnapshot => {
+      .then((querySnapshot) => {
         this.teachers = [];
-        querySnapshot.forEach(doc => {
+        querySnapshot.forEach((doc) => {
           this.teacherShow.push(doc.data().teacherName);
           this.teachers.push({ id: doc.id, data: doc.data().teacherName });
         });
         return this.teachers;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error getting teachers: ", error);
       });
     db.collection("users")
       .get()
-      .then(querySnapshot => {
+      .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
+          if (doc.data().role == "senior") {
+            this.memberName.push(doc.data().username);
+            this.member.push({ id: doc.id, data: doc.data().username });
+          }
           if (this.user.email == doc.data().email) {
             this.userData.push(doc.data());
           }
         });
-        querySnapshot.forEach(doc => {
-          this.memberName.push(doc.data().username);
-          this.member.push({id: doc.id , data: doc.data().username});
-        });
         return this.member, this.userData;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error getting users: ", error);
       });
   },
   methods: {
     testTeacher() {
       this.projectDuration = this.projectDStart + " - " + this.projectDEnd;
-      console.log(this.projectDuration)
+      console.log(this.projectDuration);
     },
     addTag(newTag) {
       const tag = {
         name: newTag,
-        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000)
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
       };
       this.options.push(tag);
       this.value.push(tag);
@@ -307,10 +320,26 @@ export default {
         this.projectDEnd != ""
       ) {
         this.projectDuration = this.projectDStart + " - " + this.projectDEnd;
-        this.member_for_save_data = this.member.filter(item => this.projectMember.includes(item.data)).map(item => {return item.id});
-        this.advisor_for_save_data = this.teachers.filter(item => this.projectAdvisor.includes(item.data)).map(item => {return item.id});
-        this.co_advisor_for_save_data = this.teachers.filter(item => this.projectCoAdvisor.includes(item.data)).map(item => {return item.id});
-        this.committee_for_save_data = this.teachers.filter(item => this.projectCommittee.includes(item.data)).map(item => {return item.id});
+        this.member_for_save_data = this.member
+          .filter((item) => this.projectMember.includes(item.data))
+          .map((item) => {
+            return item.id;
+          });
+        this.advisor_for_save_data = this.teachers
+          .filter((item) => this.projectAdvisor.includes(item.data))
+          .map((item) => {
+            return item.id;
+          });
+        this.co_advisor_for_save_data = this.teachers
+          .filter((item) => this.projectCoAdvisor.includes(item.data))
+          .map((item) => {
+            return item.id;
+          });
+        this.committee_for_save_data = this.teachers
+          .filter((item) => this.projectCommittee.includes(item.data))
+          .map((item) => {
+            return item.id;
+          });
 
         db.collection("projects")
           .add({
@@ -331,12 +360,12 @@ export default {
             isTeacherProject: this.userData[0].role == "teacher" ? 1 : 0,
             projectDuration: this.projectDuration,
             projectFileName: this.projectFile.name,
-            createdAt: new Date()
+            createdAt: new Date(),
           })
           .then(() => {
             console.error("Upload successed");
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("Error writing document: ", error);
           });
         const storageRef = firebase
@@ -345,11 +374,11 @@ export default {
           .put(this.projectFile);
         storageRef.on(
           `state_changed`,
-          snapshot => {
+          (snapshot) => {
             this.uploadValue =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           },
-          error => {
+          (error) => {
             console.log(error.message);
           },
           () => {
@@ -358,8 +387,8 @@ export default {
           }
         );
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
