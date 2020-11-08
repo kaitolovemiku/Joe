@@ -171,7 +171,7 @@ export default {
         .signInWithPopup(provider)
         .then((result) => this.saveDataToDatabase(result));
     },
-    async saveDataToDatabase(result) {
+    saveDataToDatabase(result) {
       //This gives you a Google Access Token.
       //var token = result.credential.accessToken;
       // The signed-in user info.
@@ -219,7 +219,7 @@ export default {
           this.$session.set("user", state);
           this.$router.replace({ name: "Dashboard" });
         } else if (result.additionalUserInfo.profile.hd == "mfu.ac.th") {
-          let userId = await db.collection("teachers")
+          let userId = db.collection("teachers")
             .add({
               companyPhone: "",
               handPhone: "",
