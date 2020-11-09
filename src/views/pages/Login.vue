@@ -241,6 +241,7 @@ export default {
             role: "teacher",
             questionAns: "",
             questionId: "",
+            studentId: "",
             jobPosition: "Teacher of software engineering",
             createdAt: new Date(),
             handPhone: "-",
