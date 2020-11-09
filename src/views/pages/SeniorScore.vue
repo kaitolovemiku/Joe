@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import Multiselect from "vue-multiselect";
+//import Multiselect from "vue-multiselect";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import XLSX from "xlsx";
@@ -102,7 +102,7 @@ const db = firebase.firestore();
 export default {
   name: "SeniorScore",
   components: {
-    Multiselect,
+    //Multiselect,
   },
   data() {
     return {

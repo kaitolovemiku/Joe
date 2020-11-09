@@ -209,7 +209,7 @@ export default {
         questionAns: this.answer,
         questionId: this.questionTarget,
         role: this.roleTarget == "student" ? "guest" : this.roleTarget,
-        status: "online",
+        status: "active",
         userId: userId.id,
         username: this.username
       });

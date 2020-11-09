@@ -16,10 +16,19 @@
                           class="px-4 btn btn-block"
                           @click="googleLogin()"
                           color="primary"
-                          >Login widh Lamduan mail</CButton
+                          >Login as student</CButton
                         >
                       </CCol>
-                      <CCol col="6"> </CCol>
+                      <CCol style="height:10px">
+                      </CCol>
+                      <CCol col="12">
+                        <CButton
+                          class="px-4 btn btn-block"
+                          @click="googleLogin()"
+                          color="info"
+                          >Login as teacher</CButton
+                        >
+                      </CCol>
                       <CCol col="6" class="text-right">
                         <!-- <CButton
                           color="link"
@@ -203,7 +212,7 @@ export default {
             createdAt: new Date(),
             handPhone: "-",
             companyPhone: "-",
-            status: "online",
+            status: "active",
           };
           db.collection("users").add(obj);
           const state = {
@@ -220,15 +229,16 @@ export default {
           this.$session.set("user", state);
           this.$router.replace({ name: "Dashboard" });
         } else if (result.additionalUserInfo.profile.hd == "mfu.ac.th") {
-          let userId = db.collection("teachers")
+          let userId = db
+            .collection("teachers")
             .add({
               companyPhone: "",
               handPhone: "",
               email: result.additionalUserInfo.profile.email,
               teacherName: result.additionalUserInfo.profile.name,
-              createdAt: new Date()
+              createdAt: new Date(),
             })
-            .catch(error => {
+            .catch((error) => {
               console.log("Error getting test data: ", error);
             });
           let obj = {
@@ -246,7 +256,7 @@ export default {
             createdAt: new Date(),
             handPhone: "-",
             companyPhone: "-",
-            status: "online",
+            status: "active",
           };
           db.collection("users").add(obj);
           const state = {

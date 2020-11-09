@@ -17,6 +17,7 @@ db.collection('users')
       email: doc.data().email,
       password: doc.data().password,
       address: doc.data().address,
+      studentId: doc.data().studentId,
       role: doc.data().role,
       status: doc.data().status
     });
