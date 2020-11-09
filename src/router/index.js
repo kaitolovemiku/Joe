@@ -58,6 +58,7 @@ const MyProject = () => import('@/views/pages/MyProject')
 const Profile = () => import('@/views/pages/Profile')
 const ForgotPassword = () => import('@/views/pages/ForgotPassword')
 const AddNewUser = () => import('@/views/pages/AddNewUser')
+const SeniorScore = () => import('@/views/pages/SeniorScore')
 
 // Users
 const Users = () => import('@/views/users/Users')
@@ -170,6 +171,11 @@ function configRoutes () {
           path: 'addUser',
           name: 'Add new user',
           component: AddNewUser
+        },
+        {
+          path: 'seniorScore',
+          name: 'Senior Score',
+          component: SeniorScore
         },
         {
           path: 'widgets',

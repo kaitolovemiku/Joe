@@ -440,8 +440,8 @@ export default {
               }
             });
           });
-        let res = JSON.parse(JSON.stringify(this.exportExcelData.__ob__.value));
-        if (res.length > 1) {
+        let res = JSON.parse(JSON.stringify(this.exportExcelData));
+        if (res.length >= 1) {
           this.onExport(res);
         }
       } else {

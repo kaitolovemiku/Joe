@@ -343,6 +343,7 @@ export default {
 
         db.collection("projects")
           .add({
+            projectAcademicYear: new Date().getFullYear(),
             projectNameEn: this.projectNameEn,
             projectNameTh: this.projectNameTh,
             projectBg: this.projectBg,

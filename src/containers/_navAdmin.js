@@ -21,6 +21,12 @@ export default [
           name: 'User Management',
           to: '/users',
           icon: 'cil-pencil'
+        },
+        {
+          _name: 'CSidebarNavItem',
+          name: 'Senior Score',
+          to: '/seniorScore',
+          icon: 'cil-pencil'
         }
       ]
     }
