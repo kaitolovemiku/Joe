@@ -199,6 +199,7 @@ export default {
             questionAns: "",
             questionId: "",
             jobPosition: "Student of software engineering",
+            studentId: result.additionalUserInfo.profile.email.substring(0, 10),
             createdAt: new Date(),
             handPhone: "-",
             companyPhone: "-",

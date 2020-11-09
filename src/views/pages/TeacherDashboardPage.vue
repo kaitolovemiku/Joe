@@ -402,7 +402,7 @@ export default {
                             usersDoc.id == projectsDoc.data().projectMember[i]
                           ) {
                             let data = {
-                              id: usersDoc.data().userId,
+                              id: usersDoc.data().studentId,
                               name: usersDoc.data().username,
                               score: projectsDoc.data().projectPointSP1,
                               grade: projectsDoc.data().projectStatusSemester1,
@@ -426,7 +426,7 @@ export default {
                             usersDoc.id == projectsDoc.data().projectMember[i]
                           ) {
                             let data = {
-                              id: usersDoc.data().userId,
+                              id: usersDoc.data().studentId,
                               name: usersDoc.data().username,
                               score: projectsDoc.data().projectPointSP2,
                               grade: projectsDoc.data().projectStatusSemester2,
