@@ -205,7 +205,7 @@
 <script>
 import usersData from "./UsersData";
 import firebase from "firebase";
-//import Vue from "vue";
+//py'import Vue from "vue";
 const db = firebase.firestore();
 
 export default {
