@@ -163,7 +163,7 @@
                 </div>
               </div>
               <button
-                @click="editData()"
+                @click="testBTN()"
                 type="submit"
                 class="btn btn-warning btn-block"
               >
@@ -205,7 +205,7 @@
 <script>
 import usersData from "./UsersData";
 import firebase from "firebase";
-import Vue from "vue";
+//import Vue from "vue";
 const db = firebase.firestore();
 
 export default {
@@ -228,7 +228,7 @@ export default {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           if (
-            Vue.prototype.$session.getAll().user.data.email == doc.data().email
+            this.visibleData[7].value == doc.data().email
           ) {
             this.username = doc.data().username;
             this.email = doc.data().email;
@@ -244,7 +244,7 @@ export default {
           }
         });
         if (
-          Vue.prototype.$session.getAll().user.data.email.substring(10) !==
+          this.visibleData[7].value.substring(10) !==
           "@lamduan.mfu.ac.th"
         ) {
           firebase
@@ -259,7 +259,7 @@ export default {
               return (this.imageSrc = url);
             });
         } else {
-          this.imageSrc = Vue.prototype.$session.getAll().user.data.photo;
+          this.imageSrc = '../../../public/default.jpg';
         }
       })
       .catch((error) => {
@@ -275,7 +275,7 @@ export default {
       question: usersData
         .filter(
           (item) =>
-            item.email === Vue.prototype.$session.getAll().user.data.email
+            item.email === this.visibleData[7].value
         )
         .map((item) => item.questionId)[0],
       answer: "",
@@ -294,14 +294,14 @@ export default {
       role: usersData
         .filter(
           (item) =>
-            item.email === Vue.prototype.$session.getAll().user.data.email
+            item.email === this.visibleData[7].value
         )
         .map((item) => item.role)[0],
       roles: ["teacher", "senior", "admin", "guest"],
       status: usersData
         .filter(
           (item) =>
-            item.email === Vue.prototype.$session.getAll().user.data.email
+            item.email === this.visibleData[7].value
         )
         .map((item) => item.status)[0],
       statuss: [
@@ -340,10 +340,11 @@ export default {
     },
     testBTN() {
       console.log(
+        this.visibleData[7].value,
         usersData
           .filter(
             (item) =>
-              item.email === Vue.prototype.$session.getAll().user.data.email
+              item.email === this.visibleData[7].value
           )
           .map((item) => item.id)[0]
       );
@@ -370,7 +371,7 @@ export default {
             usersData
               .filter(
                 (item) =>
-                  item.email === Vue.prototype.$session.getAll().user.data.email
+                  item.email === this.visibleData[7].value
               )
               .map((item) => item.id)[0]
           )
