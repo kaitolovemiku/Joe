@@ -1,123 +1,11 @@
 <template>
   <CRow>
-    <CCol col="12" lg="12" style="display: none">
-      <CCard>
-        <CCardHeader>User id: {{ $route.params.id }}</CCardHeader>
-        <CCardBody>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Hand phone</th>
-                <th scope="col">Company phone</th>
-                <th scope="col">Question</th>
-                <th scope="col">Answer</th>
-                <th scope="col">Email</th>
-                <th scope="col">Password</th>
-                <th scope="col">Address</th>
-                <th scope="col">Role</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <td scope="col">
-                #
-                <p id="userId" style="display: none">
-                  {{ visibleData[0].value }}
-                </p>
-              </td>
-              <td scope="col">
-                <input
-                  id="handPhone"
-                  class="form-control"
-                  v-model="visibleData[1].value"
-                />
-              </td>
-              <td scope="col">
-                <input
-                  id="companyPhone"
-                  class="form-control"
-                  v-model="visibleData[2].value"
-                />
-              </td>
-              <td scope="col">
-                <select
-                  id="question"
-                  class="form-control"
-                  :value="visibleData[4].value"
-                >
-                  <option v-for="option in questions" v-bind:key="option.id">
-                    {{ option.data }}
-                  </option>
-                </select>
-              </td>
-              <td scope="col">
-                <input
-                  id="answer"
-                  class="form-control"
-                  v-model="visibleData[5].value"
-                />
-              </td>
-              <td scope="col">
-                <input
-                  id="email"
-                  class="form-control"
-                  v-model="visibleData[7].value"
-                />
-              </td>
-              <td scope="col">
-                <input
-                  id="password"
-                  class="form-control"
-                  v-model="visibleData[8].value"
-                />
-              </td>
-              <td scope="col">
-                <input
-                  id="address"
-                  class="form-control"
-                  v-model="visibleData[9].value"
-                />
-              </td>
-              <td scope="col">
-                <select
-                  id="role"
-                  class="form-control"
-                  :value="visibleData[11].value"
-                  :options="role"
-                >
-                  <option v-for="option in role" v-bind:key="option">
-                    {{ option }}
-                  </option>
-                </select>
-              </td>
-              <td scope="col">
-                <select
-                  id="status"
-                  class="form-control"
-                  :value="visibleData[12].value"
-                >
-                  <option v-for="option in status" v-bind:key="option">
-                    {{ option }}
-                  </option>
-                </select>
-              </td>
-            </tbody>
-          </table>
-        </CCardBody>
-        <CCardFooter>
-          <CButton color="primary" @click="goBack">Back</CButton>
-          <CButton color="warning" @click="editData">Edit</CButton>
-          <CButton color="danger" @click="deleteData">Delete</CButton>
-        </CCardFooter>
-      </CCard>
-    </CCol>
-    <CCol md="12" lg="12">
+    <CCol col="12" lg="12">
       <CCard>
         <CCardHeader>
           <CIcon name="cil-justify-center" />
           <strong
-            >Profile:
+            >Profile: {{ $route.params.id }}
             <p id="userId" style="display: none">
               {{ visibleData[0].value }}
             </p></strong
@@ -152,134 +40,118 @@
               ></CProgress>
             </CCol>
             <CCol md="9">
-              <form>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="name">Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="name"
-                      v-model="username"
-                    />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="id">Id</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="id"
-                      disabled
-                      v-model="visibleData[10].value"
-                    />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="bio">Bio</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="bio"
-                      :placeholder="visibleData[3].value"
-                      v-model="bio"
-                    />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="email">Email</label>
-                    <input
-                      type="email"
-                      :placeholder="visibleData[7].value"
-                      v-model="email"
-                      class="form-control"
-                      id="email"
-                    />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="Password">Password</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="password"
-                      :placeholder="visibleData[8].value"
-                      v-model="password"
-                    />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="phone">Hand phone</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="handPhone"
-                      :placeholder="visibleData[1].value"
-                      v-model="handPhone"
-                    />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="phone">Company phone</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="companyPhone"
-                      :placeholder="visibleData[2].value"
-                      v-model="companyPhone"
-                    />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="question">Question</label>
-                    <select
-                      id="question"
-                      class="form-control"
-                      v-model="question"
-                    >
-                      <option disabled value>{{visibleData[4].value}}</option>
-                      <option
-                        v-for="option in questions"
-                        v-bind:key="option.id"
-                      >
-                        {{ option.data }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="answer">Answer</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="answer"
-                      :placeholder="visibleData[5].value"
-                      v-model="answer"
-                    />
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="role">Role</label>
-                    <select
-                      id="role"
-                      class="form-control"
-                      v-model="role"
-                    >
-                      <option disabled value>{{visibleData[11].value}}</option>
-                      <option v-for="option in roles" v-bind:key="option">
-                        {{ option }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="status">Status</label>
-                    <select
-                      id="status"
-                      class="form-control"
-                      v-model="status"
-                    >
-                      <option disabled value>{{visibleData[12].value}}</option>
-                      <option
-                        v-for="option in statuss"
-                        v-bind:key="option.value"
-                      >
-                        {{ option.key }}
-                      </option>
-                    </select>
-                  </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="name">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    v-model="username"
+                  />
                 </div>
-                <div class="form-group">
+                <div class="form-group col-md-6">
+                  <label for="id">Id</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="id"
+                    disabled
+                    v-model="visibleData[10].value"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="bio">Bio</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="bio"
+                    :placeholder="visibleData[3].value"
+                    v-model="bio"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    :placeholder="visibleData[7].value"
+                    v-model="email"
+                    class="form-control"
+                    id="email"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="Password">Password</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="password"
+                    :placeholder="visibleData[8].value"
+                    v-model="password"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="phone">Hand phone</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="handPhone"
+                    :placeholder="visibleData[1].value"
+                    v-model="handPhone"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="phone">Company phone</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="companyPhone"
+                    :placeholder="visibleData[2].value"
+                    v-model="companyPhone"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="question">Question</label>
+                  <select id="question" class="form-control" v-model="question">
+                    <option disabled value>{{ visibleData[4].value }}</option>
+                    <option v-for="option in questions" v-bind:key="option.id">
+                      {{ option.data }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="answer">Answer</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="answer"
+                    :placeholder="visibleData[5].value"
+                    v-model="answer"
+                  />
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="role">Role</label>
+                  <select id="role" class="form-control" v-model="role">
+                    <option disabled value>
+                      {{ visibleData[11].value }}
+                    </option>
+                    <option v-for="option in roles" v-bind:key="option">
+                      {{ option }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="status">Status</label>
+                  <select id="status" class="form-control" v-model="status">
+                    <option disabled value>
+                      {{ visibleData[12].value }}
+                    </option>
+                    <option v-for="option in statuss" v-bind:key="option.value">
+                      {{ option.key }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
                   <label for="address">Address</label>
                   <input
                     type="text"
@@ -289,24 +161,14 @@
                     v-model="address"
                   />
                 </div>
-                <div class="form-group">
-                  <label for="uploadPhoto">Upload photo</label>
-                  <input
-                    type="file"
-                    @change="previewFile"
-                    class="form-control"
-                    id="uploadPhoto"
-                    placeholder="Apartment, studio, or floor"
-                  />
-                </div>
-                <button
-                  @click="editData"
-                  type="submit"
-                  class="btn btn-warning btn-block"
-                >
-                  Save Profile
-                </button>
-              </form>
+              </div>
+              <button
+                @click="editData()"
+                type="submit"
+                class="btn btn-warning btn-block"
+              >
+                Save Profile
+              </button>
             </CCol>
           </CRow>
         </CCardBody>
@@ -410,7 +272,12 @@ export default {
       user_data: [],
       phone: "",
       email: "",
-      question: "",
+      question: usersData
+        .filter(
+          (item) =>
+            item.email === Vue.prototype.$session.getAll().user.data.email
+        )
+        .map((item) => item.questionId)[0],
       answer: "",
       password: "",
       address: "",
@@ -420,13 +287,23 @@ export default {
       uploadValue: 0,
       profilePhoto: null,
       questionTarget: "",
-      questions: [{ id: 1, data: "Loading questions in database." }],
+      questions: [],
       userPhoto: null,
       photoUrl: "",
       bio: "",
-      role: "",
+      role: usersData
+        .filter(
+          (item) =>
+            item.email === Vue.prototype.$session.getAll().user.data.email
+        )
+        .map((item) => item.role)[0],
       roles: ["teacher", "senior", "admin", "guest"],
-      status: "",
+      status: usersData
+        .filter(
+          (item) =>
+            item.email === Vue.prototype.$session.getAll().user.data.email
+        )
+        .map((item) => item.status)[0],
       statuss: [
         { key: "active", value: "online" },
         { key: "suspended", value: "block" },
@@ -461,89 +338,64 @@ export default {
         ? this.$router.go(-1)
         : this.$router.push({ path: "/users" });
     },
+    testBTN() {
+      console.log(
+        usersData
+          .filter(
+            (item) =>
+              item.email === Vue.prototype.$session.getAll().user.data.email
+          )
+          .map((item) => item.id)[0]
+      );
+    },
     editData() {
-      const id = this.$route.params.id;
-      let user = usersData.find((user, index) => index + 1 == id);
-      usersData.forEach((data) => {
-        if (data.id == user.id) {
-          (data.address = this.address),
-            (data.email = this.email),
-            (data.handPhone = this.handPhone),
-            (data.companyPhone = this.companyPhone),
-            (data.questionId = this.question),
-            (data.questionAns = this.answer),
-            (data.role = this.role),
-            (data.status = this.status);
-        }
-      });
-
-      db.collection("users")
-        .doc(document.getElementById("userId").innerHTML)
-        .update(
-          this.userPhoto == null
-            ? {
-                handPhone: this.handPhone,
-                companyPhone: this.companyPhone,
-                questionId: this.question,
-                questionAns: this.answer,
-                email: this.email,
-                jobPosition: this.bio,
-                password: this.password,
-                address: this.address,
-                role: this.role,
-                status: this.status,
-              }
-            : {
-                handPhone: this.handPhone,
-                companyPhone: this.companyPhone,
-                questionId: this.question,
-                questionAns: this.answer,
-                email: this.email,
-                jobPosition: this.bio,
-                password: this.password,
-                address: this.address,
-                photo: this.userPhoto.name,
-                role: this.role,
-                status: this.status,
-              }
-        )
-        .then(() => {
-          if (this.userPhoto != null) {
-            const storageRef = firebase
-              .storage()
-              .ref("images")
-              .child(`${this.userPhoto.name}`)
-              .put(this.userPhoto);
-            storageRef.on(
-              `state_changed`,
-              (snapshot) => {
-                this.uploadValue =
-                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              },
-              (error) => {
-                console.log(error.message);
-              },
-              () => {
-                this.uploadValue = 100;
-              }
-            );
-            firebase
-              .storage()
-              .ref("images")
-              .child(this.userPhoto.name)
-              .getDownloadURL()
-              .then(function (url) {
-                // `url` is the download URL for 'images/stars.jpg'
-
-                var img = document.getElementById("photo");
-                img.src = url;
-              });
+      try {
+        const id = this.$route.params.id;
+        let user = usersData.find((user, index) => index + 1 == id);
+        usersData.forEach((data) => {
+          if (data.id == user.id) {
+            (data.address = this.address),
+              (data.email = this.email),
+              (data.handPhone = this.handPhone),
+              (data.companyPhone = this.companyPhone),
+              (data.questionId = this.question),
+              (data.questionAns = this.answer),
+              (data.role = this.role),
+              (data.status = this.status);
           }
-          return window.alert("Update success"), this.goBack();
-        })
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
         });
+
+        db.collection("users")
+          .doc(
+            usersData
+              .filter(
+                (item) =>
+                  item.email === Vue.prototype.$session.getAll().user.data.email
+              )
+              .map((item) => item.id)[0]
+          )
+          .update({
+            handPhone: this.handPhone,
+            companyPhone: this.companyPhone,
+            questionId: this.question,
+            questionAns: this.answer,
+            email: this.email,
+            jobPosition: this.bio,
+            password: this.password,
+            address: this.address,
+            username: this.username,
+            role: this.role,
+            status: this.status,
+          })
+          .then(() => {
+            return window.alert("Update success"), this.goBack();
+          })
+          .catch((error) => {
+            console.log("Error getting documents: ", error);
+          });
+      } catch (error) {
+        console.log("Sorry, there is error in editing method:" + error);
+      }
     },
     deleteData() {
       if (window.confirm("Do you really want to delete?")) {
