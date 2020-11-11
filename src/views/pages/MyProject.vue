@@ -107,8 +107,12 @@
                         <div class="col-sm-9">{{project.projectType}}</div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Status:</label>
-                        <div class="col-sm-9">{{project.projectStatus}}</div>
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Semester 1 Status:</label>
+                        <div class="col-sm-9">{{project.projectStatusSemester1}}</div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Semester 2 Status:</label>
+                        <div class="col-sm-9">{{project.projectStatusSemester2}}</div>
                       </div>
                     </form>
                   </div>
@@ -803,6 +807,8 @@ export default {
       seniorType1: "",
       progressType: "progress1",
       progressType2: "progress1",
+      projectStatusSemester1: "",
+      projectStatusSemester2: "",
       projectFile: null,
     };
   },
@@ -862,7 +868,11 @@ export default {
               projectFileName: doc.data().projectFileName,
               projectDuration: doc.data().projectDuration,
               projectPoint: doc.data().projectPoint,
+              projectPointSP1: doc.data().projectPointSP1,
+              projectPointSP2: doc.data().projectPointSP2,
               projectStatus: doc.data().projectStatus,
+              projectStatusSemester1: doc.data().projectStatusSemester1,
+              projectStatusSemester2: doc.data().projectStatusSemester2
             });
             this.haveProjectOrNot = true;
           }
