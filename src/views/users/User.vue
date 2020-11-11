@@ -243,7 +243,7 @@ export default {
             console.log("this is success", this.visibleData[7].value);
           }
         });
-        console.log('this is photo url=>', this.photoUrl)
+        console.log("this is photo url=>", this.photoUrl);
         if (
           this.photoUrl !== "" ||
           this.photoUrl !== undefined ||
@@ -277,9 +277,7 @@ export default {
       userName: "",
       phone: "",
       email: "",
-      question: usersData
-        .filter((item) => item.email === this.visibleData[7].value)
-        .map((item) => item.questionId)[0],
+      question: "",
       answer: "",
       password: "",
       address: "",
@@ -293,13 +291,9 @@ export default {
       userPhoto: null,
       photoUrl: "",
       bio: "",
-      role: usersData
-        .filter((item) => item.email === this.visibleData[7].value)
-        .map((item) => item.role)[0],
+      role: "",
       roles: ["teacher", "senior", "admin", "guest"],
-      status: usersData
-        .filter((item) => item.email === this.visibleData[7].value)
-        .map((item) => item.status)[0],
+      status: "",
       statuss: [
         { key: "active", value: "online" },
         { key: "suspended", value: "block" },
