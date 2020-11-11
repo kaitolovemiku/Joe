@@ -355,6 +355,7 @@ export default {
             projectPoint: 0,
             projectPointSP1: 0,
             projectPointSP2: 0,
+            download: 0,
             projectStatus: "Waiting for acception",
             projectStatusSemester1: "P",
             projectStatusSemester2: "Waiting",

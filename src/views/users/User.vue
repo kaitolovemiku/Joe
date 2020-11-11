@@ -4,8 +4,8 @@
       <CCard>
         <CCardHeader>
           <CIcon name="cil-justify-center" />
-          <strong
-            >Profile: {{ $route.params.id }}
+          <strong>
+            {{ username }}
             <p id="userId" style="display: none">
               {{ visibleData[0].value }}
             </p></strong
@@ -47,7 +47,8 @@
                     type="text"
                     class="form-control"
                     id="name"
-                    v-model="username"
+                    :placeholder="username"
+                    v-model="userName"
                   />
                 </div>
                 <div class="form-group col-md-6">
@@ -227,9 +228,7 @@ export default {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          if (
-            this.visibleData[7].value == doc.data().email
-          ) {
+          if (this.visibleData[7].value == doc.data().email) {
             this.username = doc.data().username;
             this.email = doc.data().email;
             this.handPhone = doc.data().handPhone;
@@ -241,11 +240,14 @@ export default {
             this.photoUrl = doc.data().photo;
             this.userData = doc.id;
             this.password = doc.data().password;
+            console.log("this is success", this.visibleData[7].value);
           }
         });
+        console.log('this is photo url=>', this.photoUrl)
         if (
-          this.visibleData[7].value.substring(10) !==
-          "@lamduan.mfu.ac.th"
+          this.photoUrl !== "" ||
+          this.photoUrl !== undefined ||
+          this.photoUrl !== null
         ) {
           firebase
             .storage()
@@ -254,12 +256,14 @@ export default {
             .getDownloadURL()
             .then((url) => {
               // `url` is the download URL for 'images/stars.jpg'
-
+              console.log("this is url=>", url);
               // Or inserted into an <img> element:
-              return (this.imageSrc = url);
+              if (url == "" || url == undefined || url == null) {
+                return (this.imageSrc = "../../../public/default.jpg");
+              } else {
+                return (this.imageSrc = url);
+              }
             });
-        } else {
-          this.imageSrc = '../../../public/default.jpg';
         }
       })
       .catch((error) => {
@@ -270,13 +274,11 @@ export default {
     return {
       usersOpened: null,
       user_data: [],
+      userName: "",
       phone: "",
       email: "",
       question: usersData
-        .filter(
-          (item) =>
-            item.email === this.visibleData[7].value
-        )
+        .filter((item) => item.email === this.visibleData[7].value)
         .map((item) => item.questionId)[0],
       answer: "",
       password: "",
@@ -292,17 +294,11 @@ export default {
       photoUrl: "",
       bio: "",
       role: usersData
-        .filter(
-          (item) =>
-            item.email === this.visibleData[7].value
-        )
+        .filter((item) => item.email === this.visibleData[7].value)
         .map((item) => item.role)[0],
       roles: ["teacher", "senior", "admin", "guest"],
       status: usersData
-        .filter(
-          (item) =>
-            item.email === this.visibleData[7].value
-        )
+        .filter((item) => item.email === this.visibleData[7].value)
         .map((item) => item.status)[0],
       statuss: [
         { key: "active", value: "online" },
@@ -342,10 +338,7 @@ export default {
       console.log(
         this.visibleData[7].value,
         usersData
-          .filter(
-            (item) =>
-              item.email === this.visibleData[7].value
-          )
+          .filter((item) => item.email === this.visibleData[7].value)
           .map((item) => item.id)[0]
       );
     },
@@ -369,10 +362,7 @@ export default {
         db.collection("users")
           .doc(
             usersData
-              .filter(
-                (item) =>
-                  item.email === this.visibleData[7].value
-              )
+              .filter((item) => item.email === this.visibleData[7].value)
               .map((item) => item.id)[0]
           )
           .update({

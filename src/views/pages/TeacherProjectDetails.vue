@@ -114,6 +114,7 @@
                           {{ project.projectPointSP2 }}
                         </div>
                       </div>
+                      <div v-if="userData[0].role == 'teacher'">
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label"
                           >Project Senior1 Status:</label
@@ -180,6 +181,7 @@
                             Update Project Status
                           </button>
                         </div>
+                      </div>
                       </div>
                     </form>
                   </div>
@@ -1198,6 +1200,7 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
+import Vue from "vue";
 const db = firebase.firestore();
 export default {
   name: "Breadcrumbs",
@@ -1209,9 +1212,11 @@ export default {
       finalDocument: [],
       options: ["P", "S", "U", "I"],
       totalPoint: 0,
+      userData: [],
       projectSenior1Status: "",
       projectSenior2Status: "",
       status3: "",
+      uerType: Vue.prototype.$session.getAll().user.data,
       user: {
         senior1: { progress1: {}, progress2: {}, finalPre: {}, finalDoc: {} },
         senior2: { progress1: {}, progress2: {}, finalPre: {}, finalDoc: {} },
@@ -1233,6 +1238,15 @@ export default {
   },
   created() {
     this.loadingProject();
+    db.collection("users")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (this.uerType.email == doc.data().email) {
+            this.userData.push(doc.data());
+          }
+        });
+      });
   },
   methods: {
     downloadFile(item) {

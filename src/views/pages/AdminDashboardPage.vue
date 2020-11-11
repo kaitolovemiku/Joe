@@ -1,7 +1,7 @@
 <template>
   <div
     class="col-md-12"
-    v-if="userData[0].role == 'teacher'"
+    v-if="userData[0].role == 'admin'"
   >
     <CCard>
       <CCardHeader>
@@ -277,7 +277,7 @@ const testEmpty = (data) => {
 };
 
 export default {
-  name: "TeacherDashboard",
+  name: "AdminDashboard",
   components: {
     Multiselect,
   },

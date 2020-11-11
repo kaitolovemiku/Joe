@@ -9,6 +9,7 @@
           <hr />
         </div>
         <TeacherDashboard />
+        <AdminDashboard />
         <StudentDownloadReport />
         <div class="col-md-8" v-if="userData[0].role == 'senior'">
           <CCard>
@@ -264,6 +265,7 @@
 import firebase from "firebase";
 import Vue from "vue";
 import TeacherDashboard from "./pages/TeacherDashboardPage";
+import AdminDashboard from "./pages/AdminDashboardPage";
 import StudentDownloadReport from "./pages/StudentDownloadReport.vue"
 
 console.log(Vue.prototype.$session.getAll().user.data);
@@ -274,6 +276,7 @@ export default {
   components: {
     TeacherDashboard,
     StudentDownloadReport,
+    AdminDashboard,
     //MainChartExample,
     //WidgetsDropdown,
     //WidgetsBrand
