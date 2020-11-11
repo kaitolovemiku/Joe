@@ -3,7 +3,7 @@
     <CCard class="shadow">
       <CCardHeader>
         <CIcon name="cil-pencil" />
-        <strong>Project Checking System for teacher</strong>
+        <strong>Project Checking System For Advisor</strong>
       </CCardHeader>
       <CCardBody>
         <div class="input-group mb-3">
@@ -27,13 +27,13 @@
           <h3 style="padding:20px;">{{project.projectNameEn}} ({{project.projectNameTh}})</h3>
           <p style="padding-left:20px;paddig-bottom:10px;">{{project.projectBg}}</p>
           <p style="padding-left:20px;paddig-bottom:10px;">
-            <b>Project type:</b>
+            <b>Project Type:</b>
             {{project.projectType}}
-            <b>Project duration:</b>
+            <b>Project Duration:</b>
             {{project.projectDuration}}
-            <b>Project point:</b>
+            <b>Project Point:</b>
             {{project.projectPoint}}
-            <b>Project status:</b>
+            <b>Project Status:</b>
             {{project.projectStatus}}
           </p>
         </CCardBody>

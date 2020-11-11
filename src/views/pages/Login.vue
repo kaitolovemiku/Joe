@@ -22,6 +22,9 @@
                       <CCol style="height:10px">
                       </CCol>
                       <CCol col="12">
+                        <CCol>
+                    <hr />
+                  </CCol>
                         <CButton
                           class="px-4 btn btn-block"
                           @click="googleLogin()"

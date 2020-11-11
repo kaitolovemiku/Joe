@@ -163,7 +163,7 @@
                 type="submit"
                 class="btn btn-warning btn-block"
               >
-                Save Profile
+                Update Details
               </button>
             </CCol>
           </CRow>

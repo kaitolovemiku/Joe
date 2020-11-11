@@ -5,16 +5,6 @@
         <CCardHeader>
           <CIcon name="cil-justify-center" />
           <strong>Project Details</strong>
-          <div class="card-header-actions">
-            <a
-              href="https://coreui.io/vue/docs/components/breadcrumb"
-              class="card-header-action"
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              <small class="text-muted">docs</small>
-            </a>
-          </div>
         </CCardHeader>
         <CCardBody>
           <div class="container">
@@ -195,16 +185,6 @@
         <CCardHeader>
           <CIcon name="cil-justify-center" />
           <strong>Project progress document (Senior 1)</strong>
-          <div class="card-header-actions">
-            <a
-              href="https://coreui.io/vue/docs/components/breadcrumb"
-              class="card-header-action"
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              <small class="text-muted">docs</small>
-            </a>
-          </div>
         </CCardHeader>
         <CCardBody>
           <div
@@ -621,10 +601,10 @@
           ></div>
           <div v-else>
             <div class="col-md-12">
-              <h1>
-                <CIcon name="cil-ban" style="color: red" height="30" />Student
+              <h5>
+                <CIcon  style="color: red" height="30" />Student
                 have not yet submitted Progress1 document!
-              </h1>
+              </h5>
             </div>
           </div>
           <div class="col-md-12 mb-3">
@@ -642,10 +622,10 @@
           ></div>
           <div v-else>
             <div class="col-md-12">
-              <h1>
-                <CIcon name="cil-ban" style="color: red" height="30" />Student
+              <h5>
+                <CIcon  style="color: red" height="30" />Student
                 have not yet submitted Progress2 document!
-              </h1>
+              </h5>
             </div>
           </div>
           <div class="col-md-12 mb-3">
@@ -663,10 +643,10 @@
           ></div>
           <div v-else>
             <div class="col-md-12">
-              <h1>
-                <CIcon name="cil-ban" style="color: red" height="30" />Student
+              <h5>
+                <CIcon  style="color: red" height="30" />Student
                 have not yet submitted final presentation document!
-              </h1>
+              </h5>
             </div>
           </div>
           <div class="col-md-12 mb-3">
@@ -684,10 +664,10 @@
           ></div>
           <div v-else>
             <div class="col-md-12">
-              <h1>
-                <CIcon name="cil-ban" style="color: red" height="30" />Student
+              <h5>
+                <CIcon  style="color: red" height="30" />Student
                 have not yet submitted final document document!
-              </h1>
+              </h5>
             </div>
           </div>
         </CCardBody>
@@ -696,16 +676,6 @@
         <CCardHeader>
           <CIcon name="cil-justify-center" />
           <strong>Project progress document (Senior 2)</strong>
-          <div class="card-header-actions">
-            <a
-              href="https://coreui.io/vue/docs/components/breadcrumb"
-              class="card-header-action"
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              <small class="text-muted">docs</small>
-            </a>
-          </div>
         </CCardHeader>
         <CCardBody>
           <div
@@ -1122,10 +1092,10 @@
           ></div>
           <div v-else>
             <div class="col-md-12">
-              <h1>
-                <CIcon name="cil-ban" style="color: red" height="30" />Student
+              <h5>
+                <CIcon  style="color: red" height="30" />Student
                 have not yet submitted Progress1 document!
-              </h1>
+              </h5>
             </div>
           </div>
           <div class="col-md-12 mb-3">
@@ -1143,10 +1113,10 @@
           ></div>
           <div v-else>
             <div class="col-md-12">
-              <h1>
-                <CIcon name="cil-ban" style="color: red" height="30" />Student
+              <h5>
+                <CIcon  style="color: red" height="30" />Student
                 have not yet submitted Progress2 document!
-              </h1>
+              </h5>
             </div>
           </div>
           <div class="col-md-12 mb-3">
@@ -1164,10 +1134,10 @@
           ></div>
           <div v-else>
             <div class="col-md-12">
-              <h1>
-                <CIcon name="cil-ban" style="color: red" height="30" />Student
+              <h5>
+                <CIcon  style="color: red" height="30" />Student
                 have not yet submitted final presentation document!
-              </h1>
+              </h5>
             </div>
           </div>
           <div class="col-md-12 mb-3">
@@ -1185,10 +1155,10 @@
           ></div>
           <div v-else>
             <div class="col-md-12">
-              <h1>
-                <CIcon name="cil-ban" style="color: red" height="30" />Student
+              <h5>
+                <CIcon  style="color: red" height="30" />Student
                 have not yet submitted final document document!
-              </h1>
+              </h5>
             </div>
           </div>
         </CCardBody>

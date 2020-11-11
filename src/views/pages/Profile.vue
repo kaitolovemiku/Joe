@@ -6,16 +6,6 @@
           <CCardHeader>
             <CIcon name="cil-justify-center" />
             <strong>Profile</strong>
-            <div class="card-header-actions">
-              <a
-                href="https://coreui.io/vue/docs/components/breadcrumb"
-                class="card-header-action"
-                rel="noreferrer noopener"
-                target="_blank"
-              >
-                <small class="text-muted">docs</small>
-              </a>
-            </div>
           </CCardHeader>
           <CCardBody>
             <CRow>
@@ -43,7 +33,7 @@
                       <input type="text" class="form-control" id="password" v-model="password" />
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="phone">Hand phone</label>
+                      <label for="phone">Phone</label>
                       <input type="text" class="form-control" id="phone" v-model="handPhone" />
                     </div>
                     <div class="form-group col-md-6">
