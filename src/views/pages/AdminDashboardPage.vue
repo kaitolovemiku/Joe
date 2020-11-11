@@ -6,7 +6,7 @@
     <CCard>
       <CCardHeader>
         <CIcon name="cil-file" />
-        <strong>Project Score Chart</strong>
+        <strong>Project Score</strong>
         <div class="card-header-actions">
           <CInput
             class="mb-3 autocomplete"

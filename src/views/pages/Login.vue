@@ -15,8 +15,8 @@
                         <CButton
                           class="px-4 btn btn-block"
                           @click="googleLogin()"
-                          color="primary"
-                          >Login as student</CButton
+                          color="info"
+                          >Login as Student</CButton
                         >
                       </CCol>
                       <CCol style="height:10px">
@@ -26,7 +26,7 @@
                           class="px-4 btn btn-block"
                           @click="googleLogin()"
                           color="info"
-                          >Login as teacher</CButton
+                          >Login as Advisor</CButton
                         >
                       </CCol>
                       <CCol col="6" class="text-right">
@@ -107,7 +107,7 @@
                       id="loginType"
                       color="info"
                       class="active mt-3 btn-block"
-                      >Login as administrator</CButton
+                      >Login as Administrator</CButton
                     >
                   </CCol>
                 </CRow>

@@ -115,7 +115,7 @@ export default {
       exportExcelData: [],
       options: [],
       fields: [
-        { key: "id", label: "Id" },
+        { key: "id", label: "ID" },
         { key: "name", label: "Name" },
         { key: "score", label: "Score" },
         { key: "grade", label: "Grade" },
