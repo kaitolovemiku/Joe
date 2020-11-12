@@ -193,7 +193,7 @@ export default {
         if (result.additionalUserInfo.profile.hd == "lamduan.mfu.ac.th") {
           if (
             result.additionalUserInfo.profile.email.substring(3, 7) ==
-            "lamduan.mfu.ac.th"
+            "1305"
           ) {
             let obj = {
               userId: result.additionalUserInfo.profile.id,
