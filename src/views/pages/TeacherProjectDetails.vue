@@ -115,73 +115,75 @@
                         </div>
                       </div>
                       <div v-if="userData[0].role == 'teacher'">
-                      <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label"
-                          >Project Senior1 Status:</label
-                        >
-                        <div class="col-sm-9">
-                          <CDropdown
-                            :togglerText="projectSenior1Status"
-                            color="warning"
+                        <div class="form-group row">
+                          <label
+                            for="staticEmail"
+                            class="col-sm-3 col-form-label"
+                            >Project Senior1 Status:</label
                           >
-                            <CDropdownItem
-                              v-on:click="onPickProjectStatus((type = 'P'))"
+                          <div class="col-sm-9">
+                            <CDropdown
+                              :togglerText="projectSenior1Status"
+                              color="warning"
                             >
-                              P
-                            </CDropdownItem>
-                            <CDropdownDivider />
-                            <CDropdownItem
-                              v-on:click="onPickProjectStatus((type = 'I'))"
-                            >
-                              I
-                            </CDropdownItem>
-                            <CDropdownDivider />
-                            <CDropdownItem
-                              v-on:click="onPickProjectStatus((type = 'U'))"
-                            >
-                              U
-                            </CDropdownItem>
-                          </CDropdown>
+                              <CDropdownItem
+                                v-on:click="onPickProjectStatus((type = 'P'))"
+                              >
+                                P
+                              </CDropdownItem>
+                              <CDropdownDivider />
+                              <CDropdownItem
+                                v-on:click="onPickProjectStatus((type = 'I'))"
+                              >
+                                I
+                              </CDropdownItem>
+                              <CDropdownDivider />
+                              <CDropdownItem
+                                v-on:click="onPickProjectStatus((type = 'U'))"
+                              >
+                                U
+                              </CDropdownItem>
+                            </CDropdown>
+                          </div>
                         </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label"
-                          >Project Senior2 Status:</label
-                        >
-                        <div class="col-sm-9">
-                          <CDropdown
-                            :togglerText="projectSenior2Status"
-                            color="warning"
+                        <div class="form-group row">
+                          <label
+                            for="staticEmail"
+                            class="col-sm-3 col-form-label"
+                            >Project Senior2 Status:</label
                           >
-                            <CDropdownItem
-                              v-on:click="onPickProjectStatus2((type = 'P'))"
+                          <div class="col-sm-9">
+                            <CDropdown
+                              :togglerText="projectSenior2Status"
+                              color="warning"
                             >
-                              P
-                            </CDropdownItem>
-                            <CDropdownDivider />
-                            <CDropdownItem
-                              v-on:click="onPickProjectStatus2((type = 'I'))"
-                            >
-                              I
-                            </CDropdownItem>
-                            <CDropdownDivider />
-                            <CDropdownItem
-                              v-on:click="onPickProjectStatus2((type = 'U'))"
-                            >
-                              U
-                            </CDropdownItem>
-                          </CDropdown>
+                              <CDropdownItem
+                                v-on:click="onPickProjectStatus2((type = 'P'))"
+                              >
+                                P
+                              </CDropdownItem>
+                              <CDropdownDivider />
+                              <CDropdownItem
+                                v-on:click="onPickProjectStatus2((type = 'I'))"
+                              >
+                                I
+                              </CDropdownItem>
+                              <CDropdownDivider />
+                              <CDropdownItem
+                                v-on:click="onPickProjectStatus2((type = 'U'))"
+                              >
+                                U
+                              </CDropdownItem>
+                            </CDropdown>
+                          </div>
                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <button
-                            class="btn btn-primary btn-block"
-                          >
-                            Update Project Status
-                          </button>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <button class="btn btn-primary btn-block">
+                              Update Project Status
+                            </button>
+                          </div>
                         </div>
-                      </div>
                       </div>
                     </form>
                   </div>
@@ -191,7 +193,7 @@
           </div>
         </CCardBody>
       </CCard>
-      <CCard>
+      <CCard v-if="userData[0].role == 'teacher'">
         <CCardHeader>
           <CIcon name="cil-justify-center" />
           <strong>Project progress document (Senior 1)</strong>
@@ -692,7 +694,7 @@
           </div>
         </CCardBody>
       </CCard>
-      <CCard>
+      <CCard v-if="userData[0].role == 'teacher'">
         <CCardHeader>
           <CIcon name="cil-justify-center" />
           <strong>Project progress document (Senior 2)</strong>
@@ -1551,13 +1553,13 @@ export default {
         });
     },
     calculateStatus(status, score) {
-      if (status == 'I' || status == 'U' || status == 'Waiting') {
-        return status
+      if (status == "I" || status == "U" || status == "Waiting") {
+        return status;
       } else {
-        if (score >=70){
-          return 'S'
+        if (score >= 70) {
+          return "S";
         } else {
-          return 'P'
+          return "P";
         }
       }
     },
@@ -1621,14 +1623,20 @@ export default {
                 (this.projectPointSP1 + this.projectPointSP2) / 2 >= 70
                   ? "S"
                   : "U",
-              projectStatusSemester1: this.calculateStatus(this.projectSenior1Status, this.projectPointSP1),
-              projectStatusSemester2: this.calculateStatus(this.projectSenior2Status, this.projectPointSP2),
+              projectStatusSemester1: this.calculateStatus(
+                this.projectSenior1Status,
+                this.projectPointSP1
+              ),
+              projectStatusSemester2: this.calculateStatus(
+                this.projectSenior2Status,
+                this.projectPointSP2
+              ),
               createdAt: new Date(),
             });
-            alert('Update project success!')
-            // if (confirm('Update project success!')) {
-            //   location.reload()
-            // }
+          alert("Update project success!");
+          // if (confirm('Update project success!')) {
+          //   location.reload()
+          // }
         })
         .catch((error) => {
           console.log("Error getting documents: ", error);

@@ -43,8 +43,10 @@
             {{project.projectDuration}}
             <b>Project point:</b>
             {{project.projectPoint}}
-            <b>Project status:</b>
-            {{project.projectStatus}}
+            <b>Project semester1 status:</b>
+            {{project.projectStatusSemester1}}
+            <b>Project semester2 status:</b>
+            {{project.projectStatusSemester2}}
           </p>
         </CCardBody>
       </CCard>
@@ -89,7 +91,9 @@ export default {
               projectType: doc.data().projectType,
               projectDuration: doc.data().projectDuration,
               projectPoint: doc.data().projectPoint,
-              projectStatus: doc.data().projectStatus
+              projectStatus: doc.data().projectStatus,
+              projectStatusSemester1: doc.data().projectStatusSemester1,
+              projectStatusSemester2: doc.data().projectStatusSemester2
             });
           }
           console.log(doc.id, " => ", doc.data());
