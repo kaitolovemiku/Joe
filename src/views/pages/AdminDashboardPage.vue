@@ -6,7 +6,7 @@
     <CCard>
       <CCardHeader>
         <CIcon name="cil-file" />
-        <strong>Project Score</strong>
+        <strong>Dashboard</strong>
         <div class="card-header-actions">
           <CInput
             class="mb-3 autocomplete"
@@ -26,41 +26,6 @@
                   name="cil-magnifying-glass"
                 />
                 Search</CButton
-              >
-            </template>
-          </CInput>
-          <p>Export student score as Excel file</p>
-          <CInput
-            class="mb-3 autocomplete"
-            type="number"
-            v-model="downloadAcademicYear"
-            min="1"
-          >
-            <template #prepend-content
-              ><small class="text-muted"
-                >Academic Year/ Posted Year</small
-              ></template
-            >
-            <template #append>
-              <CDropdown :togglerText="downloadSemesterType" color="warning">
-                <CDropdownItem
-                  v-on:click="onPickDownloadSemesterType((type = 'Semester 1'))"
-                >
-                  Semester 1
-                </CDropdownItem>
-                <CDropdownDivider />
-                <CDropdownItem
-                  v-on:click="onPickDownloadSemesterType((type = 'Semester 2'))"
-                >
-                  Semester 2
-                </CDropdownItem>
-              </CDropdown>
-              <CButton color="primary" @click="filterDownloadStudentScore()"
-                ><CIcon
-                  style="width: 10px; height: 10px"
-                  name="cil-chart-pie"
-                />
-                Download Report</CButton
               >
             </template>
           </CInput>

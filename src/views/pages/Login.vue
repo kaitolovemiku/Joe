@@ -31,20 +31,7 @@
                           >Login as Advisor</CButton
                         >
                       </CCol>
-                      <CCol col="6" class="text-right">
-                        <!-- <CButton
-                          color="link"
-                          v-on:click="forgotPassword()"
-                          class="px-0"
-                          >Forgot password?</CButton
-                        >
-                        <CButton
-                          color="link"
-                          v-on:click="register()"
-                          class="px-0"
-                          >Register for teacher!</CButton
-                        > -->
-                      </CCol>
+                      
                     </CRow>
                   </CCol>
                   <CCol v-if="!checkLamduanMail" col="12">
@@ -239,7 +226,7 @@ export default {
             this.$router.replace({ name: "Dashboard" });
           } else {
             alert(
-              "This system is support only school of information technology."
+              "This system is support only major of softwere engineering."
             );
           }
         } else if (result.additionalUserInfo.profile.hd == "mfu.ac.th") {
@@ -287,7 +274,7 @@ export default {
           this.$session.set("user", state);
           this.$router.replace({ name: "Dashboard" });
         } else {
-          window.alert("Sorry, Please login only with Lamduan mail!");
+          window.alert("Please login with MFU account!");
         }
       } else {
         this.$session.start();

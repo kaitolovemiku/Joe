@@ -16,16 +16,6 @@
             <CCardHeader>
               <CIcon name="cil-justify-center" />
               <strong>My Project</strong>
-              <div class="card-header-actions">
-                <a
-                  href="https://coreui.io/vue/docs/components/breadcrumb"
-                  class="card-header-action"
-                  rel="noreferrer noopener"
-                  target="_blank"
-                >
-                  <small class="text-muted"></small>
-                </a>
-              </div>
             </CCardHeader>
             <CCardBody>
               <div class="row">
