@@ -159,7 +159,7 @@
                 </div>
               </div>
               <button
-                @click="testBTN()"
+                @click="editData"
                 type="submit"
                 class="btn btn-warning btn-block"
               >

@@ -19,8 +19,7 @@
                           >Login as Student</CButton
                         >
                       </CCol>
-                      <CCol style="height:10px">
-                      </CCol>
+                      <CCol style="height: 10px"> </CCol>
                       <CCol col="12">
                         <CCol>
                     <hr />
@@ -195,42 +194,54 @@ export default {
       console.log("tartget->", target);
       if (target === undefined) {
         if (result.additionalUserInfo.profile.hd == "lamduan.mfu.ac.th") {
-          let obj = {
-            userId: result.additionalUserInfo.profile.id,
-            username: result.additionalUserInfo.profile.name,
-            email: result.additionalUserInfo.profile.email,
-            password: "",
-            photo: result.additionalUserInfo.profile.id,
-            // photo: result.additionalUserInfo.profile.picture,
-            role:
-              parseInt(
-                result.additionalUserInfo.profile.email.substring(0, 2)
-              ) <= 60
-                ? "senior"
-                : "guest",
-            questionAns: "",
-            questionId: "",
-            jobPosition: "Student of software engineering",
-            studentId: result.additionalUserInfo.profile.email.substring(0, 10),
-            createdAt: new Date(),
-            handPhone: "-",
-            companyPhone: "-",
-            status: "active",
-          };
-          db.collection("users").add(obj);
-          const state = {
-            loggedIn: true,
-            id: result.additionalUserInfo.profile.id,
-            data: {
-              displayName: result.additionalUserInfo.profile.name,
+          if (
+            result.additionalUserInfo.profile.email.substring(3, 7) ==
+            "1305"
+          ) {
+            let obj = {
+              userId: result.additionalUserInfo.profile.id,
+              username: result.additionalUserInfo.profile.name,
               email: result.additionalUserInfo.profile.email,
-              role: "guest",
-              photo: result.additionalUserInfo.profile.picture,
-            },
-          };
-          this.$session.start();
-          this.$session.set("user", state);
-          this.$router.replace({ name: "Dashboard" });
+              password: "",
+              photo: result.additionalUserInfo.profile.id,
+              // photo: result.additionalUserInfo.profile.picture,
+              role:
+                parseInt(
+                  result.additionalUserInfo.profile.email.substring(0, 2)
+                ) <= 60
+                  ? "senior"
+                  : "guest",
+              questionAns: "",
+              questionId: "",
+              jobPosition: "Student of software engineering",
+              studentId: result.additionalUserInfo.profile.email.substring(
+                0,
+                10
+              ),
+              createdAt: new Date(),
+              handPhone: "-",
+              companyPhone: "-",
+              status: "active",
+            };
+            db.collection("users").add(obj);
+            const state = {
+              loggedIn: true,
+              id: result.additionalUserInfo.profile.id,
+              data: {
+                displayName: result.additionalUserInfo.profile.name,
+                email: result.additionalUserInfo.profile.email,
+                role: "guest",
+                photo: result.additionalUserInfo.profile.picture,
+              },
+            };
+            this.$session.start();
+            this.$session.set("user", state);
+            this.$router.replace({ name: "Dashboard" });
+          } else {
+            alert(
+              "This system is support only school of information technology."
+            );
+          }
         } else if (result.additionalUserInfo.profile.hd == "mfu.ac.th") {
           let userId = db
             .collection("teachers")

@@ -123,7 +123,7 @@
           <multiselect
             v-model="searchProjectNameData"
             @input="rowClicked"
-            :options="items"
+            :options="items1"
             placeholder="Search a project ..."
             label="projectNameEn"
             track-by="projectNameEn"
