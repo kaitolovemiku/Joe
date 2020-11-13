@@ -224,24 +224,24 @@
                     <label for="inputProgress1">
                       <b>Progress 1</b>
                     </label>
-                    <p id="inputProgress1">(Teacher comment) {{progress1S2[0].advisorComment?progress1S2[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress1">(Advisor Comment) {{progress1S2[0].advisorComment?progress1S2[0].advisorComment:'-'}}</p>
                     <hr />
                     <label for="inputProgress2">
                       <b>Progress 2</b>
                     </label>
-                    <p id="inputProgress2">(Teacher comment) {{progress2S2[0].advisorComment?progress2S2[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress2">(Advisor Comment) {{progress2S2[0].advisorComment?progress2S2[0].advisorComment:'-'}}</p>
                     <hr />
                     <label for="inputFinalPresent">
                       <b>Final Presentation</b>
                     </label>
-                    <p id="inputFinalPresent">(Teacher comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
+                    <p id="inputFinalPresent">(Advisor Comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
                     <p id="inputEmail4">(Committee1 comment) {{finalPresentS2[0].committee1Comment?finalPresentS2[0].committee1Comment:'-'}}</p>
                     <p id="inputEmail4">(Committee2 comment) {{finalPresentS2[0].committee2Comment?finalPresentS2[0].committee2Comment:'-'}}</p>
                     <hr />
                     <label for="inputFinalDoc">
                       <b>Final Document</b>
                     </label>
-                    <p id="inputFinalDoc">(Teacher comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
+                    <p id="inputFinalDoc">(Advisor Comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
                     <p id="inputEmail4">(Committee1 comment) {{finalPresentS2[0].committee1Comment?finalPresentS2[0].committee1Comment:'-'}}</p>
                     <p id="inputEmail4">(Committee2 comment) {{finalPresentS2[0].committee2Comment?finalPresentS2[0].committee2Comment:'-'}}</p>
                     <hr />
