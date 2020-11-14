@@ -14,7 +14,7 @@
                       <CCol col="12">
                         <CButton
                           class="px-4 btn btn-block"
-                          @click="googleLogin()"
+                          @click="googleLogin('student')"
                           color="primary"
                           >Login as student</CButton
                         >
@@ -23,7 +23,7 @@
                       <CCol col="12">
                         <CButton
                           class="px-4 btn btn-block"
-                          @click="googleLogin()"
+                          @click="googleLogin('teacher')"
                           color="info"
                           >Login as teacher</CButton
                         >
@@ -144,6 +144,7 @@
 import firebase from "firebase";
 
 const db = firebase.firestore();
+require("babel-polyfill");
 export default {
   data() {
     return {
@@ -170,14 +171,96 @@ export default {
       });
   },
   methods: {
-    googleLogin() {
+    googleLogin(userType) {
       var provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope("profile");
       provider.addScope("email");
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then((result) => this.saveDataToDatabase(result));
+        .then((result) => {
+          if (userType === "student") {
+            this.saveDataToDatabase(result);
+          } else if (userType === "teacher") {
+            this.saveDataToDatabaseAsTeacher(result);
+          }
+        });
+    },
+    async saveDataToDatabaseAsTeacher(result) {
+      //This gives you a Google Access Token.
+      //var token = result.credential.accessToken;
+      // The signed-in user info.
+      //var user = result.user;
+      var target = this.users.find((item) => {
+        return item.data.email == result.additionalUserInfo.profile.email;
+      });
+
+      console.log("tartget->", target);
+      if (target === undefined) {
+        if (result.additionalUserInfo.profile.hd == "mfu.ac.th") {
+          let userId = await db
+            .collection("teachers")
+            .add({
+              companyPhone: "",
+              handPhone: "",
+              email: result.additionalUserInfo.profile.email,
+              teacherName: result.additionalUserInfo.profile.name,
+              createdAt: new Date(),
+            })
+            .catch((error) => {
+              console.log("Error getting test data: ", error);
+            });
+          let obj = {
+            userId: userId.id,
+            username: result.additionalUserInfo.profile.name,
+            email: result.additionalUserInfo.profile.email,
+            password: "",
+            photo: result.additionalUserInfo.profile.id,
+            // photo: result.additionalUserInfo.profile.picture,
+            role: "teacher",
+            questionAns: "",
+            questionId: "",
+            studentId: "",
+            jobPosition: "Teacher of software engineering",
+            createdAt: new Date(),
+            handPhone: "-",
+            companyPhone: "-",
+            status: "active",
+          };
+          db.collection("users").add(obj);
+          const state = {
+            loggedIn: true,
+            id: userId.id,
+            data: {
+              displayName: result.additionalUserInfo.profile.name,
+              email: result.additionalUserInfo.profile.email,
+              role: "teacher",
+              photo: result.additionalUserInfo.profile.picture,
+            },
+          };
+          this.$session.start();
+          this.$session.set("user", state);
+          this.$router.replace({ name: "Dashboard" });
+        } else {
+          window.alert("Sorry, Please login only with Lamduan mail!");
+        }
+      } else {
+        this.$session.start();
+        const state2 = {
+          loggedIn: true,
+          id: target.id,
+          data: {
+            displayName: target.data.username,
+            email: target.data.email,
+            role: target.data.role,
+            userId: target.data.userId,
+            photo: result.additionalUserInfo.profile.picture,
+          },
+        };
+        this.$session.set("user", state2);
+        window.location.replace("http://localhost:8080/");
+      }
+      console.log("Look this ->", result);
     },
     saveDataToDatabase(result) {
       //This gives you a Google Access Token.
@@ -192,8 +275,7 @@ export default {
       if (target === undefined) {
         if (result.additionalUserInfo.profile.hd == "lamduan.mfu.ac.th") {
           if (
-            result.additionalUserInfo.profile.email.substring(3, 7) ==
-            "1305"
+            result.additionalUserInfo.profile.email.substring(3, 7) == "1305"
           ) {
             let obj = {
               userId: result.additionalUserInfo.profile.id,
