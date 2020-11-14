@@ -245,20 +245,24 @@ export default {
           window.alert("Sorry, Please login only with Lamduan mail!");
         }
       } else {
-        this.$session.start();
-        const state2 = {
-          loggedIn: true,
-          id: target.id,
-          data: {
-            displayName: target.data.username,
-            email: target.data.email,
-            role: target.data.role,
-            userId: target.data.userId,
-            photo: result.additionalUserInfo.profile.picture,
-          },
-        };
-        this.$session.set("user", state2);
-        window.location.replace("http://localhost:8080/");
+        if (result.additionalUserInfo.profile.hd == "mfu.ac.th") {
+          this.$session.start();
+          const state2 = {
+            loggedIn: true,
+            id: target.id,
+            data: {
+              displayName: target.data.username,
+              email: target.data.email,
+              role: target.data.role,
+              userId: target.data.userId,
+              photo: result.additionalUserInfo.profile.picture,
+            },
+          };
+          this.$session.set("user", state2);
+          window.location.replace("http://localhost:8080/");
+        } else {
+          alert("Please, login with correct user type!");
+        }
       }
       console.log("Look this ->", result);
     },
@@ -321,68 +325,36 @@ export default {
               "This system is support only school of information technology."
             );
           }
-        } else if (result.additionalUserInfo.profile.hd == "mfu.ac.th") {
-          let userId = db
-            .collection("teachers")
-            .add({
-              companyPhone: "",
-              handPhone: "",
-              email: result.additionalUserInfo.profile.email,
-              teacherName: result.additionalUserInfo.profile.name,
-              createdAt: new Date(),
-            })
-            .catch((error) => {
-              console.log("Error getting test data: ", error);
-            });
-          let obj = {
-            userId: userId.id,
-            username: result.additionalUserInfo.profile.name,
-            email: result.additionalUserInfo.profile.email,
-            password: "",
-            photo: result.additionalUserInfo.profile.id,
-            // photo: result.additionalUserInfo.profile.picture,
-            role: "teacher",
-            questionAns: "",
-            questionId: "",
-            studentId: "",
-            jobPosition: "Teacher of software engineering",
-            createdAt: new Date(),
-            handPhone: "-",
-            companyPhone: "-",
-            status: "active",
-          };
-          db.collection("users").add(obj);
-          const state = {
-            loggedIn: true,
-            id: userId.id,
-            data: {
-              displayName: result.additionalUserInfo.profile.name,
-              email: result.additionalUserInfo.profile.email,
-              role: "teacher",
-              photo: result.additionalUserInfo.profile.picture,
-            },
-          };
-          this.$session.start();
-          this.$session.set("user", state);
-          this.$router.replace({ name: "Dashboard" });
         } else {
           window.alert("Sorry, Please login only with Lamduan mail!");
         }
       } else {
-        this.$session.start();
-        const state2 = {
-          loggedIn: true,
-          id: target.id,
-          data: {
-            displayName: target.data.username,
-            email: target.data.email,
-            role: target.data.role,
-            userId: target.data.userId,
-            photo: result.additionalUserInfo.profile.picture,
-          },
-        };
-        this.$session.set("user", state2);
-        window.location.replace("http://localhost:8080/");
+        if (result.additionalUserInfo.profile.hd == "lamduan.mfu.ac.th") {
+          if (
+            result.additionalUserInfo.profile.email.substring(3, 7) == "1305"
+          ) {
+            this.$session.start();
+            const state2 = {
+              loggedIn: true,
+              id: target.id,
+              data: {
+                displayName: target.data.username,
+                email: target.data.email,
+                role: target.data.role,
+                userId: target.data.userId,
+                photo: result.additionalUserInfo.profile.picture,
+              },
+            };
+            this.$session.set("user", state2);
+            window.location.replace("http://localhost:8080/");
+          } else {
+            alert(
+              "This system is support only school of information technology."
+            );
+          }
+        } else {
+          window.alert("Sorry, Please login only with Lamduan mail!");
+        }
       }
       console.log("Look this ->", result);
     },
@@ -410,7 +382,11 @@ export default {
         );
       });
       if (this.form.email !== "" && this.form.password !== "") {
-        if (target !== undefined && target.data.status !== "block" && target.data.role === "admin") {
+        if (
+          target !== undefined &&
+          target.data.status !== "block" &&
+          target.data.role === "admin"
+        ) {
           const state = {
             loggedIn: true,
             id: target.id,
