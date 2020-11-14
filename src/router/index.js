@@ -133,7 +133,7 @@ function configRoutes () {
             },
             {
               path: 'projectCheckingSystem',
-              name: 'Project Store (Teacher)',
+              name: 'Project Store (Advisor)',
               component: {
                 render(c) {
                   return c('router-view')
@@ -142,7 +142,7 @@ function configRoutes () {
               children: [
                 {
                   path: '',
-                  name: 'Project Store (Teacher)',
+                  name: 'Project Store (Advisor)',
                   component: TeacherProjectStore
                 },
                 {

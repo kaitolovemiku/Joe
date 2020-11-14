@@ -11,14 +11,9 @@
             </p></strong
           >
           <div class="card-header-actions">
-            <a
-              href="https://coreui.io/vue/docs/components/breadcrumb"
-              class="card-header-action"
-              rel="noreferrer noopener"
-              target="_blank"
-            >
+            <a>  
               <small class="text-muted"
-                >Student id: {{ visibleData[10].value }}</small
+                >Student ID: {{ visibleData[10].value }}</small
               >
             </a>
           </div>
@@ -52,7 +47,7 @@
                   />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="id">Id</label>
+                  <label for="id">ID</label>
                   <input
                     type="text"
                     class="form-control"
@@ -92,7 +87,7 @@
                   />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="phone">Hand phone</label>
+                  <label for="phone">Phone</label>
                   <input
                     type="text"
                     class="form-control"
@@ -168,7 +163,7 @@
                 type="submit"
                 class="btn btn-warning btn-block"
               >
-                Save Profile
+                Update Details
               </button>
             </CCol>
           </CRow>
@@ -292,11 +287,11 @@ export default {
       photoUrl: "",
       bio: "",
       role: "",
-      roles: ["teacher", "senior", "admin", "guest"],
+      roles: ["Admin", "Advisor", "Senior", "Guest"],
       status: "",
       statuss: [
-        { key: "active", value: "online" },
-        { key: "suspended", value: "block" },
+        { key: "Active", value: "online" },
+        { key: "Suspended", value: "block" },
       ],
     };
   },

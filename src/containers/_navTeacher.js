@@ -7,10 +7,10 @@ export default [
           name: 'Dashboard',
           to: '/dashboard',
           icon: 'cil-speedometer',
-          badge: {
+          /*badge: {
             color: 'primary',
             text: 'NEW'
-          }
+          }*/
         },
         {
           _name: 'CSidebarNavTitle',
@@ -30,7 +30,7 @@ export default [
         },
         {
           _name: 'CSidebarNavItem',
-          name: 'Project Store (Teacher)',
+          name: 'Project Store (Advisor)',
           to: '/menu/projectCheckingSystem/',
           icon: 'cil-chart-pie'
         }

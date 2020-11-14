@@ -53,7 +53,7 @@
           </div>
           <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
-              <p>Project description</p>
+              <p>Project Description</p>
             </div>
             <div class="col-md-9 mb-3">
               <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -69,7 +69,7 @@
           </div>
           <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
-              <p>Proeject Advisor</p>
+              <p>Project Advisor</p>
             </div>
             <div class="col-md-9">
               <multiselect
@@ -84,7 +84,7 @@
           </div>
           <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
-              <p>Proeject Co-Advisor</p>
+              <p>Project Co-Advisor</p>
             </div>
             <div class="col-md-9">
               <multiselect
@@ -99,7 +99,7 @@
           </div>
           <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
-              <p>Proeject Committee</p>
+              <p>Project Committee</p>
             </div>
             <div class="col-md-9">
               <multiselect
@@ -114,7 +114,7 @@
           </div>
           <div class="row" style="padding-bottom: 10px">
             <div class="col-md-3">
-              <p>Project type</p>
+              <p>Project Type</p>
             </div>
             <div class="col-md-9">
               <multiselect
@@ -125,7 +125,7 @@
           </div>
           <div class="row">
             <div class="col-md-3">
-              <p for="validationServer03">Project duration (start date)</p>
+              <p for="validationServer03">Project Duration (start date)</p>
             </div>
             <div class="col-md-9 mb-3">
               <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -140,7 +140,7 @@
           </div>
           <div class="row">
             <div class="col-md-3">
-              <p for="validationServer03">Project duration (end date)</p>
+              <p for="validationServer03">Project Duration (end date)</p>
             </div>
             <div class="col-md-9 mb-3">
               <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -155,7 +155,7 @@
           </div>
           <div class="row">
             <div class="col-md-3">
-              <p for="validationServer03">Proeject file</p>
+              <p for="validationServer03">Proeject File</p>
             </div>
             <div class="col-md-9 mb-3">
               <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -279,7 +279,7 @@ export default {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          if (doc.data().role == "senior") {
+          if (doc.data().role == "Senior") {
             this.memberName.push(doc.data().username);
             this.member.push({ id: doc.id, data: doc.data().username });
           }

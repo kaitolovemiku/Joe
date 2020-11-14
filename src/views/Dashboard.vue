@@ -16,16 +16,6 @@
             <CCardHeader>
               <CIcon name="cil-justify-center" />
               <strong>My Project</strong>
-              <div class="card-header-actions">
-                <a
-                  href="https://coreui.io/vue/docs/components/breadcrumb"
-                  class="card-header-action"
-                  rel="noreferrer noopener"
-                  target="_blank"
-                >
-                  <small class="text-muted"></small>
-                </a>
-              </div>
             </CCardHeader>
             <CCardBody>
               <div class="row">
@@ -162,7 +152,6 @@
                   <strong>Senior 1</strong>
                   <div class="card-header-actions">
                     <a
-                      href="https://coreui.io/vue/docs/components/breadcrumb"
                       class="card-header-action"
                       rel="noreferrer noopener"
                       target="_blank"
@@ -178,24 +167,24 @@
                     <label for="inputProgress1">
                       <b>Progress 1</b>
                     </label>
-                    <p id="inputProgress1">(Teacher comment) {{progress1[0].advisorComment?progress1[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress1">(Advisor Comment) {{progress1[0].advisorComment?progress1[0].advisorComment:'-'}}</p>
                     <hr />
                     <label for="inputProgress2">
                       <b>Progress 2</b>
                     </label>
-                    <p id="inputProgress2">(Teacher comment) {{progress2[0].advisorComment?progress2[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress2">(Advisor Comment) {{progress2[0].advisorComment?progress2[0].advisorComment:'-'}}</p>
                     <hr />
                     <label for="inputFinalPresent">
                       <b>Final Presentation</b>
                     </label>
-                    <p id="inputFinalPresent">(Teacher comment) {{finalPresent[0].advisorComment?finalPresent[0].advisorComment:'-'}}</p>
+                    <p id="inputFinalPresent">(Advisor Comment) {{finalPresent[0].advisorComment?finalPresent[0].advisorComment:'-'}}</p>
                     <p id="inputEmail4">(Committee1 comment) {{finalPresent[0].committee1Comment?finalPresent[0].committee1Comment:'-'}}</p>
                     <p id="inputEmail4">(Committee2 comment) {{finalPresent[0].committee2Comment?finalPresent[0].committee2Comment:'-'}}</p>
                     <hr />
                     <label for="inputFinalDoc">
                       <b>Final Document</b>
                     </label>
-                    <p id="inputFinalDoc">(Teacher comment) {{finalPresent[0].advisorComment?finalPresent[0].advisorComment:'-'}}</p>
+                    <p id="inputFinalDoc">(Advisor Comment) {{finalPresent[0].advisorComment?finalPresent[0].advisorComment:'-'}}</p>
                     <p id="inputEmail4">(Committee1 comment) {{finalPresent[0].committee1Comment?finalPresent[0].committee1Comment:'-'}}</p>
                     <p id="inputEmail4">(Committee2 comment) {{finalPresent[0].committee2Comment?finalPresent[0].committee2Comment:'-'}}</p>
                     <hr />
@@ -210,7 +199,6 @@
                   <strong>Senior 2</strong>
                   <div class="card-header-actions">
                     <a
-                      href="https://coreui.io/vue/docs/components/breadcrumb"
                       class="card-header-action"
                       rel="noreferrer noopener"
                       target="_blank"
@@ -226,24 +214,24 @@
                     <label for="inputProgress1">
                       <b>Progress 1</b>
                     </label>
-                    <p id="inputProgress1">(Teacher comment) {{progress1S2[0].advisorComment?progress1S2[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress1">(Advisor Comment) {{progress1S2[0].advisorComment?progress1S2[0].advisorComment:'-'}}</p>
                     <hr />
                     <label for="inputProgress2">
                       <b>Progress 2</b>
                     </label>
-                    <p id="inputProgress2">(Teacher comment) {{progress2S2[0].advisorComment?progress2S2[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress2">(Advisor Comment) {{progress2S2[0].advisorComment?progress2S2[0].advisorComment:'-'}}</p>
                     <hr />
                     <label for="inputFinalPresent">
                       <b>Final Presentation</b>
                     </label>
-                    <p id="inputFinalPresent">(Teacher comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
+                    <p id="inputFinalPresent">(Advisor Comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
                     <p id="inputEmail4">(Committee1 comment) {{finalPresentS2[0].committee1Comment?finalPresentS2[0].committee1Comment:'-'}}</p>
                     <p id="inputEmail4">(Committee2 comment) {{finalPresentS2[0].committee2Comment?finalPresentS2[0].committee2Comment:'-'}}</p>
                     <hr />
                     <label for="inputFinalDoc">
                       <b>Final Document</b>
                     </label>
-                    <p id="inputFinalDoc">(Teacher comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
+                    <p id="inputFinalDoc">(Advisor Comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
                     <p id="inputEmail4">(Committee1 comment) {{finalPresentS2[0].committee1Comment?finalPresentS2[0].committee1Comment:'-'}}</p>
                     <p id="inputEmail4">(Committee2 comment) {{finalPresentS2[0].committee2Comment?finalPresentS2[0].committee2Comment:'-'}}</p>
                     <hr />
