@@ -410,7 +410,7 @@ export default {
         );
       });
       if (this.form.email !== "" && this.form.password !== "") {
-        if (target !== undefined && target.data.status !== "block") {
+        if (target !== undefined && target.data.status !== "block" && target.data.role === "admin") {
           const state = {
             loggedIn: true,
             id: target.id,
