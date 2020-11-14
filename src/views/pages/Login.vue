@@ -14,15 +14,9 @@
                       <CCol col="12">
                         <CButton
                           class="px-4 btn btn-block"
-<<<<<<< HEAD
                           @click="googleLogin('student')"
                           color="primary"
                           >Login as student</CButton
-=======
-                          @click="googleLogin()"
-                          color="info"
-                          >Login as Student</CButton
->>>>>>> WordingAndLinkdocTempate
                         >
                       </CCol>
                       <CCol style="height: 10px"> </CCol>
