@@ -290,8 +290,8 @@ export default {
       roles: ["admin", "advisor", "senior", "guest"],
       status: "",
       statuss: [
-        { key: "Active", value: "online" },
-        { key: "Suspended", value: "block" },
+        { key: "active", value: "online" },
+        { key: "suspended", value: "block" },
       ],
     };
   },
