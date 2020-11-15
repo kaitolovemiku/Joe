@@ -63,7 +63,7 @@
                   <h1
                     id="p3"
                     style="font-size:40px;margin-top:-10px;text-align:center;"
-                  >{{finalPresent[0].point?finalPresent[0].point:'-'}}</h1>
+                  >{{finalPresent[0].point?finalPresent[0].point:0}}</h1>
                 </div>
                 <div class="col-md-2">
                   <p style="font-size:12px;text-align:center;">
@@ -259,6 +259,14 @@ import StudentDownloadReport from "./pages/StudentDownloadReport.vue"
 console.log(Vue.prototype.$session.getAll().user.data);
 const db = firebase.firestore();
 
+const testEmpty = (value) => {
+  if (value === "" || value === undefined || value === null) {
+    return false
+  } else {
+    return true
+  }
+}
+
 export default {
   name: "Dashboard",
   components: {
@@ -344,6 +352,7 @@ export default {
           id: "",
           status: "",
           advisorComment: "",
+          point: 0,
           advisorPoint: 0,
           committee1Comment: "",
           committee1Point: 0,
@@ -359,6 +368,7 @@ export default {
           status: "",
           semesterType: "",
           advisorComment: "",
+          point: 0,
           advisorPoint: 0,
           committee1Comment: "",
           committee1Point: 0,
@@ -373,6 +383,7 @@ export default {
           id: "",
           status: "",
           advisorComment: "",
+          point: 0,
           advisorPoint: 0,
           committee1Comment: "",
           committee1Point: 0,
@@ -387,6 +398,7 @@ export default {
           id: "",
           status: "",
           advisorComment: "",
+          point: 0,
           advisorPoint: 0,
           committee1Comment: "",
           committee1Point: 0,
@@ -497,7 +509,7 @@ export default {
                   ) {
                       this.finalDocument[0].id = doc.id,
                       this.finalDocument[0].status = doc.data().status,
-                      this.finalDocument[0].point = parseInt(doc.data().advisorPoint?doc.data().advisorPoint:0)+parseInt(doc.data().committee1Comment?doc.data().committee1Comment:0)+parseInt(doc.data().committee2Comment?doc.data().committee2Comment:0),
+                      this.finalDocument[0].point = parseInt(testEmpty(doc.data().advisorPoint)?doc.data().advisorPoint:0)+parseInt(testEmpty(doc.data().committee1Point)?doc.data().committee1Point:0)+parseInt(testEmpty(doc.data().committee2Point)?doc.data().committee2Point:0)
                       this.finalDocument[0].progressType = doc.data().progressType,
                       this.finalDocument[0].advisorComment = doc.data().advisorComment,
                       this.finalDocument[0].advisorPoint = doc.data().advisorPoint,
@@ -508,6 +520,7 @@ export default {
                       this.finalDocument[0].seniorType = doc.data().seniorType,
                       this.finalDocument[0].comment = doc.data().comment,
                       this.finalDocument[0].fileName = doc.data().fileName
+                      console.log('this is final document =>',doc.data())
                   }
                    if (
                     this.projects[0].id == doc.data().projectId &&
@@ -515,7 +528,7 @@ export default {
                   ) {
                       this.finalDocumentS2[0].id = doc.id,
                       this.finalDocumentS2[0].status = doc.data().status,
-                      this.finalDocumentS2[0].point = parseInt(doc.data().advisorPoint?doc.data().advisorPoint:0)+parseInt(doc.data().committee1Comment?doc.data().committee1Comment:0)+parseInt(doc.data().committee2Comment?doc.data().committee2Comment:0),
+                      this.finalDocumentS2[0].point = parseInt(testEmpty(doc.data().advisorPoint)?doc.data().advisorPoint:0)+parseInt(testEmpty(doc.data().committee1Point)?doc.data().committee1Point:0)+parseInt(testEmpty(doc.data().committee2Point)?doc.data().committee2Point:0)
                       this.finalDocumentS2[0].progressType = doc.data().progressType,
                       this.finalDocumentS2[0].advisorComment = doc.data().advisorComment,
                       this.finalDocumentS2[0].advisorPoint = doc.data().advisorPoint,
@@ -535,7 +548,7 @@ export default {
                       this.finalPresent[0].advisorComment = doc.data().advisorComment,
                       this.finalPresent[0].advisorPoint = doc.data().advisorPoint,
                       this.finalPresent[0].comment = doc.data().comment,
-                      this.finalPresent[0].point = parseInt(doc.data().advisorPoint?doc.data().advisorPoint:0)+parseInt(doc.data().committee1Comment?doc.data().committee1Comment:0)+parseInt(doc.data().committee2Comment?doc.data().committee2Comment:0),
+                      this.finalPresent[0].point = parseInt(testEmpty(doc.data().advisorPoint)?doc.data().advisorPoint:0)+parseInt(testEmpty(doc.data().committee1Point)?doc.data().committee1Point:0)+parseInt(testEmpty(doc.data().committee2Point)?doc.data().committee2Point:0)
                       this.finalPresent[0].committee1Comment = doc.data().committee1Comment,
                       this.finalPresent[0].committee1Point = doc.data().committee1Point,
                       this.finalPresent[0].committee2Comment = doc.data().committee2Comment,
@@ -556,7 +569,7 @@ export default {
                       this.finalPresentS2[0].advisorComment = doc.data().advisorComment,
                       this.finalPresentS2[0].advisorPoint = doc.data().advisorPoint,
                       this.finalPresentS2[0].comment = doc.data().comment,
-                      this.finalPresentS2[0].point = parseInt(doc.data().advisorPoint?doc.data().advisorPoint:0)+parseInt(doc.data().committee1Comment?doc.data().committee1Comment:0)+parseInt(doc.data().committee2Comment?doc.data().committee2Comment:0),
+                      this.finalPresentS2[0].point = parseInt(testEmpty(doc.data().advisorPoint)?doc.data().advisorPoint:0)+parseInt(testEmpty(doc.data().committee1Point)?doc.data().committee1Point:0)+parseInt(testEmpty(doc.data().committee2Point)?doc.data().committee2Point:0)
                       this.finalPresentS2[0].committee1Comment = doc.data().committee1Comment,
                       this.finalPresentS2[0].committee1Point = doc.data().committee1Point,
                       this.finalPresentS2[0].committee2Comment = doc.data().committee2Comment,
@@ -570,7 +583,7 @@ export default {
                       this.finalPresentS2[0].status = doc.data().status 
                   }
                 });
-                return this.progress1, this.progress2, this.finalDocument, this.finalPresent;
+                return this.progress1, this.progress2, this.finalDocument, this.finalPresent, this.progress1S2, this.progress2S2, this.finalDocumentS2, this.finalPresentS2;
               });
             return this.projects;
           });
