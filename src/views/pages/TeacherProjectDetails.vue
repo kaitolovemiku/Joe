@@ -104,7 +104,7 @@
                           {{ project.projectPointSP2 }}
                         </div>
                       </div>
-                      <div v-if="userData[0].role == 'teacher'">
+                      <div v-if="userData[0].role == 'advisor'">
                         <div class="form-group row">
                           <label
                             for="staticEmail"
@@ -183,7 +183,7 @@
           </div>
         </CCardBody>
       </CCard>
-      <CCard v-if="userData[0].role == 'teacher'">
+      <CCard v-if="userData[0].role == 'advisor'">
         <CCardHeader>
           <CIcon name="cil-justify-center" />
           <strong>Project progress document (Senior 1)</strong>
@@ -674,7 +674,7 @@
           </div>
         </CCardBody>
       </CCard>
-      <CCard v-if="userData[0].role == 'teacher'">
+      <CCard v-if="userData[0].role == 'advisor'">
         <CCardHeader>
           <CIcon name="cil-justify-center" />
           <strong>Project progress document (Senior 2)</strong>

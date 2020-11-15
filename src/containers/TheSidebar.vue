@@ -12,7 +12,7 @@
     <CRenderFunction v-if="userRole=='guest'" flat :content-to-render="$options.nav"/>
     <CRenderFunction v-if="userRole=='admin'" flat :content-to-render="$options.navAdmin"/>
     <CRenderFunction v-if="userRole=='senior'" flat :content-to-render="$options.navSenior"/>
-    <CRenderFunction v-if="userRole=='teacher'" flat :content-to-render="$options.navTeacher"/>
+    <CRenderFunction v-if="userRole=='advisor'" flat :content-to-render="$options.navTeacher"/>
     <CSidebarMinimizer
       class="d-md-down-none"
       @click.native="$store.commit('set', ['sidebarMinimize', !minimize])"

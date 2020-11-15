@@ -26,7 +26,7 @@
                   </CCol>
                         <CButton
                           class="px-4 btn btn-block"
-                          @click="googleLogin('teacher')"
+                          @click="googleLogin('advisor')"
                           color="info"
                           >Login as Advisor</CButton
                         >
@@ -171,7 +171,7 @@ export default {
         .then((result) => {
           if (userType === "student") {
             this.saveDataToDatabase(result);
-          } else if (userType === "teacher") {
+          } else if (userType === "advisor") {
             this.saveDataToDatabaseAsTeacher(result);
           }
         });
@@ -207,7 +207,7 @@ export default {
             password: "",
             photo: result.additionalUserInfo.profile.id,
             // photo: result.additionalUserInfo.profile.picture,
-            role: "teacher",
+            role: "advisor",
             questionAns: "",
             questionId: "",
             studentId: "",
@@ -224,7 +224,7 @@ export default {
             data: {
               displayName: result.additionalUserInfo.profile.name,
               email: result.additionalUserInfo.profile.email,
-              role: "teacher",
+              role: "advisor",
               photo: result.additionalUserInfo.profile.picture,
             },
           };

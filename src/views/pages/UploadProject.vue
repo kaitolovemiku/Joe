@@ -155,6 +155,24 @@
           </div>
           <div class="row">
             <div class="col-md-3">
+              <p for="projectName">Project Academic Year</p>
+            </div>
+            <div class="col-md-9 mb-3">
+              <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
+              <input
+                v-model="academicYear"
+                type="number"
+                min="1000"
+                :max="new Date().getFullYear()"
+                class="form-control"
+                id="projectName"
+                placeholder="Enter your project academic year ..."
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
               <p for="validationServer03">Proeject File</p>
             </div>
             <div class="col-md-9 mb-3">
@@ -229,6 +247,7 @@ export default {
       projectStatusSemester1: "",
       projectStatusSemester2: "",
       projectDuration: "",
+      academicYear: new Date().getFullYear(),
       teacherShow: [],
       projectAdvisor: [],
       projectCoAdvisor: [],
@@ -343,7 +362,7 @@ export default {
 
         db.collection("projects")
           .add({
-            academicYear: new Date().getFullYear(),
+            academicYear: this.academicYear,
             projectNameEn: this.projectNameEn,
             projectNameTh: this.projectNameTh,
             projectBg: this.projectBg,

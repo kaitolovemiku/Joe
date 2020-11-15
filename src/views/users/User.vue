@@ -287,7 +287,7 @@ export default {
       photoUrl: "",
       bio: "",
       role: "",
-      roles: ["Admin", "Advisor", "Senior", "Guest"],
+      roles: ["admin", "advisor", "senior", "guest"],
       status: "",
       statuss: [
         { key: "Active", value: "online" },
