@@ -15,8 +15,8 @@
                         <CButton
                           class="px-4 btn btn-block"
                           @click="googleLogin('student')"
-                          color="primary"
-                          >Login as student</CButton
+                          color="info"
+                          >Login as Student</CButton
                         >
                       </CCol>
                       <CCol style="height: 10px"> </CCol>
@@ -232,7 +232,7 @@ export default {
           this.$session.set("user", state);
           this.$router.replace({ name: "Dashboard" });
         } else {
-          window.alert("Sorry, Please login only with Lamduan mail!");
+          window.alert("Please login with MFU account!");
         }
       } else {
         if (result.additionalUserInfo.profile.hd == "mfu.ac.th") {
@@ -251,7 +251,7 @@ export default {
           this.$session.set("user", state2);
           window.location.replace("http://localhost:8080/");
         } else {
-          alert("Please, login with correct user type!");
+          alert("You do not have permission to access this site.");
         }
       }
       console.log("Look this ->", result);
@@ -339,11 +339,11 @@ export default {
             window.location.replace("http://localhost:8080/");
           } else {
             alert(
-              "This system is support only school of information technology."
+              "This system is support only major of softwere engineering."
             );
           }
         } else {
-          window.alert("Sorry, Please login only with Lamduan mail!");
+          window.alert("You do not have permission to access this site.");
         }
       }
       console.log("Look this ->", result);

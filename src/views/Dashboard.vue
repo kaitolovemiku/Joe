@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-md-2">
                   <p style="font-size:12px;text-align:center;">
-                    <b>Document</b>
+                    <b>Final Document</b>
                   </p>
                   <h1
                     id="p4"
@@ -123,7 +123,7 @@
                 </div>
                 <div class="col-md-2">
                   <p style="font-size:12px;text-align:center;">
-                    <b>Document</b>
+                    <b>Final Document</b>
                   </p>
                   <h1
                     id="p4"
