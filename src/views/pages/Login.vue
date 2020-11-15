@@ -21,27 +21,17 @@
                       </CCol>
                       <CCol style="height: 10px"> </CCol>
                       <CCol col="12">
+                        <CCol>
+                    <hr />
+                  </CCol>
                         <CButton
                           class="px-4 btn btn-block"
                           @click="googleLogin('teacher')"
                           color="info"
-                          >Login as teacher</CButton
+                          >Login as Advisor</CButton
                         >
                       </CCol>
-                      <CCol col="6" class="text-right">
-                        <!-- <CButton
-                          color="link"
-                          v-on:click="forgotPassword()"
-                          class="px-0"
-                          >Forgot password?</CButton
-                        >
-                        <CButton
-                          color="link"
-                          v-on:click="register()"
-                          class="px-0"
-                          >Register for teacher!</CButton
-                        > -->
-                      </CCol>
+                      
                     </CRow>
                   </CCol>
                   <CCol v-if="!checkLamduanMail" col="12">
@@ -106,7 +96,7 @@
                       id="loginType"
                       color="info"
                       class="active mt-3 btn-block"
-                      >Login as administrator</CButton
+                      >Login as Administrator</CButton
                     >
                   </CCol>
                 </CRow>
@@ -322,11 +312,11 @@ export default {
             this.$router.replace({ name: "Dashboard" });
           } else {
             alert(
-              "This system is support only school of information technology."
+              "This system is support only major of softwere engineering."
             );
           }
         } else {
-          window.alert("Sorry, Please login only with Lamduan mail!");
+          window.alert("Please login with MFU account!");
         }
       } else {
         if (result.additionalUserInfo.profile.hd == "lamduan.mfu.ac.th") {

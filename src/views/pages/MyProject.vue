@@ -122,7 +122,7 @@
             <div v-for="project in projects" v-bind:key="project.id" class="col-md-12">
               <div class="row" v-if="checkEditProject">
                 <div class="col-md-3">
-                  <p for="projectName">project Name (English)</p>
+                  <p for="projectName">Project Name (English)</p>
                 </div>
                 <div class="col-md-9 mb-3">
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -137,7 +137,7 @@
                   />
                 </div>
                 <div class="col-md-3">
-                  <p for="projectName">project Name (Thai)</p>
+                  <p for="projectName">Project Name (Thai)</p>
                 </div>
                 <div class="col-md-9 mb-3">
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -166,7 +166,7 @@
                   ></multiselect>
                 </div>
                 <div class="col-md-3 mb-3">
-                  <p>Project description</p>
+                  <p>Project Description</p>
                 </div>
                 <div class="col-md-9 mb-3">
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -220,7 +220,7 @@
                   ></multiselect>
                 </div>
                 <div class="col-md-3 mb-3">
-                  <p>Project type</p>
+                  <p>Project Type</p>
                 </div>
                 <div class="col-md-9 mb-3">
                   <multiselect
@@ -229,7 +229,7 @@
                   ></multiselect>
                 </div>
                 <div class="col-md-3 mb-3">
-                  <p for="validationServer03">Project duration (start date)</p>
+                  <p for="validationServer03">Project Duration (start date)</p>
                 </div>
                 <div class="col-md-9 mb-3">
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -243,7 +243,7 @@
                   />
                 </div>
                 <div class="col-md-3 mb-3">
-                  <p for="validationServer03">Project duration (end date)</p>
+                  <p for="validationServer03">Project Duration (end date)</p>
                 </div>
                 <div class="col-md-9 mb-3">
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -257,7 +257,7 @@
                   />
                 </div>
                 <div class="col-md-3 mb-3">
-                  <p for="validationServer03">Proeject file</p>
+                  <p for="validationServer03">Proeject File</p>
                 </div>
                 <div class="col-md-9 mb-3">
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
@@ -295,7 +295,6 @@
           <strong>Upload project progress document (Senior 1)</strong>
           <div class="card-header-actions">
             <a
-              href="https://coreui.io/vue/docs/components/breadcrumb"
               class="card-header-action"
               rel="noreferrer noopener"
               target="_blank"
@@ -339,7 +338,6 @@
                     <strong>Progress documents (Senior 1)</strong>
                     <div class="card-header-actions">
                       <a
-                        href="https://coreui.io/vue/docs/components/breadcrumb"
                         class="card-header-action"
                         rel="noreferrer noopener"
                         target="_blank"
@@ -525,7 +523,6 @@
           <strong>Upload project progress document (Senior 2)</strong>
           <div class="card-header-actions">
             <a
-              href="https://coreui.io/vue/docs/components/breadcrumb"
               class="card-header-action"
               rel="noreferrer noopener"
               target="_blank"
@@ -569,7 +566,6 @@
                     <strong>Progress documents (Senior 2)</strong>
                     <div class="card-header-actions">
                       <a
-                        href="https://coreui.io/vue/docs/components/breadcrumb"
                         class="card-header-action"
                         rel="noreferrer noopener"
                         target="_blank"
@@ -1115,7 +1111,7 @@ export default {
           progressType: this.progressType,
           seniorType: seniorType,
           progressPoint: 0,
-          status: "waiting for teacher acception",
+          status: "waiting for advisor acception",
           comment: "",
           fileName: this.projectFile.name,
           createdAt: new Date(),
@@ -1158,7 +1154,7 @@ export default {
           progressType: this.progressType2,
           seniorType: seniorType,
           progressPoint: 0,
-          status: "waiting for teacher acception",
+          status: "waiting for advisor acception",
           comment: "",
           fileName: this.projectFile.name,
           createdAt: new Date(),

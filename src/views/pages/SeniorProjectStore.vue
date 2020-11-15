@@ -4,16 +4,6 @@
       <CCardHeader>
         <CIcon name="cil-pencil" />
         <strong>Senior Project Store</strong>
-        <div class="card-header-actions">
-          <a
-            href="https://coreui.io/vue/docs/components/breadcrumb"
-            class="card-header-action"
-            rel="noreferrer noopener"
-            target="_blank"
-          >
-            <small class="text-muted">docs</small>
-          </a>
-        </div>
       </CCardHeader>
       <CCardBody>
         <div class="input-group mb-3">
