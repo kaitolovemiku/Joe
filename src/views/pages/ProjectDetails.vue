@@ -126,12 +126,12 @@
                         >
                         <div class="col-sm-9">{{ project.download }}</div>
                       </div>
-                      <div class="form-group row">
+                      <!-- <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label"
                           >Project Status:</label
                         >
                         <div class="col-sm-9">{{ project.projectStatus }}</div>
-                      </div>
+                      </div> -->
                     </form>
                   </div>
                 </div>
@@ -241,6 +241,7 @@ export default {
               projectDuration: doc.data().projectDuration,
               projectPoint: doc.data().projectPoint,
               projectStatus: doc.data().projectStatus,
+
               download: doc.data().download
             });
           }
