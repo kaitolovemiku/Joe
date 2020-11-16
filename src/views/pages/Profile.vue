@@ -93,6 +93,14 @@ import Vue from "vue";
 
 const db = firebase.firestore();
 
+const testEmpty = (value) => {
+  if (value === '' || value === undefined || value === null ) {
+    return false
+  } else {
+    return true
+  }
+}
+
 export default {
   name: "Profile",
   data() {
@@ -180,7 +188,7 @@ export default {
       db.collection("users")
         .doc(this.userData)
         .update(
-          this.userPhoto != null
+          testEmpty(this.userPhoto)
             ? {
                 username: this.username,
                 handPhone: this.handPhone,
@@ -207,7 +215,7 @@ export default {
                 createdAt: new Date()
               }
         );
-      if (this.userPhoto != null) {
+      if (testEmpty(this.userPhoto)) {
         const storageRef = firebase
           .storage()
           .ref("images")
