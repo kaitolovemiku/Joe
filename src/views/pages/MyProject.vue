@@ -1,7 +1,9 @@
 <template>
   <CRow>
     <CCol col>
-      <h2 v-if="!haveProjectOrNot">You have no project yet, pleace upload your project!</h2>
+      <h2 v-if="!haveProjectOrNot">
+        You have no project yet, pleace upload your project!
+      </h2>
       <CCard v-if="haveProjectOrNot">
         <CCardHeader>
           <CIcon name="cil-justify-center" />
@@ -9,7 +11,7 @@
           <div class="card-header-actions">
             <CButton size="sm" @click="editProject()" color="warning" block>
               <i class="fa fa-pen"></i>
-              {{checkEditProject? 'Discard post':'Edit project details'}}
+              {{ checkEditProject ? "Discard post" : "Edit project details" }}
             </CButton>
           </div>
         </CCardHeader>
@@ -22,28 +24,37 @@
                   src="data:image/png;base64,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"
                 />
                 <div class="row">
-                  <div class="col-md-12" style="margin-top:10px;">
+                  <div class="col-md-12" style="margin-top: 10px">
                     <button
                       class="btn btn-primary btn-block"
                       v-on:click="downloadFile()"
-                    >Download file</button>
+                    >
+                      Download file
+                    </button>
                   </div>
                 </div>
               </div>
-              <div v-for="project in projects" v-bind:key="project.id" class="col-md-9">
-                <h1>{{project.projectNameEn}}({{project.projectNameTh}})</h1>
+              <div
+                v-for="project in projects"
+                v-bind:key="project.id"
+                class="col-md-9"
+              >
+                <h1>
+                  {{ project.projectNameEn }}({{ project.projectNameTh }})
+                </h1>
                 <div class="row">
                   <div class="col-md-12">
                     <form>
                       <div class="form-group row">
-                        <label
-                          for="staticEmail"
-                          class="col-sm-3 col-form-label"
-                        >Project Description:</label>
-                        <div class="col-sm-9">{{project.projectBg}}</div>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Description:</label
+                        >
+                        <div class="col-sm-9">{{ project.projectBg }}</div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Advisor:</label>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Advisor:</label
+                        >
                         <div class="col-sm-9">
                           <div class="row">
                             <div
@@ -57,7 +68,9 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Co-Advisor:</label>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Co-Advisor:</label
+                        >
                         <div class="col-sm-9">
                           <div class="row">
                             <div
@@ -71,7 +84,9 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Committee:</label>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Committee:</label
+                        >
                         <div class="col-sm-9">
                           <div class="row">
                             <div
@@ -85,7 +100,9 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Member:</label>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Member:</label
+                        >
                         <div class="col-sm-9">
                           <div class="row">
                             <div
@@ -99,27 +116,45 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Duration:</label>
-                        <div class="col-sm-9">{{project.projectDuration}}</div>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Duration:</label
+                        >
+                        <div class="col-sm-9">
+                          {{ project.projectDuration }}
+                        </div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Type:</label>
-                        <div class="col-sm-9">{{project.projectType}}</div>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Type:</label
+                        >
+                        <div class="col-sm-9">{{ project.projectType }}</div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Semester 1 Status:</label>
-                        <div class="col-sm-9">{{project.projectStatusSemester1}}</div>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Semester 1 Status:</label
+                        >
+                        <div class="col-sm-9">
+                          {{ project.projectStatusSemester1 }}
+                        </div>
                       </div>
                       <div class="form-group row">
-                        <label for="staticEmail" class="col-sm-3 col-form-label">Project Semester 2 Status:</label>
-                        <div class="col-sm-9">{{project.projectStatusSemester2}}</div>
+                        <label for="staticEmail" class="col-sm-3 col-form-label"
+                          >Project Semester 2 Status:</label
+                        >
+                        <div class="col-sm-9">
+                          {{ project.projectStatusSemester2 }}
+                        </div>
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
-            <div v-for="project in projects" v-bind:key="project.id" class="col-md-12">
+            <div
+              v-for="project in projects"
+              v-bind:key="project.id"
+              class="col-md-12"
+            >
               <div class="row" v-if="checkEditProject">
                 <div class="col-md-3">
                   <p for="projectName">Project Name (English)</p>
@@ -128,7 +163,7 @@
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
                   <input
                     v-on:input="projectNameEn = $event.target.value"
-                    :value="projectNameEn = project.projectNameEn"
+                    :value="(projectNameEn = project.projectNameEn)"
                     type="text"
                     class="form-control"
                     id="projectNameEn"
@@ -142,7 +177,7 @@
                 <div class="col-md-9 mb-3">
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
                   <input
-                    :value="projectNameTh = project.projectNameTh"
+                    :value="(projectNameTh = project.projectNameTh)"
                     v-on:input="projectNameTh = $event.target.value"
                     type="text"
                     class="form-control"
@@ -159,7 +194,11 @@
                     id="projectMember"
                     placeholder="Don't forget to add your name before add your friend."
                     v-model="projectMember"
-                    :options="students.map(item => {return item.data})"
+                    :options="
+                      students.map((item) => {
+                        return item.data;
+                      })
+                    "
                     :multiple="true"
                     :taggable="true"
                     @tag="addTag"
@@ -172,7 +211,7 @@
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
                   <textarea
                     class="form-control"
-                    :value="projectBg = project.projectBg"
+                    :value="(projectBg = project.projectBg)"
                     v-on:input="projectBg = $event.target.value"
                     label="Project description"
                     placeholder="Content..."
@@ -187,7 +226,11 @@
                   <multiselect
                     placeholder="Search or add a advisor ..."
                     v-model="projectAdvisor"
-                    :options="teachers.map(item => {return item.data})"
+                    :options="
+                      teachers.map((item) => {
+                        return item.data;
+                      })
+                    "
                     :multiple="true"
                     :taggable="true"
                     @tag="addTag"
@@ -200,7 +243,11 @@
                   <multiselect
                     placeholder="Search or add a co-advisor ..."
                     v-model="projectCoAdvisor"
-                    :options="teachers.map(item => {return item.data})"
+                    :options="
+                      teachers.map((item) => {
+                        return item.data;
+                      })
+                    "
                     :multiple="true"
                     :taggable="true"
                     @tag="addTag"
@@ -213,7 +260,11 @@
                   <multiselect
                     placeholder="Search or add a committee ..."
                     v-model="projectCommittee"
-                    :options="teachers.map(item => {return item.data})"
+                    :options="
+                      teachers.map((item) => {
+                        return item.data;
+                      })
+                    "
                     :multiple="true"
                     :taggable="true"
                     @tag="addTag"
@@ -225,7 +276,18 @@
                 <div class="col-md-9 mb-3">
                   <multiselect
                     v-model="projectType"
-                    :options="['E-commerce', 'Education', 'POS', 'Marketing', 'IOT', 'Love', 'House & Building', 'Car care', 'Movie', 'Music']"
+                    :options="[
+                      'E-commerce',
+                      'Education',
+                      'POS',
+                      'Marketing',
+                      'IOT',
+                      'Love',
+                      'House & Building',
+                      'Car care',
+                      'Movie',
+                      'Music',
+                    ]"
                   ></multiselect>
                 </div>
                 <div class="col-md-3 mb-3">
@@ -234,7 +296,9 @@
                 <div class="col-md-9 mb-3">
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
                   <input
-                    :value="projectDStart = project.projectDuration.substring(0, 10)"
+                    :value="
+                      (projectDStart = project.projectDuration.substring(0, 10))
+                    "
                     v-on:input="projectDStart = $event.target.value"
                     type="date"
                     class="form-control"
@@ -248,7 +312,9 @@
                 <div class="col-md-9 mb-3">
                   <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
                   <input
-                    :value="projectDEnd = project.projectDuration.substring(13, 23)"
+                    :value="
+                      (projectDEnd = project.projectDuration.substring(13, 23))
+                    "
                     v-on:input="projectDEnd = $event.target.value"
                     type="date"
                     class="form-control"
@@ -269,20 +335,29 @@
                     placeholder="City"
                     required
                   />
-                  <div class="invalid-feedback">Please provide a valid city.</div>
+                  <div class="invalid-feedback">
+                    Please provide a valid city.
+                  </div>
                 </div>
                 <div class="col-md-3 mb-3">
-                  <p>Progress: {{uploadValue.toFixed()+"%"}}</p>
+                  <p>Progress: {{ uploadValue.toFixed() + "%" }}</p>
                 </div>
                 <div class="col-md-9 mb-3">
-                  <CProgress :value="uploadValue" :max="100" show-percentage animated></CProgress>
+                  <CProgress
+                    :value="uploadValue"
+                    :max="100"
+                    show-percentage
+                    animated
+                  ></CProgress>
                 </div>
                 <div class="col-md-12 mb-3">
                   <button
                     v-on:click="updateProject(project)"
                     class="btn btn-success btn-block"
                     type="button"
-                  >Update project details</button>
+                  >
+                    Update project details
+                  </button>
                 </div>
               </div>
             </div>
@@ -307,7 +382,9 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <h3 class="center">Upload your project progress document here!</h3>
+                <h3 class="center">
+                  Upload your project progress document here!
+                </h3>
               </div>
               <div class="col-md-6">
                 <div class="input-group mb-3">
@@ -321,13 +398,20 @@
                   />
                   <div class="input-group-append">
                     <select v-model="progressType">
-                      <option v-for="option in options" v-bind:key="'option1'+option">{{ option }}</option>
+                      <option
+                        v-for="option in options"
+                        v-bind:key="'option1' + option"
+                      >
+                        {{ option }}
+                      </option>
                     </select>
                     <button
-                      v-on:click="onUpload(seniorType='senior1')"
+                      v-on:click="onUpload((seniorType = 'senior1'))"
                       class="btn btn-primary"
                       type="button"
-                    >Upload</button>
+                    >
+                      Upload
+                    </button>
                   </div>
                 </div>
               </div>
@@ -348,7 +432,13 @@
                   </CCardHeader>
                   <CCardBody>
                     <div
-                      v-if="projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'progress1').length > 0"
+                      v-if="
+                        projectProgress.filter(
+                          (item) =>
+                            item.seniorType === 'senior1' &&
+                            item.progressType === 'progress1'
+                        ).length > 0
+                      "
                     >
                       <div class="input-group mb-3">
                         <input
@@ -363,13 +453,33 @@
                           <button
                             class="btn btn-danger"
                             type="button"
-                            @click="deleteProgress(projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'progress1'))"
-                          >Delete</button>
+                            @click="
+                              deleteProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior1' &&
+                                    item.progressType === 'progress1'
+                                )
+                              )
+                            "
+                          >
+                            Delete
+                          </button>
                           <button
                             class="btn btn-primary"
                             type="button"
-                            @click="downloadProgress(projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'progress1'))"
-                          >Download file</button>
+                            @click="
+                              downloadProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior1' &&
+                                    item.progressType === 'progress1'
+                                )
+                              )
+                            "
+                          >
+                            Download file
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -383,12 +493,20 @@
                           aria-describedby="basiaddon2"
                         />
                         <div class="input-group-append">
-                          <span class="input-group-text" id="basiaddon2">Has not yet been updated!</span>
+                          <span class="input-group-text" id="basiaddon2"
+                            >Has not yet been updated!</span
+                          >
                         </div>
                       </div>
                     </div>
                     <div
-                      v-if="projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'progress2').length > 0"
+                      v-if="
+                        projectProgress.filter(
+                          (item) =>
+                            item.seniorType === 'senior1' &&
+                            item.progressType === 'progress2'
+                        ).length > 0
+                      "
                     >
                       <div class="input-group mb-3">
                         <input
@@ -403,13 +521,33 @@
                           <button
                             class="btn btn-danger"
                             type="button"
-                            @click="deleteProgress(projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'progress2'))"
-                          >Delete</button>
+                            @click="
+                              deleteProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior1' &&
+                                    item.progressType === 'progress2'
+                                )
+                              )
+                            "
+                          >
+                            Delete
+                          </button>
                           <button
                             class="btn btn-primary"
                             type="button"
-                            @click="downloadProgress(projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'progress2'))"
-                          >Download file</button>
+                            @click="
+                              downloadProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior1' &&
+                                    item.progressType === 'progress2'
+                                )
+                              )
+                            "
+                          >
+                            Download file
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -423,12 +561,20 @@
                           aria-describedby="basiaddon2"
                         />
                         <div class="input-group-append">
-                          <span class="input-group-text" id="basiaddon2">Has not yet been updated!</span>
+                          <span class="input-group-text" id="basiaddon2"
+                            >Has not yet been updated!</span
+                          >
                         </div>
                       </div>
                     </div>
                     <div
-                      v-if="projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'Final Presentation').length > 0"
+                      v-if="
+                        projectProgress.filter(
+                          (item) =>
+                            item.seniorType === 'senior1' &&
+                            item.progressType === 'Final Presentation'
+                        ).length > 0
+                      "
                     >
                       <div class="input-group mb-3">
                         <input
@@ -443,13 +589,33 @@
                           <button
                             class="btn btn-danger"
                             type="button"
-                            @click="deleteProgress(projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'Final Presentation'))"
-                          >Delete</button>
+                            @click="
+                              deleteProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior1' &&
+                                    item.progressType === 'Final Presentation'
+                                )
+                              )
+                            "
+                          >
+                            Delete
+                          </button>
                           <button
                             class="btn btn-primary"
                             type="button"
-                            @click="downloadProgress(projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'Final Presentation'))"
-                          >Download file</button>
+                            @click="
+                              downloadProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior1' &&
+                                    item.progressType === 'Final Presentation'
+                                )
+                              )
+                            "
+                          >
+                            Download file
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -463,12 +629,20 @@
                           aria-describedby="basiaddon2"
                         />
                         <div class="input-group-append">
-                          <span class="input-group-text" id="basiaddon2">Has not yet been updated!</span>
+                          <span class="input-group-text" id="basiaddon2"
+                            >Has not yet been updated!</span
+                          >
                         </div>
                       </div>
                     </div>
                     <div
-                      v-if="projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'Final Documentation').length > 0"
+                      v-if="
+                        projectProgress.filter(
+                          (item) =>
+                            item.seniorType === 'senior1' &&
+                            item.progressType === 'Final Documentation'
+                        ).length > 0
+                      "
                     >
                       <div class="input-group mb-3">
                         <input
@@ -483,13 +657,33 @@
                           <button
                             class="btn btn-danger"
                             type="button"
-                            @click="deleteProgress(projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'Final Documentation'))"
-                          >Delete</button>
+                            @click="
+                              deleteProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior1' &&
+                                    item.progressType === 'Final Documentation'
+                                )
+                              )
+                            "
+                          >
+                            Delete
+                          </button>
                           <button
                             class="btn btn-primary"
                             type="button"
-                            @click="downloadProgress(projectProgress.filter(item => item.seniorType === 'senior1' && item.progressType === 'Final Documentation'))"
-                          >Download file</button>
+                            @click="
+                              downloadProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior1' &&
+                                    item.progressType === 'Final Documentation'
+                                )
+                              )
+                            "
+                          >
+                            Download file
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -503,7 +697,9 @@
                           aria-describedby="basiaddon2"
                         />
                         <div class="input-group-append">
-                          <span class="input-group-text" id="basiaddon2">Has not yet been updated!</span>
+                          <span class="input-group-text" id="basiaddon2"
+                            >Has not yet been updated!</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -511,7 +707,12 @@
                 </CCard>
               </div>
               <div class="col-md-12">
-                <CProgress :value="uploadValue2" :max="100" show-percentage animated></CProgress>
+                <CProgress
+                  :value="uploadValue2"
+                  :max="100"
+                  show-percentage
+                  animated
+                ></CProgress>
               </div>
             </div>
           </div>
@@ -535,7 +736,9 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <h3 class="center">Upload your project progress document here!</h3>
+                <h3 class="center">
+                  Upload your project progress document here!
+                </h3>
               </div>
               <div class="col-md-6">
                 <div class="input-group mb-3">
@@ -549,13 +752,20 @@
                   />
                   <div class="input-group-append">
                     <select v-model="progressType2">
-                      <option v-for="option in options2" v-bind:key="'option2'+option">{{ option }}</option>
+                      <option
+                        v-for="option in options2"
+                        v-bind:key="'option2' + option"
+                      >
+                        {{ option }}
+                      </option>
                     </select>
                     <button
-                      v-on:click="onUpload2(seniorType='senior2')"
+                      v-on:click="onUpload2((seniorType = 'senior2'))"
                       class="btn btn-primary"
                       type="button"
-                    >Upload</button>
+                    >
+                      Upload
+                    </button>
                   </div>
                 </div>
               </div>
@@ -576,7 +786,13 @@
                   </CCardHeader>
                   <CCardBody>
                     <div
-                      v-if="projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'progress1').length > 0"
+                      v-if="
+                        projectProgress.filter(
+                          (item) =>
+                            item.seniorType === 'senior2' &&
+                            item.progressType === 'progress1'
+                        ).length > 0
+                      "
                     >
                       <div class="input-group mb-3">
                         <input
@@ -591,13 +807,33 @@
                           <button
                             class="btn btn-danger"
                             type="button"
-                            @click="deleteProgress(projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'progress1'))"
-                          >Delete</button>
+                            @click="
+                              deleteProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior2' &&
+                                    item.progressType === 'progress1'
+                                )
+                              )
+                            "
+                          >
+                            Delete
+                          </button>
                           <button
                             class="btn btn-primary"
                             type="button"
-                            @click="downloadProgress(projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'progress1'))"
-                          >Download file</button>
+                            @click="
+                              downloadProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior2' &&
+                                    item.progressType === 'progress1'
+                                )
+                              )
+                            "
+                          >
+                            Download file
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -611,12 +847,20 @@
                           aria-describedby="basiaddon2"
                         />
                         <div class="input-group-append">
-                          <span class="input-group-text" id="basiaddon2">Has not yet been updated!</span>
+                          <span class="input-group-text" id="basiaddon2"
+                            >Has not yet been updated!</span
+                          >
                         </div>
                       </div>
                     </div>
                     <div
-                      v-if="projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'progress2').length > 0"
+                      v-if="
+                        projectProgress.filter(
+                          (item) =>
+                            item.seniorType === 'senior2' &&
+                            item.progressType === 'progress2'
+                        ).length > 0
+                      "
                     >
                       <div class="input-group mb-3">
                         <input
@@ -631,13 +875,33 @@
                           <button
                             class="btn btn-danger"
                             type="button"
-                            @click="deleteProgress(projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'progress2'))"
-                          >Delete</button>
+                            @click="
+                              deleteProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior2' &&
+                                    item.progressType === 'progress2'
+                                )
+                              )
+                            "
+                          >
+                            Delete
+                          </button>
                           <button
                             class="btn btn-primary"
                             type="button"
-                            @click="downloadProgress(projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'progress2'))"
-                          >Download file</button>
+                            @click="
+                              downloadProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior2' &&
+                                    item.progressType === 'progress2'
+                                )
+                              )
+                            "
+                          >
+                            Download file
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -651,12 +915,20 @@
                           aria-describedby="basiaddon2"
                         />
                         <div class="input-group-append">
-                          <span class="input-group-text" id="basiaddon2">Has not yet been updated!</span>
+                          <span class="input-group-text" id="basiaddon2"
+                            >Has not yet been updated!</span
+                          >
                         </div>
                       </div>
                     </div>
                     <div
-                      v-if="projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'Final Presentation').length > 0"
+                      v-if="
+                        projectProgress.filter(
+                          (item) =>
+                            item.seniorType === 'senior2' &&
+                            item.progressType === 'Final Presentation'
+                        ).length > 0
+                      "
                     >
                       <div class="input-group mb-3">
                         <input
@@ -671,13 +943,33 @@
                           <button
                             class="btn btn-danger"
                             type="button"
-                            @click="deleteProgress(projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'Final Presentation'))"
-                          >Delete</button>
+                            @click="
+                              deleteProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior2' &&
+                                    item.progressType === 'Final Presentation'
+                                )
+                              )
+                            "
+                          >
+                            Delete
+                          </button>
                           <button
                             class="btn btn-primary"
                             type="button"
-                            @click="downloadProgress(projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'Final Presentation'))"
-                          >Download file</button>
+                            @click="
+                              downloadProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior2' &&
+                                    item.progressType === 'Final Presentation'
+                                )
+                              )
+                            "
+                          >
+                            Download file
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -691,12 +983,20 @@
                           aria-describedby="basiaddon2"
                         />
                         <div class="input-group-append">
-                          <span class="input-group-text" id="basiaddon2">Has not yet been updated!</span>
+                          <span class="input-group-text" id="basiaddon2"
+                            >Has not yet been updated!</span
+                          >
                         </div>
                       </div>
                     </div>
                     <div
-                      v-if="projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'Final Documentation').length > 0"
+                      v-if="
+                        projectProgress.filter(
+                          (item) =>
+                            item.seniorType === 'senior2' &&
+                            item.progressType === 'Final Documentation'
+                        ).length > 0
+                      "
                     >
                       <div class="input-group mb-3">
                         <input
@@ -711,13 +1011,33 @@
                           <button
                             class="btn btn-danger"
                             type="button"
-                            @click="deleteProgress(projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'Final Documentation'))"
-                          >Delete</button>
+                            @click="
+                              deleteProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior2' &&
+                                    item.progressType === 'Final Documentation'
+                                )
+                              )
+                            "
+                          >
+                            Delete
+                          </button>
                           <button
                             class="btn btn-primary"
                             type="button"
-                            @click="downloadProgress(projectProgress.filter(item => item.seniorType === 'senior2' && item.progressType === 'Final Documentation'))"
-                          >Download file</button>
+                            @click="
+                              downloadProgress(
+                                projectProgress.filter(
+                                  (item) =>
+                                    item.seniorType === 'senior2' &&
+                                    item.progressType === 'Final Documentation'
+                                )
+                              )
+                            "
+                          >
+                            Download file
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -731,7 +1051,9 @@
                           aria-describedby="basiaddon2"
                         />
                         <div class="input-group-append">
-                          <span class="input-group-text" id="basiaddon2">Has not yet been updated!</span>
+                          <span class="input-group-text" id="basiaddon2"
+                            >Has not yet been updated!</span
+                          >
                         </div>
                       </div>
                     </div>
@@ -739,7 +1061,12 @@
                 </CCard>
               </div>
               <div class="col-md-12">
-                <CProgress :value="uploadValue3" :max="100" show-percentage animated></CProgress>
+                <CProgress
+                  :value="uploadValue3"
+                  :max="100"
+                  show-percentage
+                  animated
+                ></CProgress>
               </div>
             </div>
           </div>
@@ -868,7 +1195,7 @@ export default {
               projectPointSP2: doc.data().projectPointSP2,
               projectStatus: doc.data().projectStatus,
               projectStatusSemester1: doc.data().projectStatusSemester1,
-              projectStatusSemester2: doc.data().projectStatusSemester2
+              projectStatusSemester2: doc.data().projectStatusSemester2,
             });
             this.haveProjectOrNot = true;
           }
@@ -1122,6 +1449,11 @@ export default {
         .catch((error) => {
           console.error("Error writing document: ", error);
         });
+      if (seniorType == "Final Documentation") {
+        db.collection("projects")
+          .doc(this.projects.map((item) => item.id))
+          .update({ projectFileName: this.projectFile.name });
+      }
       const storageRef = firebase
         .storage()
         .ref(`${this.projectFile.name}`)
@@ -1165,6 +1497,11 @@ export default {
         .catch((error) => {
           console.error("Error writing document: ", error);
         });
+      if (seniorType == "Final Documentation") {
+        db.collection("projects")
+          .doc(this.projects.map((item) => item.id))
+          .update({ projectFileName: this.projectFile.name });
+      }
       const storageRef = firebase
         .storage()
         .ref(`${this.projectFile.name}`)
