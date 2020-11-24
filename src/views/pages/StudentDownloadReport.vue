@@ -1,7 +1,7 @@
 <template>
   <div
     class="col-md-12"
-    v-if="userData[0].role == 'teacher' || userData[0].role == 'admin'"
+    v-if="userData[0].role == 'advisor' || userData[0].role == 'admin'"
   >
     <CCard>
       <CCardHeader>
