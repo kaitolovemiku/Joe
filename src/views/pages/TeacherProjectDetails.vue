@@ -860,7 +860,7 @@
               </div>
             </div>
             <div class="col-md-9">
-              <form @submit.prevent="updateProgress(user, 'senior2finalPre')">
+              <form @submit.prevent="updateProgress(user, 'senior2FinalPre')">
                 <div class="form-group">
                   <label>Advisor Point</label>
                   <input
@@ -1309,7 +1309,7 @@ export default {
           this.loadOnce();
         }
       } else {
-        alert("Sorry! there is something wrong in update progress system.");
+        alert("Sorry! there is something wrong in update progress system."+type);
       }
     },
     onPickProjectStatus(type) {
