@@ -28,10 +28,10 @@
                       <label for="email">Email</label>
                       <input type="email" v-model="email" class="form-control" id="email" />
                     </div>
-                    <div class="form-group col-md-6">
+                    <!-- <div class="form-group col-md-6">
                       <label for="Password">Password</label>
                       <input type="text" class="form-control" id="password" v-model="password" />
-                    </div>
+                    </div> -->
                     <div class="form-group col-md-6">
                       <label for="phone">Phone</label>
                       <input type="text" class="form-control" id="phone" v-model="handPhone" />

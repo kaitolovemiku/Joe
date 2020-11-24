@@ -77,7 +77,6 @@ export default {
         querySnapshot.forEach((doc) => {
           if (
             doc.data().isTeacherProject == 1 ||
-            doc.data().projectStatusSemester1 == "S" ||
             doc.data().projectStatusSemester2 == "S"
           ) {
             this.projects.push({

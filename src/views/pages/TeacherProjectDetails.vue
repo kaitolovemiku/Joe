@@ -1182,7 +1182,7 @@ export default {
       projectProgress: [],
       finalPresent: [],
       finalDocument: [],
-      options: ["P", "S", "U", "I"],
+      options: ["P", "S", "U", "I", "Waiting"],
       totalPoint: 0,
       userData: [],
       projectSenior1Status: "",
@@ -1523,13 +1523,13 @@ export default {
         });
     },
     calculateStatus(status, score) {
-      if (status == "I" || status == "U" || status == "Waiting") {
+      if (status == "U") {
         return status;
       } else {
         if (score >= 70) {
           return "S";
         } else {
-          return "P";
+          return "Waiting";
         }
       }
     },
