@@ -1449,9 +1449,9 @@ export default {
         .catch((error) => {
           console.error("Error writing document: ", error);
         });
-      if (seniorType == "Final Documentation") {
+      if (this.progressType == "Final Documentation") {
         db.collection("projects")
-          .doc(this.projects.map((item) => item.id))
+          .doc(this.projects[0].id)
           .update({ projectFileName: this.projectFile.name });
       }
       const storageRef = firebase
@@ -1497,9 +1497,9 @@ export default {
         .catch((error) => {
           console.error("Error writing document: ", error);
         });
-      if (seniorType == "Final Documentation") {
+      if (this.progressType2 == "Final Documentation") {
         db.collection("projects")
-          .doc(this.projects.map((item) => item.id))
+          .doc(this.projects[0].id)
           .update({ projectFileName: this.projectFile.name });
       }
       const storageRef = firebase
