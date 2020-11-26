@@ -1432,15 +1432,19 @@ export default {
       }
     },
     onUpload(seniorType) {
-      db.collection("projectProgress").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
+      db.collection("projectProgress")
+        .get()
+        .then((querySnapshot) => {
           if (
-            doc.data().projectId == this.projects[0].id && doc.data().progressType == this.progressType && doc.data().seniorType == seniorType
-          ) 
-          {
-            db.collection("projectProgress").doc(doc.id).delete()
+            querySnapshot.map((doc) => {
+              doc.data().projectId == this.projects[0].id &&
+                doc.data().progressType == this.progressType &&
+                doc.data().seniorType == seniorType;
+            }).length > 1
+          ) {
+            db.collection("projectProgress").doc(querySnapshot=>{querySnapshot[0].id}).delete();
           }
-      })})
+        });
       db.collection("projectProgress")
         .add({
           projectId: this.projects[0].id,
@@ -1489,15 +1493,19 @@ export default {
       );
     },
     onUpload2(seniorType) {
-      db.collection("projectProgress").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
+      db.collection("projectProgress")
+        .get()
+        .then((querySnapshot) => {
           if (
-            doc.data().projectId == this.projects[0].id && doc.data().progressType == this.progressType && doc.data().seniorType == seniorType
-          ) 
-          {
-            db.collection("projectProgress").doc(doc.id).delete()
+            querySnapshot.map((doc) => {
+              doc.data().projectId == this.projects[0].id &&
+                doc.data().progressType == this.progressType &&
+                doc.data().seniorType == seniorType;
+            }).length > 1
+          ) {
+            db.collection("projectProgress").doc(querySnapshot=>{querySnapshot[0].id}).delete();
           }
-      })})
+        });
       db.collection("projectProgress")
         .add({
           projectId: this.projects[0].id,
