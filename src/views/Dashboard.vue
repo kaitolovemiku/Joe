@@ -63,7 +63,7 @@
                   <h1
                     id="p3"
                     style="font-size:40px;margin-top:-10px;text-align:center;"
-                  >{{finalPresent[0].point?finalPresent[0].point:0}}</h1>
+                  >{{finalPresent[0].point?finalPresent[0].point:'-'}}</h1>
                 </div>
                 <div class="col-md-2">
                   <p style="font-size:12px;text-align:center;">
