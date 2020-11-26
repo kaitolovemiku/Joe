@@ -491,6 +491,7 @@
                           placeholder="Progress 1"
                           aria-label="Progress 1"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <span class="input-group-text" id="basiaddon2"
@@ -559,6 +560,7 @@
                           placeholder="Progress 2"
                           aria-label="Progress 2"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <span class="input-group-text" id="basiaddon2"
@@ -627,6 +629,7 @@
                           placeholder="Final Presentation"
                           aria-label="Final Presentation"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <span class="input-group-text" id="basiaddon2"
@@ -695,6 +698,7 @@
                           placeholder="Final Document"
                           aria-label="Final Document"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <span class="input-group-text" id="basiaddon2"
@@ -845,6 +849,7 @@
                           placeholder="Progress 1"
                           aria-label="Progress 1"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <span class="input-group-text" id="basiaddon2"
@@ -913,6 +918,7 @@
                           placeholder="Progress 2"
                           aria-label="Progress 2"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <span class="input-group-text" id="basiaddon2"
@@ -981,6 +987,7 @@
                           placeholder="Final Presentation"
                           aria-label="Final Presentation"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <span class="input-group-text" id="basiaddon2"
@@ -1049,6 +1056,7 @@
                           placeholder="Final Document"
                           aria-label="Final Document"
                           aria-describedby="basiaddon2"
+                          disabled
                         />
                         <div class="input-group-append">
                           <span class="input-group-text" id="basiaddon2"
