@@ -1462,11 +1462,6 @@ export default {
         .catch((error) => {
           console.error("Error writing document: ", error);
         });
-      if (this.progressType == "Final Documentation") {
-        db.collection("projects")
-          .doc(this.projects[0].id)
-          .update({ projectFileName: this.projectFile.name });
-      }
       const storageRef = firebase
         .storage()
         .ref(`${this.projectFile.name}`)
