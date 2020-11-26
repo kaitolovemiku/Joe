@@ -298,7 +298,7 @@ export default {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          if (doc.data().role == "Senior") {
+          if (doc.data().role == "senior") {
             this.memberName.push(doc.data().username);
             this.member.push({ id: doc.id, data: doc.data().username });
           }
