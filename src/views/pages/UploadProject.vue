@@ -378,7 +378,7 @@ export default {
             projectStatus: "Waiting for acception",
             projectStatusSemester1: "Waiting",
             projectStatusSemester2: "Waiting",
-            isTeacherProject: this.userData[0].role == "teacher" ? 1 : 0,
+            isTeacherProject: this.userData[0].role == "advisor" ? 1 : 0,
             projectDuration: this.projectDuration,
             projectFileName: this.projectFile.name,
             createdAt: new Date(),
