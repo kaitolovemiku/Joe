@@ -326,7 +326,7 @@ export default {
       XLSX.utils.book_append_sheet(wb, dataWS);
       XLSX.writeFile(
         wb,
-        `Senior student score${this.semesterType}-${this.academicYear}.xlsx`
+        `SP_Score_${this.academicYear}-${this.semesterType}.xlsx`
       );
       this.exportExcelData = [];
     },
