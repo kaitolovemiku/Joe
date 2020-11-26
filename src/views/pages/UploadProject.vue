@@ -376,7 +376,7 @@ export default {
             projectPointSP2: 0,
             download: 0,
             projectStatus: "Waiting for acception",
-            projectStatusSemester1: "P",
+            projectStatusSemester1: "Waiting",
             projectStatusSemester2: "Waiting",
             isTeacherProject: this.userData[0].role == "teacher" ? 1 : 0,
             projectDuration: this.projectDuration,
