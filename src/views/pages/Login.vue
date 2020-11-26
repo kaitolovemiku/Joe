@@ -374,8 +374,7 @@ export default {
       if (this.form.email !== "" && this.form.password !== "") {
         if (
           target !== undefined &&
-          target.data.status !== "block" &&
-          target.data.role === "admin"
+          target.data.status !== "block" 
         ) {
           const state = {
             loggedIn: true,
