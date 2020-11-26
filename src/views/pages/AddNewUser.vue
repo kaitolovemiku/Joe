@@ -150,7 +150,7 @@ export default {
       address: "",
       users: [],
       answer: "",
-      role: ["teacher", "guest", "senior", "admin"],
+      role: ["advisor", "guest", "senior", "admin"],
       questions: [{ id: 1, data: "Waiting for database loading." }],
       password: "",
       questionTarget: "",
