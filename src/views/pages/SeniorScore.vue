@@ -128,7 +128,7 @@ export default {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((projectsDoc) => {
-          if (this.academicYear == projectsDoc.data().projectAcademicYear) {
+          if (this.academicYear == projectsDoc.data().academicYear) {
             if (this.semesterType === "Semester 1") {
               db.collection("users")
                 .get()
@@ -192,28 +192,30 @@ export default {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((projectsDoc) => {
-            if (this.academicYear == projectsDoc.data().projectAcademicYear) {
+            if (this.academicYear == projectsDoc.data().academicYear) {
               if (this.semesterType === "Semester 1") {
                 this.items = [];
                 db.collection("users")
                   .get()
                   .then((usersQuerySnapshot) => {
                     usersQuerySnapshot.forEach((usersDoc) => {
-                      for (
-                        let i = 0;
-                        i < projectsDoc.data().projectMember.length;
-                        i++
-                      ) {
-                        if (
-                          usersDoc.id == projectsDoc.data().projectMember[i]
+                      if (projectsDoc.data().isTeacherProject == 0) {
+                        for (
+                          let i = 0;
+                          i < projectsDoc.data().projectMember.length;
+                          i++
                         ) {
-                          let data = {
-                            id: usersDoc.data().studentId,
-                            name: usersDoc.data().username,
-                            score: projectsDoc.data().projectPointSP1,
-                            grade: projectsDoc.data().projectStatusSemester1,
-                          };
-                          this.items.push(data);
+                          if (
+                            usersDoc.id == projectsDoc.data().projectMember[i]
+                          ) {
+                            let data = {
+                              id: usersDoc.data().studentId,
+                              name: usersDoc.data().username,
+                              score: projectsDoc.data().projectPointSP1,
+                              grade: projectsDoc.data().projectStatusSemester1,
+                            };
+                            this.items.push(data);
+                          }
                         }
                       }
                     });
@@ -224,21 +226,23 @@ export default {
                   .get()
                   .then((usersQuerySnapshot) => {
                     usersQuerySnapshot.forEach((usersDoc) => {
-                      for (
-                        let i = 0;
-                        i < projectsDoc.data().projectMember.length;
-                        i++
-                      ) {
-                        if (
-                          usersDoc.id == projectsDoc.data().projectMember[i]
+                      if (projectsDoc.data().isTeacherProject == 0) {
+                        for (
+                          let i = 0;
+                          i < projectsDoc.data().projectMember.length;
+                          i++
                         ) {
-                          let data = {
-                            id: usersDoc.data().studentId,
-                            name: usersDoc.data().username,
-                            score: projectsDoc.data().projectPointSP2,
-                            grade: projectsDoc.data().projectStatusSemester2,
-                          };
-                          this.items.push(data);
+                          if (
+                            usersDoc.id == projectsDoc.data().projectMember[i]
+                          ) {
+                            let data = {
+                              id: usersDoc.data().studentId,
+                              name: usersDoc.data().username,
+                              score: projectsDoc.data().projectPointSP2,
+                              grade: projectsDoc.data().projectStatusSemester2,
+                            };
+                            this.items.push(data);
+                          }
                         }
                       }
                     });
@@ -256,27 +260,30 @@ export default {
           .get()
           .then((querySnapshot) => {
             querySnapshot.forEach((projectsDoc) => {
-              if (this.academicYear == projectsDoc.data().projectAcademicYear) {
+              if (this.academicYear == projectsDoc.data().academicYear) {
                 if (this.semesterType === "Semester 1") {
                   db.collection("users")
                     .get()
                     .then((usersQuerySnapshot) => {
                       usersQuerySnapshot.forEach((usersDoc) => {
-                        for (
-                          let i = 0;
-                          i < projectsDoc.data().projectMember.length;
-                          i++
-                        ) {
-                          if (
-                            usersDoc.id == projectsDoc.data().projectMember[i]
+                        if (projectsDoc.data().isTeacherProject == 0) {
+                          for (
+                            let i = 0;
+                            i < projectsDoc.data().projectMember.length;
+                            i++
                           ) {
-                            let data = {
-                              id: usersDoc.data().studentId,
-                              name: usersDoc.data().username,
-                              score: projectsDoc.data().projectPointSP1,
-                              grade: projectsDoc.data().projectStatusSemester1,
-                            };
-                            this.exportExcelData.push(data);
+                            if (
+                              usersDoc.id == projectsDoc.data().projectMember[i]
+                            ) {
+                              let data = {
+                                id: usersDoc.data().studentId,
+                                name: usersDoc.data().username,
+                                score: projectsDoc.data().projectPointSP1,
+                                grade: projectsDoc.data()
+                                  .projectStatusSemester1,
+                              };
+                              this.exportExcelData.push(data);
+                            }
                           }
                         }
                       });
@@ -286,21 +293,24 @@ export default {
                     .get()
                     .then((usersQuerySnapshot) => {
                       usersQuerySnapshot.forEach((usersDoc) => {
-                        for (
-                          let i = 0;
-                          i < projectsDoc.data().projectMember.length;
-                          i++
-                        ) {
-                          if (
-                            usersDoc.id == projectsDoc.data().projectMember[i]
+                        if (projectsDoc.data().isTeacherProject == 0) {
+                          for (
+                            let i = 0;
+                            i < projectsDoc.data().projectMember.length;
+                            i++
                           ) {
-                            let data = {
-                              id: usersDoc.data().studentId,
-                              name: usersDoc.data().username,
-                              score: projectsDoc.data().projectPointSP2,
-                              grade: projectsDoc.data().projectStatusSemester2,
-                            };
-                            this.exportExcelData.push(data);
+                            if (
+                              usersDoc.id == projectsDoc.data().projectMember[i]
+                            ) {
+                              let data = {
+                                id: usersDoc.data().studentId,
+                                name: usersDoc.data().username,
+                                score: projectsDoc.data().projectPointSP2,
+                                grade: projectsDoc.data()
+                                  .projectStatusSemester2,
+                              };
+                              this.exportExcelData.push(data);
+                            }
                           }
                         }
                       });
