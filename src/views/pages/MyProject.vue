@@ -131,7 +131,7 @@
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label"
-                          >Project Semester 1 Status:</label
+                          >Senior Project 1 Status:</label
                         >
                         <div class="col-sm-9">
                           {{ project.projectStatusSemester1 }}
@@ -139,7 +139,7 @@
                       </div>
                       <div class="form-group row">
                         <label for="staticEmail" class="col-sm-3 col-form-label"
-                          >Project Semester 2 Status:</label
+                          >Senior Project 2 Status:</label
                         >
                         <div class="col-sm-9">
                           {{ project.projectStatusSemester2 }}

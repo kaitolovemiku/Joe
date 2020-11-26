@@ -43,7 +43,7 @@ export default {
       fields: [
         { key: "username", label: "Name", _classes: "font-weight-bold" },
         { key: "email" },
-        { key: "password" },
+        
         { key: "role" },
         { key: "status" }
       ],

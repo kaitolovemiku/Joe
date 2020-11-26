@@ -21,7 +21,7 @@
                       <input type="text" v-model="username" class="form-control" id="name" />
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="bio">Bio</label>
+                      <label for="bio">Role</label>
                       <input type="text" class="form-control" id="bio" v-model="bio" />
                     </div>
                     <div class="form-group col-md-6">
@@ -33,32 +33,10 @@
                       <label for="phone">Phone</label>
                       <input type="text" class="form-control" id="phone" v-model="handPhone" />
                     </div>
-                    <div class="form-group col-md-6">
-                      <label for="phone">Company phone</label>
-                      <input type="text" class="form-control" id="phone" v-model="companyPhone" />
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="phone">Question</label>
-                      <select class="form-control" v-model="questionTarget">
-                        <option disabled value>Choice your question for password security</option>
-                        <option v-for="option in questions" v-bind:key="option.id">{{ option.data }}</option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="answer">Answer</label>
-                      <input
-                        type="text"
-                        placeholder="dog, cat, ..."
-                        class="form-control"
-                        id="answer"
-                        v-model="answer"
-                      />
-                    </div>
+                    
+                    
                   </div>
-                  <div class="form-group">
-                    <label for="inputAddress2">Address</label>
-                    <input type="text" class="form-control" id="inputAddress2" v-model="address" />
-                  </div>
+                  
                   <div class="form-group">
                     <label for="inputAddress2">Upload photo</label>
                     <input
