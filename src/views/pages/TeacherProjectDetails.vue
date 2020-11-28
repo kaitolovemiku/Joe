@@ -604,8 +604,8 @@
           <div v-else>
             <div class="col-md-12">
               <h5>
-                <CIcon  style="color: red" height="30" />Student
-                have not yet submitted Progress1 document!
+                <CIcon style="color: red" height="30" />Student have not yet
+                submitted Progress1 document!
               </h5>
             </div>
           </div>
@@ -625,8 +625,8 @@
           <div v-else>
             <div class="col-md-12">
               <h5>
-                <CIcon  style="color: red" height="30" />Student
-                have not yet submitted Progress2 document!
+                <CIcon style="color: red" height="30" />Student have not yet
+                submitted Progress2 document!
               </h5>
             </div>
           </div>
@@ -646,8 +646,8 @@
           <div v-else>
             <div class="col-md-12">
               <h5>
-                <CIcon  style="color: red" height="30" />Student
-                have not yet submitted final presentation document!
+                <CIcon style="color: red" height="30" />Student have not yet
+                submitted final presentation document!
               </h5>
             </div>
           </div>
@@ -667,8 +667,8 @@
           <div v-else>
             <div class="col-md-12">
               <h5>
-                <CIcon  style="color: red" height="30" />Student
-                have not yet submitted final document document!
+                <CIcon style="color: red" height="30" />Student have not yet
+                submitted final document document!
               </h5>
             </div>
           </div>
@@ -1095,8 +1095,8 @@
           <div v-else>
             <div class="col-md-12">
               <h5>
-                <CIcon  style="color: red" height="30" />Student
-                have not yet submitted Progress1 document!
+                <CIcon style="color: red" height="30" />Student have not yet
+                submitted Progress1 document!
               </h5>
             </div>
           </div>
@@ -1116,8 +1116,8 @@
           <div v-else>
             <div class="col-md-12">
               <h5>
-                <CIcon  style="color: red" height="30" />Student
-                have not yet submitted Progress2 document!
+                <CIcon style="color: red" height="30" />Student have not yet
+                submitted Progress2 document!
               </h5>
             </div>
           </div>
@@ -1137,8 +1137,8 @@
           <div v-else>
             <div class="col-md-12">
               <h5>
-                <CIcon  style="color: red" height="30" />Student
-                have not yet submitted final presentation document!
+                <CIcon style="color: red" height="30" />Student have not yet
+                submitted final presentation document!
               </h5>
             </div>
           </div>
@@ -1158,8 +1158,8 @@
           <div v-else>
             <div class="col-md-12">
               <h5>
-                <CIcon  style="color: red" height="30" />Student
-                have not yet submitted final document document!
+                <CIcon style="color: red" height="30" />Student have not yet
+                submitted final document document!
               </h5>
             </div>
           </div>
@@ -1309,7 +1309,9 @@ export default {
           this.loadOnce();
         }
       } else {
-        alert("Sorry! there is something wrong in update progress system."+type);
+        alert(
+          "Sorry! there is something wrong in update progress system." + type
+        );
       }
     },
     onPickProjectStatus(type) {
@@ -1524,6 +1526,10 @@ export default {
     },
     calculateStatus(status, score) {
       if (status == "U") {
+        return status;
+      } else if (status == "I" && score < 70) {
+        return status;
+      } else if (status == "P" && score < 70) {
         return status;
       } else {
         if (score >= 70) {
