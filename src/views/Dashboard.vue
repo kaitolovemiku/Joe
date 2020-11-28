@@ -57,12 +57,12 @@
                   >{{progress2[0].advisorPoint?progress2[0].advisorPoint:'-'}}</h1>
                 </div>
                 <div class="col-md-2">
-                  <p style="font-size:12px;text-align:center;margin-left:-8px;margin-right:-8px">
+                  <p style="font-size:12px;text-align:center;">
                     <b>Final Present</b>
                   </p>
                   <h1
                     id="p3"
-                    style="font-size:40px;margin-top:-10px;text-align:center;"
+                    style="font-size:40px;margin-top:-10px;text-align:center;margin-left:-8px;margin-right:-8px"
                   >{{finalPresent[0].point?finalPresent[0].point:'-'}}</h1>
                 </div>
                 <div class="col-md-2">
@@ -74,14 +74,23 @@
                     style="font-size:40px;margin-top:-10px;text-align:center;"
                    >{{finalDocument[0].point?finalDocument[0].point:'-'}}</h1>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
+                  <p style="font-size:12px;text-align:center;">
+                    <b>Total</b>
+                  </p>
+                  <h1
+                    id="p1"
+                    style="font-size:40px;margin-top:-10px;text-align:center;"
+                  >{{projects[0].projectPointSP1?projects[0].projectPointSP1:'-'}}</h1>
+                </div>
+                <div class="col-md-2">
                   <p style="font-size:12px;text-align:center;">
                     <b>Project Status</b>
                   </p>
-                  <h3
+                  <h1
                     id="pAns"
                     style="margin-top:-10px;text-align:center;"
-                  >{{projects[0].projectStatusSemester1?projects[0].projectStatusSemester1:'-'}}</h3>
+                  >{{projects[0].projectStatusSemester1?projects[0].projectStatusSemester1:'-'}}</h1>
                 </div>
                 <div class="col-md-12">
                   <hr />
@@ -130,14 +139,23 @@
                     style="font-size:40px;margin-top:-10px;text-align:center;"
                   >{{finalDocumentS2[0].point?finalDocumentS2[0].point:'-'}}</h1>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
+                  <p style="font-size:12px;text-align:center;">
+                    <b>Total</b>
+                  </p>
+                  <h1
+                    id="p1"
+                    style="font-size:40px;margin-top:-10px;text-align:center;"
+                  >{{projects[0].projectPointSP2?projects[0].projectPointSP2:'-'}}</h1>
+                </div>
+                <div class="col-md-2">
                   <p style="font-size:12px;text-align:center;">
                     <b>Project Status</b>
                   </p>
-                  <h3
+                  <h1
                     id="pAns"
                     style="margin-top:-10px;text-align:center;"
-                  >{{projects[0].projectStatusSemester2?projects[0].projectStatusSemester2:'-'}}</h3>
+                  >{{projects[0].projectStatusSemester2?projects[0].projectStatusSemester2:'-'}}</h1>
                 </div>
               </div>
             </CCardBody>
