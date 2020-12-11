@@ -167,26 +167,74 @@
                     <label for="inputProgress1">
                       <b>Progress 1</b>
                     </label>
-                    <p id="inputProgress1">(Advisor Comment) {{progress1[0].advisorComment?progress1[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress1">(Advisor Comment)</p>
+                     <div :key="index" v-for="(item, index) in progress1[0].advisorComment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
                     <hr />
                     <label for="inputProgress2">
                       <b>Progress 2</b>
                     </label>
-                    <p id="inputProgress2">(Advisor Comment) {{progress2[0].advisorComment?progress2[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress2">(Advisor Comment)</p>
+                    <div :key="index" v-for="(item, index) in progress2[0].advisorComment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
                     <hr />
                     <label for="inputFinalPresent">
                       <b>Final Presentation</b>
                     </label>
-                    <p id="inputFinalPresent">(Advisor Comment) {{finalPresent[0].advisorComment?finalPresent[0].advisorComment:'-'}}</p>
-                    <p id="inputEmail4">(Committee1 comment) {{finalPresent[0].committee1Comment?finalPresent[0].committee1Comment:'-'}}</p>
-                    <p id="inputEmail4">(Committee2 comment) {{finalPresent[0].committee2Comment?finalPresent[0].committee2Comment:'-'}}</p>
+                    <p id="inputFinalPresent">(Advisor Comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresent[0].advisorComment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
+                    <p id="inputEmail4">(Committee1 comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresent[0].committee1Comment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
+                    <p id="inputEmail4">(Committee2 comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresent[0].committee2Comment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
                     <hr />
                     <label for="inputFinalDoc">
                       <b>Final Document</b>
                     </label>
-                    <p id="inputFinalDoc">(Advisor Comment) {{finalPresent[0].advisorComment?finalPresent[0].advisorComment:'-'}}</p>
-                    <p id="inputEmail4">(Committee1 comment) {{finalPresent[0].committee1Comment?finalPresent[0].committee1Comment:'-'}}</p>
-                    <p id="inputEmail4">(Committee2 comment) {{finalPresent[0].committee2Comment?finalPresent[0].committee2Comment:'-'}}</p>
+                    <p id="inputFinalDoc">(Advisor Comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresent[0].advisorComment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
+                    <p id="inputEmail4">(Committee1 comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresent[0].committee1Comment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
+                    <p id="inputEmail4">(Committee2 comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresent[0].committee2Comment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
                     <hr />
                   </div>
                 </CCardBody>
@@ -214,26 +262,74 @@
                     <label for="inputProgress1">
                       <b>Progress 1</b>
                     </label>
-                    <p id="inputProgress1">(Advisor Comment) {{progress1S2[0].advisorComment?progress1S2[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress1">(Advisor Comment)</p>
+                    <div :key="index" v-for="(item, index) in progress1S2[0].advisorComment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
                     <hr />
                     <label for="inputProgress2">
                       <b>Progress 2</b>
                     </label>
-                    <p id="inputProgress2">(Advisor Comment) {{progress2S2[0].advisorComment?progress2S2[0].advisorComment:'-'}}</p>
+                    <p id="inputProgress2">(Advisor Comment)</p>
+                    <div :key="index" v-for="(item, index) in progress2S2[0].advisorComment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
                     <hr />
                     <label for="inputFinalPresent">
                       <b>Final Presentation</b>
                     </label>
-                    <p id="inputFinalPresent">(Advisor Comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
-                    <p id="inputEmail4">(Committee1 comment) {{finalPresentS2[0].committee1Comment?finalPresentS2[0].committee1Comment:'-'}}</p>
-                    <p id="inputEmail4">(Committee2 comment) {{finalPresentS2[0].committee2Comment?finalPresentS2[0].committee2Comment:'-'}}</p>
+                    <p id="inputFinalPresent">(Advisor Comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresentS2[0].advisorComment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
+                    <p id="inputEmail4">(Committee1 comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresentS2[0].committee1Comment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
+                    <p id="inputEmail4">(Committee2 comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresentS2[0].committee2Comment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
                     <hr />
                     <label for="inputFinalDoc">
                       <b>Final Document</b>
                     </label>
-                    <p id="inputFinalDoc">(Advisor Comment) {{finalPresentS2[0].advisorComment?finalPresentS2[0].advisorComment:'-'}}</p>
-                    <p id="inputEmail4">(Committee1 comment) {{finalPresentS2[0].committee1Comment?finalPresentS2[0].committee1Comment:'-'}}</p>
-                    <p id="inputEmail4">(Committee2 comment) {{finalPresentS2[0].committee2Comment?finalPresentS2[0].committee2Comment:'-'}}</p>
+                    <p id="inputFinalDoc">(Advisor Comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresentS2[0].advisorComment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
+                    <p id="inputEmail4">(Committee1 comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresentS2[0].committee1Comment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
+                    <p id="inputEmail4">(Committee2 comment)</p>
+                    <div :key="index" v-for="(item, index) in finalPresentS2[0].committee2Comment" class="row mb-1">
+                      <div class="col-sm-2">-</div>
+                      <div class="col-sm-10 pt-1">
+                        <p>{{ item }}</p>
+                      </div>
+                    </div>
                     <hr />
                   </div>
                 </CCardBody>
@@ -301,17 +397,17 @@ export default {
           point: 0,
           semesterType: "",
           progressType: "",
-          comment: ""
+          comment: []
         }],
       progress1: [
         {
           id: "",
           status: "",
           semesterType: "",
-          advisorComment: "",
+          advisorComment: [],
           advisorPoint: 0,
           progressType: "",
-          comment: ""
+          comment: []
         }
       ],
       progress1S2: [
@@ -319,21 +415,21 @@ export default {
           id: "",
           status: "",
           semesterType: "",
-          advisorComment: "",
+          advisorComment: [],
           advisorPoint: 0,
           progressType: "",
-          comment: ""
+          comment: []
         }
       ],
       progress2: [
         {
           id: "",
           status: "",
-          advisorComment: "",
+          advisorComment: [],
           advisorPoint: 0,
           semesterType: "",
           progressType: "",
-          comment: ""
+          comment: []
         }
       ],
       progress2S2: [
@@ -341,25 +437,25 @@ export default {
           id: "",
           status: "",
           semesterType: "",
-          advisorComment: "",
+          advisorComment: [],
           advisorPoint: 0,
           progressType: "",
-          comment: ""
+          comment: []
         }
       ],
       finalDocument: [
         {
           id: "",
           status: "",
-          advisorComment: "",
+          advisorComment: [],
           point: 0,
           advisorPoint: 0,
-          committee1Comment: "",
+          committee1Comment: [],
           committee1Point: 0,
-          committee2Comment: "",
+          committee2Comment: [],
           committee2Point: 0,
           semesterType: "",
-          comment: ""
+          comment: []
         }
       ],
       finalDocumentS2: [
@@ -367,45 +463,45 @@ export default {
           id: "",
           status: "",
           semesterType: "",
-          advisorComment: "",
+          advisorComment: [],
           point: 0,
           advisorPoint: 0,
-          committee1Comment: "",
+          committee1Comment: [],
           committee1Point: 0,
-          committee2Comment: "",
+          committee2Comment: [],
           committee2Point: 0,
           progressType: "",
-          comment: ""
+          comment: []
         }
       ],
       finalPresent: [
         {
           id: "",
           status: "",
-          advisorComment: "",
+          advisorComment: [],
           point: 0,
           advisorPoint: 0,
-          committee1Comment: "",
+          committee1Comment: [],
           committee1Point: 0,
-          committee2Comment: "",
+          committee2Comment: [],
           committee2Point: 0,
           semesterType: "",
-          comment: ""
+          comment: []
         }
       ],
       finalPresentS2: [
         {
           id: "",
           status: "",
-          advisorComment: "",
+          advisorComment: [],
           point: 0,
           advisorPoint: 0,
-          committee1Comment: "",
+          committee1Comment: [],
           committee1Point: 0,
-          committee2Comment: "",
+          committee2Comment: [],
           committee2Point: 0,
           semesterType: "",
-          comment: ""
+          comment: []
         }
       ],
       tableFields: [

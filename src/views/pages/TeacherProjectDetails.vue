@@ -1321,10 +1321,12 @@ export default {
       this.projectSenior2Status = type;
     },
     updateProgress1(data) {
+      let all_comment = this.projectProgress.filter((item)=>{return item.progressType === "progress1"})
+      all_comment.push(data.advisorComment)
       db.collection("projectProgress")
         .doc(data.id)
         .update({
-          advisorComment: data.advisorComment,
+          advisorComment: all_comment,
           advisorPoint: data.advisorPoint,
           createdAt: new Date(),
         })
@@ -1339,10 +1341,12 @@ export default {
       return true;
     },
     updateProgress2(data) {
+      let all_comment = this.projectProgress.filter((item)=>{return item.progressType === "progress2"})
+      all_comment.push(data.advisorComment)
       db.collection("projectProgress")
         .doc(data.id)
         .update({
-          advisorComment: data.advisorComment,
+          advisorComment: all_comment,
           advisorPoint: data.advisorPoint,
           createdAt: new Date(),
         })
@@ -1357,14 +1361,20 @@ export default {
       return true;
     },
     updateFinalPre(data) {
+      let all_comment_advisor_comment = this.projectProgress.filter((item)=>{return item.progressType === "Final Presentation"})
+      all_comment_advisor_comment.push(data.advisorComment)
+      let all_comment_committee1_comment = this.projectProgress.filter((item)=>{return item.progressType === "Final Presentation"})
+      all_comment_committee1_comment.push(data.Committee1Comment)
+      let all_comment_committee2_comment = this.projectProgress.filter((item)=>{return item.progressType === "Final Presentation"})
+      all_comment_committee2_comment.push(data.Committee2Comment)
       db.collection("projectProgress")
         .doc(data.id)
         .update({
-          advisorComment: data.advisorComment,
+          advisorComment: all_comment_advisor_comment,
           advisorPoint: data.advisorPoint,
-          committee1Comment: data.Committee1Comment,
+          committee1Comment: all_comment_committee1_comment,
           committee1Point: data.Committee1Point,
-          committee2Comment: data.Committee2Comment,
+          committee2Comment: all_comment_committee2_comment,
           committee2Point: data.Committee2Point,
           createdAt: new Date(),
         })
@@ -1379,15 +1389,21 @@ export default {
       return true;
     },
     updateFinalDoc(data) {
+      let all_comment_advisor_comment = this.projectProgress.filter((item)=>{return item.progressType === "Final Documentation"})
+      all_comment_advisor_comment.push(data.advisorComment)
+      let all_comment_committee1_comment = this.projectProgress.filter((item)=>{return item.progressType === "Final Documentation"})
+      all_comment_committee1_comment.push(data.Committee1Comment)
+      let all_comment_committee2_comment = this.projectProgress.filter((item)=>{return item.progressType === "Final Documentation"})
+      all_comment_committee2_comment.push(data.Committee2Comment)
       db.collection("projectProgress")
         .doc(data.id)
         .update({
-          advisorComment: data.advisorComment,
+          advisorComment: all_comment_advisor_comment,
           advisorPoint: data.advisorPoint,
           committee1Comment: data.Committee1Comment,
-          committee1Point: data.Committee1Point,
+          committee1Point: all_comment_committee1_comment,
           committee2Comment: data.Committee2Comment,
-          committee2Point: data.Committee2Point,
+          committee2Point: all_comment_committee2_comment,
           createdAt: new Date(),
         })
         .then(() => {
@@ -1540,6 +1556,7 @@ export default {
       }
     },
     updateProject() {
+      
       db.collection("projectProgress")
         .get()
         .then((querySnapshot) => {
