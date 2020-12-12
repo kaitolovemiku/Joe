@@ -248,7 +248,7 @@
                     type="text"
                     class="form-control"
                     v-model="user.senior1.progress1.advisorComment"
-                    :placeholder="progress.data.advisorComment"
+                    :placeholder="progress.data.advisorComment[progress.data.advisorComment.length-1]"
                   />
                 </div>
 
@@ -322,7 +322,7 @@
                     type="text"
                     class="form-control"
                     v-model="user.senior1.progress2.advisorComment"
-                    :placeholder="progress.data.advisorComment"
+                    :placeholder="progress.data.advisorComment[progress.data.advisorComment.length-1]"
                   />
                 </div>
 
@@ -396,7 +396,7 @@
                     type="text"
                     class="form-control"
                     v-model="user.senior1.finalPre.advisorComment"
-                    :placeholder="progress.data.advisorComment"
+                    :placeholder="progress.data.advisorComment[progress.data.advisorComment.length-1]"
                   />
                 </div>
 
@@ -425,7 +425,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior1.finalPre.Committee1Comment"
-                      :placeholder="progress.data.committee1Comment"
+                      :placeholder="progress.data.committee1Comment[progress.data.committee1Comment.length-1]"
                     />
                   </div>
 
@@ -448,7 +448,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior1.finalPre.Committee2Comment"
-                      :placeholder="progress.data.committee2Comment"
+                      :placeholder="progress.data.committee2Comment[progress.data.committee2Comment.length-1]"
                     />
                   </div>
                 </div>
@@ -523,7 +523,7 @@
                     type="advisorComment"
                     class="form-control"
                     v-model="user.senior1.finalDoc.advisorComment"
-                    :placeholder="progress.data.advisorComment"
+                    :placeholder="progress.data.advisorComment[progress.data.advisorComment.length-1]"
                   />
                 </div>
 
@@ -552,7 +552,7 @@
                       type="Committee1Comment"
                       class="form-control"
                       v-model="user.senior1.finalDoc.Committee1Comment"
-                      :placeholder="progress.data.committee1Comment"
+                      :placeholder="progress.data.committee1Comment[progress.data.committee1Comment.length-1]"
                     />
                   </div>
 
@@ -575,7 +575,7 @@
                       type="Committee2Comment"
                       class="form-control"
                       v-model="user.senior1.finalDoc.Committee2Comment"
-                      :placeholder="progress.data.committee2Comment"
+                      :placeholder="progress.data.committee2Comment[progress.data.committee2Comment.length-1]"
                     />
                   </div>
                 </div>
@@ -739,7 +739,7 @@
                     type="text"
                     class="form-control"
                     v-model="user.senior2.progress1.advisorComment"
-                    :placeholder="progress.data.advisorComment"
+                    :placeholder="progress.data.advisorComment[progress.data.advisorComment.length-1]"
                   />
                 </div>
 
@@ -813,7 +813,7 @@
                     type="text"
                     class="form-control"
                     v-model="user.senior2.progress2.advisorComment"
-                    :placeholder="progress.data.advisorComment"
+                    :placeholder="progress.data.advisorComment[progress.data.advisorComment.length-1]"
                   />
                 </div>
 
@@ -887,7 +887,7 @@
                     type="text"
                     class="form-control"
                     v-model="user.senior2.finalPre.advisorComment"
-                    :placeholder="progress.data.advisorComment"
+                    :placeholder="progress.data.advisorComment[progress.data.advisorComment.length-1]"
                   />
                 </div>
 
@@ -916,7 +916,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior2.finalPre.Committee1Comment"
-                      :placeholder="progress.data.committee1Comment"
+                      :placeholder="progress.data.committee1Comment[progress.data.committee1Comment.length-1]"
                     />
                   </div>
 
@@ -939,7 +939,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior2.finalPre.Committee2Comment"
-                      :placeholder="progress.data.committee2Comment"
+                      :placeholder="progress.data.committee2Comment[progress.data.committee2Comment.length-1]"
                     />
                   </div>
                 </div>
@@ -1014,7 +1014,7 @@
                     type="text"
                     class="form-control"
                     v-model="user.senior2.finalDoc.advisorComment"
-                    :placeholder="progress.data.advisorComment"
+                    :placeholder="progress.data.advisorComment[progress.data.advisorComment.length-1]"
                   />
                 </div>
 
@@ -1043,7 +1043,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior2.finalDoc.Committee1Comment"
-                      :placeholder="progress.data.committee1Comment"
+                      :placeholder="progress.data.committee1Comment[progress.data.committee1Comment.length-1]"
                     />
                   </div>
 
@@ -1066,7 +1066,7 @@
                       type="text"
                       class="form-control"
                       v-model="user.senior2.finalDoc.Committee2Comment"
-                      :placeholder="progress.data.committee2Comment"
+                      :placeholder="progress.data.committee2Comment[progress.data.committee2Comment.length-1]"
                     />
                   </div>
                 </div>
