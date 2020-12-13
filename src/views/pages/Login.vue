@@ -303,7 +303,11 @@ export default {
               data: {
                 displayName: result.additionalUserInfo.profile.name,
                 email: result.additionalUserInfo.profile.email,
-                role: "guest",
+                role: parseInt(
+                  result.additionalUserInfo.profile.email.substring(0, 2)
+                ) <= 60
+                  ? "senior"
+                  : "guest",
                 photo: result.additionalUserInfo.profile.picture,
               },
             };
