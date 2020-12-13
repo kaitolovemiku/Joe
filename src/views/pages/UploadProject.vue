@@ -4,7 +4,7 @@
       <CCardBody>
           <CRow>
             <CCol sm="12" style="text-align:center;">
-              <h1>Congratulations!</h1>
+              <h1>Done!</h1>
               <h2>You have already submitted the project.</h2>
             </CCol>
           </CRow>
@@ -576,7 +576,7 @@ export default {
           }
         );
       } else {
-        alert("Please input this form what has '*' sign.")
+        alert("Please fill the information in '*' boxes.")
         this.checkValidation(['project_name_eng','project_name_th','project_member','project_background','project_description','project_advisor','project_co_advisor','project_committee','project_type','project_duration_start','project_duration_end','project_academy_year','project_file'])
       }
     },
