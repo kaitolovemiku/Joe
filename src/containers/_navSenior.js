@@ -33,6 +33,12 @@ export default [
           name: 'My Project',
           to: '/menu/myProject/',
           icon: 'cil-puzzle'
+        },
+        {
+          _name: 'CSidebarNavItem',
+          name: 'About Us',
+          to: '/menu/aboutUs',
+          icon: 'cil-file'
         }
       ]
     }

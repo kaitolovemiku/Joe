@@ -112,6 +112,7 @@ export default {
       semesterType: "Semester 1",
       semesterList: ["Semester 1", "Semester 2"],
       searchObject: [],
+      projectProgressData: [],
       exportExcelData: [],
       options: [],
       fields: [
@@ -130,6 +131,53 @@ export default {
         querySnapshot.forEach((projectsDoc) => {
           if (this.academicYear == projectsDoc.data().academicYear) {
             if (this.semesterType === "Semester 1") {
+              db.collection("projectProgress")
+                .get()
+                .then((projectProgressQuerySnapshot) => {
+                  projectProgressQuerySnapshot.forEach((ppqs) => {
+                    if (ppqs.data().projectId == projectsDoc.id) {
+                      if (this.projectProgressData.length == 0) {
+                        this.projectProgressData.push({
+                          id: projectsDoc.id,
+                          progress1: this.checkProgressTypeIsProgress1(
+                            ppqs.data()
+                          ),
+                          progress2: this.checkProgressTypeIsProgress2(
+                            ppqs.data()
+                          ),
+                          finalPre: this.checkProgressTypeIsFinalPre(
+                            ppqs.data()
+                          ),
+                          finalDoc: this.checkProgressTypeIsFinalDoc(
+                            ppqs.data()
+                          ),
+                        });
+                      } else {
+                        if (ppqs.data().progressType == "progress1") {
+                          this.projectProgressData[0].progress1 = this.checkProgressTypeIsProgress1(
+                            ppqs.data()
+                          );
+                        } else if (ppqs.data().progressType == "progress2") {
+                          this.projectProgressData[0].progress2 = this.checkProgressTypeIsProgress2(
+                            ppqs.data()
+                          );
+                        } else if (
+                          ppqs.data().progressType == "Final Presentation"
+                        ) {
+                          this.projectProgressData[0].finalPresentation = this.checkProgressTypeIsFinalPre(
+                            ppqs.data()
+                          );
+                        } else if (
+                          ppqs.data().progressType == "Final Documentation"
+                        ) {
+                          this.projectProgressData[0].finalDocument = this.checkProgressTypeIsFinalDoc(
+                            ppqs.data()
+                          );
+                        }
+                      }
+                    }
+                  });
+                });
               db.collection("users")
                 .get()
                 .then((usersQuerySnapshot) => {
@@ -254,6 +302,50 @@ export default {
           });
         });
     },
+    checkProgressTypeIsProgress1(data) {
+      if (data.progressType == "progress1") {
+        if (data == 0 || data == undefined || data == null) {
+          return 0;
+        } else {
+          return parseInt(data.advisorPoint);
+        }
+      }
+    },
+    checkProgressTypeIsProgress2(data) {
+      if (data.progressType == "progress2") {
+        if (data == 0 || data == undefined || data == null) {
+          return 0;
+        } else {
+          return parseInt(data.advisorPoint);
+        }
+      }
+    },
+    checkProgressTypeIsFinalPre(data) {
+      if (data.progressType == "Final Presentation") {
+        if (data == 0 || data == undefined || data == null) {
+          return 0;
+        } else {
+          return (
+            parseInt(data.advisorPoint) +
+            parseInt(data.committee1Point) +
+            parseInt(data.committee2Point)
+          );
+        }
+      }
+    },
+    checkProgressTypeIsFinalDoc(data) {
+      if (data.progressType == "Final Documentation") {
+        if (data == 0 || data == undefined || data == null) {
+          return 0;
+        } else {
+          return (
+            parseInt(data.advisorPoint) +
+            parseInt(data.committee1Point) +
+            parseInt(data.committee2Point)
+          );
+        }
+      }
+    },
     downloadStudentScore() {
       if (testEmpty(this.semesterType) || testEmpty(this.academicYear)) {
         db.collection("projects")
@@ -278,7 +370,19 @@ export default {
                               let data = {
                                 id: usersDoc.data().studentId,
                                 name: usersDoc.data().username,
-                                score: projectsDoc.data().projectPointSP1,
+                                progress1: this.projectProgressData.map(
+                                  (item) => item.progress1
+                                ),
+                                progress2: this.projectProgressData.map(
+                                  (item) => item.progress2
+                                ),
+                                finalPresentation: this.projectProgressData.map(
+                                  (item) => item.finalPresentation
+                                ),
+                                finalDocument: this.projectProgressData.map(
+                                  (item) => item.finalDocument
+                                ),
+                                total: projectsDoc.data().projectPointSP2,
                                 grade: projectsDoc.data()
                                   .projectStatusSemester1,
                               };
@@ -305,9 +409,21 @@ export default {
                               let data = {
                                 id: usersDoc.data().studentId,
                                 name: usersDoc.data().username,
-                                score: projectsDoc.data().projectPointSP2,
+                                progress1: this.projectProgressData.map(
+                                  (item) => item.progress1
+                                ),
+                                progress2: this.projectProgressData.map(
+                                  (item) => item.progress2
+                                ),
+                                finalPresentation: this.projectProgressData.map(
+                                  (item) => item.finalPresentation
+                                ),
+                                finalDocument: this.projectProgressData.map(
+                                  (item) => item.finalDocument
+                                ),
+                                total: projectsDoc.data().projectPointSP2,
                                 grade: projectsDoc.data()
-                                  .projectStatusSemester2,
+                                  .projectStatusSemester1,
                               };
                               this.exportExcelData.push(data);
                             }

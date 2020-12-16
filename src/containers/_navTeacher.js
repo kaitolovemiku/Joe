@@ -33,6 +33,12 @@ export default [
           name: 'Project Store (Advisor)',
           to: '/menu/projectCheckingSystem/',
           icon: 'cil-chart-pie'
+        },
+        {
+          _name: 'CSidebarNavItem',
+          name: 'About Us',
+          to: '/menu/aboutUs',
+          icon: 'cil-file'
         }
       ]
     }

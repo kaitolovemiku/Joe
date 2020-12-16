@@ -27,6 +27,12 @@ export default [
           name: 'Senior Score',
           to: '/seniorScore',
           icon: 'cil-pencil'
+        },
+        {
+          _name: 'CSidebarNavItem',
+          name: 'About Us',
+          to: '/menu/aboutUs',
+          icon: 'cil-file'
         }
       ]
     }

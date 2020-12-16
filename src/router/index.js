@@ -59,6 +59,7 @@ const Profile = () => import('@/views/pages/Profile')
 const ForgotPassword = () => import('@/views/pages/ForgotPassword')
 const AddNewUser = () => import('@/views/pages/AddNewUser')
 const SeniorScore = () => import('@/views/pages/SeniorScore')
+const AboutUs = () => import('@/views/pages/AboutUs')
 
 // Users
 const Users = () => import('@/views/users/Users')
@@ -130,6 +131,11 @@ function configRoutes () {
               path: 'uploadProject',
               name: 'Upload Project',
               component: UploadProject
+            },
+            {
+              path: 'aboutUs',
+              name: 'About Us',
+              component: AboutUs
             },
             {
               path: 'projectCheckingSystem',
