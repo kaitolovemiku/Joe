@@ -93,7 +93,8 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import XLSX from "xlsx";
-
+import projectData from './projectData';
+require("babel-polyfill");
 const testEmpty = (data) => {
   if (data === undefined || data === null || data === "") {
     return false;
@@ -145,8 +146,7 @@ export default {
         .then((querySnapshot) => {
           querySnapshot.forEach((projectsDoc) => {
             if (this.academicYear == projectsDoc.data().academicYear) {
-              if (this.semesterType === "Semester 1") {
-                  db.collection('projectProgress').where('seniorType','==','senior1').get().then((querySnapshotPP)=>{
+                  db.collection('projectProgress').get().then((querySnapshotPP)=>{
                     querySnapshotPP.forEach((ppqs)=>{
                     if (this.projectProgressData.length === 0 || !this.projectProgressData.map(item=>item.id).includes(projectsDoc.id)) {
                       if (ppqs.data().progressType == 'progress1') {
@@ -155,6 +155,7 @@ export default {
                         progress1: parseInt(ppqs.data().advisorPoint),
                         progress2: 0,
                         finalPresentation: 0,
+                        seniorType: ppqs.data().seniorType,
                         finalDocument: 0,
                       });
                       } else if (ppqs.data().progressType == 'progress2') {
@@ -163,6 +164,7 @@ export default {
                         progress1: 0,
                         progress2: parseInt(ppqs.data().advisorPoint),
                         finalPresentation: 0,
+                        seniorType: ppqs.data().seniorType,
                         finalDocument: 0,
                       });
                       } else if (ppqs.data().progressType == 'Final Presentation') {
@@ -171,6 +173,7 @@ export default {
                         progress1: 0,
                         progress2: 0,
                         finalPresentation: parseInt(ppqs.advisorPoint) + parseInt(ppqs.committee1Point) + parseInt(ppqs.committee2Point),
+                        seniorType: ppqs.data().seniorType,
                         finalDocument: 0,
                       });
                       } else if (ppqs.data().progressType == 'Final Documentation') {
@@ -178,6 +181,7 @@ export default {
                         id: projectsDoc.id,
                         progress1: 0,
                         progress2: 0,
+                        seniorType: ppqs.data().seniorType,
                         finalPresentation: 0,
                         finalDocument: parseInt(ppqs.advisorPoint) + parseInt(ppqs.committee1Point) + parseInt(ppqs.committee2Point),
                       });
@@ -215,73 +219,6 @@ export default {
                     }
                   });
                   }); 
-                } else if (this.semesterType === "Semester 2") {
-                  db.collection('projectProgress').where('seniorType','==','senior2').get().then((querySnapshotPP)=>{
-                    querySnapshotPP.forEach((ppqs)=>{
-                    if (this.projectProgressData.length == 0) {
-                      if (ppqs.data().progressType == 'progress1') {
-                        this.projectProgressData.push({
-                        id: projectsDoc.id,
-                        progress1: parseInt(ppqs.data().advisorPoint),
-                        progress2: 0,
-                        finalPresentation: 0,
-                        finalDocument: 0,
-                      });
-                      } else if (ppqs.data().progressType == 'progress2') {
-                        this.projectProgressData.push({
-                        id: projectsDoc.id,
-                        progress1: 0,
-                        progress2: parseInt(ppqs.data().advisorPoint),
-                        finalPresentation: 0,
-                        finalDocument: 0,
-                      });
-                      } else if (ppqs.data().progressType == 'Final Presentation') {
-                        this.projectProgressData.push({
-                        id: projectsDoc.id,
-                        progress1: 0,
-                        progress2: 0,
-                        finalPresentation: parseInt(ppqs.advisorPoint) + parseInt(ppqs.committee1Point) + parseInt(ppqs.committee2Point),
-                        finalDocument: 0,
-                      });
-                      } else if (ppqs.data().progressType == 'Final Documentation') {
-                      this.projectProgressData.push({
-                        id: projectsDoc.id,
-                        progress1: 0,
-                        progress2: 0,
-                        finalPresentation: 0,
-                        finalDocument: parseInt(ppqs.advisorPoint) + parseInt(ppqs.committee1Point) + parseInt(ppqs.committee2Point),
-                      });
-                      }
-                    } else if (this.projectProgressData.length != 0) {
-                      if (ppqs.data().progressType == 'progress1') {
-                        this.projectProgressData.map((item,index)=>{ 
-                          if (item.id == ppqs.data().projectId) {
-                            this.projectProgressData[index].progress1 = parseInt(ppqs.data().advisorPoint);
-                          }
-                        });
-                      } else if (ppqs.data().progressType == 'progress2') {
-                        this.projectProgressData.map((item,index)=>{ 
-                          if (item.id == ppqs.data().projectId) {
-                            this.projectProgressData[index].progress2 = parseInt(ppqs.data().advisorPoint);
-                          }
-                        });
-                      } else if (ppqs.data().progressType == 'Final Presentation') {
-                        this.projectProgressData.map((item,index)=>{ 
-                          if (item.id == ppqs.data().projectId) {
-                            this.projectProgressData[index].finalPresentation = parseInt(ppqs.data().advisorPoint) + parseInt(ppqs.data().committee1Point) + parseInt(ppqs.data().committee2Point);
-                          }
-                        });
-                      } else if (ppqs.data().progressType == 'Final Documentation') {
-                        this.projectProgressData.map((item,index)=>{ 
-                          if (item.id == ppqs.data().projectId) {
-                            this.projectProgressData[index].finalDocument = parseInt(ppqs.data().advisorPoint) + parseInt(ppqs.data().committee1Point) + parseInt(ppqs.data().committee2Point);
-                          }
-                        });
-                      }
-                    }
-                  });
-                  }); 
-                }
               }
             })
         })
@@ -293,7 +230,7 @@ export default {
       db.collection("projects")
         .get()
         .then((querySnapshot) => {
-          querySnapshot.forEach((projectsDoc) => {
+          querySnapshot.forEach(async(projectsDoc) => {
             if (this.academicYear == projectsDoc.data().academicYear) {
               if (this.semesterType === "Semester 1") {
                 db.collection("users")
@@ -315,10 +252,10 @@ export default {
                             let data = {
                               id: usersDoc.data().studentId,
                               name: usersDoc.data().username,
-                              progress1: test.filter(item=>item.id == projectsDoc.id).map(item=>item.progress1),
-                              progress2: test.filter(item=>item.id == projectsDoc.id).map(item=>item.progress2),
-                              finalPresentation: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalPresentation),
-                              finalDocument: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalDocument),
+                              progress1: test.filter(item=>item.id == projectsDoc.id ).map(item=>item.progress1),
+                              progress2: test.filter(item=>item.id == projectsDoc.id ).map(item=>item.progress2),
+                              finalPresentation: test.filter(item=>item.id == projectsDoc.id ).map(item=>item.finalPresentation),
+                              finalDocument: test.filter(item=>item.id == projectsDoc.id ).map(item=>item.finalDocument),
                               score: projectsDoc.data().projectPointSP1,
                               grade: projectsDoc.data().projectStatusSemester1,
                             };
@@ -329,7 +266,6 @@ export default {
                     });
                   });
               } else if (this.semesterType === "Semester 2") {
-                this.loadingProjectProgress()
                 db.collection("users")
                   .get()
                   .then((usersQuerySnapshot) => {
@@ -345,7 +281,7 @@ export default {
                           ) {
                             let test = [];
                             test = this.$root.log(this.projectProgressData)
-                            console.log('this is what inside test=>', test.filter(item=>item.id == projectsDoc.id))
+                            console.log('this is what inside test=>', test, this.projectProgressData)
                             let data = {
                               id: usersDoc.data().studentId,
                               name: usersDoc.data().username,
@@ -356,6 +292,7 @@ export default {
                               score: projectsDoc.data().projectPointSP1,
                               grade: projectsDoc.data().projectStatusSemester1,
                             };
+                            console.log('tttttttttttttttt',data)
                             this.items.push(data);
                           }
                         }
