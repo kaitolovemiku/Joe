@@ -20,10 +20,10 @@
               </CCol>
               <CCol md="12">
                 <p>
-                  To make student in Mae Fah Luang university can submit a
+                  To make student in Mae Fah Luang University can submit a
                   senior project easily. Teacher also accept to check senior
                   project and give some points. Also the junior student accept
-                  to view senior project to improve his/her project.
+                  to view senior project to improve them project.
                 </p>
               </CCol>
             </CRow>
