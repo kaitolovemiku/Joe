@@ -9,7 +9,7 @@
       >
     </div>
     <div class="ml-auto">
-      <CButton color="primary" v-on:click="goToAboutUsPage()" >Senior Store</CButton>
+      <CButton color="" v-on:click="goToAboutUsPage()" >Senior Store</CButton>
     </div>
   </CFooter>
 </template>
