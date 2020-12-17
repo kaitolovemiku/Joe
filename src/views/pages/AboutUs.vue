@@ -95,7 +95,7 @@
                     <CCol md="12">
                       <p>นาย วริทธิ์ธร พิริยะปัญญาวงศ์</p>
                       <p>Mr. Waritthorn Piriyapunyawong</p>
-                      <p>6031305032@lamduan.mfu.ac.th</p>
+                      <p>nbasport123@gmail.com</p>
                       <p>0943212220</p>
                     </CCol>
                   </CRow>

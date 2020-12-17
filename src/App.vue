@@ -16,7 +16,7 @@ export default {
           }
         }
       }
-      console.log(...arguments);
+      return arguments[0];
     };
   },
 };

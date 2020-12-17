@@ -1,7 +1,7 @@
 <template>
   <CContainer class="d-flex content-center min-vh-100">
     <CRow>
-      <CCol>
+      <CCol md="12">
         <CCardGroup>
           <CCard class="p-4">
             <CCardBody>
@@ -22,8 +22,8 @@
                       <CCol style="height: 10px"> </CCol>
                       <CCol col="12">
                         <CCol>
-                    <hr />
-                  </CCol>
+                          <hr />
+                        </CCol>
                         <CButton
                           class="px-4 btn btn-block"
                           @click="googleLogin('advisor')"
@@ -31,7 +31,6 @@
                           >Login as Advisor</CButton
                         >
                       </CCol>
-                      
                     </CRow>
                   </CCol>
                   <CCol v-if="!checkLamduanMail" col="12">
@@ -132,10 +131,15 @@
 
 <script>
 import firebase from "firebase";
+import TheFooter from "../../containers/TheFooter.vue";
 
 const db = firebase.firestore();
 require("babel-polyfill");
+
 export default {
+  components: {
+    TheFooter,
+  },
   data() {
     return {
       lamduanPassError: null,
@@ -303,11 +307,12 @@ export default {
               data: {
                 displayName: result.additionalUserInfo.profile.name,
                 email: result.additionalUserInfo.profile.email,
-                role: parseInt(
-                  result.additionalUserInfo.profile.email.substring(0, 2)
-                ) <= 60
-                  ? "senior"
-                  : "guest",
+                role:
+                  parseInt(
+                    result.additionalUserInfo.profile.email.substring(0, 2)
+                  ) <= 60
+                    ? "senior"
+                    : "guest",
                 photo: result.additionalUserInfo.profile.picture,
               },
             };
@@ -315,9 +320,7 @@ export default {
             this.$session.set("user", state);
             this.$router.replace({ name: "Dashboard" });
           } else {
-            alert(
-              "This system is support only major of softwere engineering."
-            );
+            alert("This system is support only major of softwere engineering.");
           }
         } else {
           window.alert("Please login with MFU account!");
@@ -342,9 +345,7 @@ export default {
             this.$session.set("user", state2);
             window.location.replace("http://localhost:8080/");
           } else {
-            alert(
-              "This system is support only major of softwere engineering."
-            );
+            alert("This system is support only major of softwere engineering.");
           }
         } else {
           window.alert("You do not have permission to access this site.");
@@ -376,10 +377,7 @@ export default {
         );
       });
       if (this.form.email !== "" && this.form.password !== "") {
-        if (
-          target !== undefined &&
-          target.data.status !== "block" 
-        ) {
+        if (target !== undefined && target.data.status !== "block") {
           const state = {
             loggedIn: true,
             id: target.id,
