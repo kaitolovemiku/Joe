@@ -234,7 +234,7 @@ export default {
           };
           this.$session.start();
           this.$session.set("user", state);
-          this.$router.replace({ name: "Dashboard" });
+          router.push({ name: "Dashboard" });
         } else {
           window.alert("Please login with MFU account!");
         }
@@ -253,7 +253,7 @@ export default {
             },
           };
           this.$session.set("user", state2);
-          window.location.replace("http://localhost:8080/");
+          window.location.replace("https://senior-store-bba07.web.app");
         } else {
           alert("You do not have permission to access this site.");
         }
@@ -318,7 +318,7 @@ export default {
             };
             this.$session.start();
             this.$session.set("user", state);
-            this.$router.replace({ name: "Dashboard" });
+            router.push({ name: "Dashboard" });
           } else {
             alert("This system is support only major of softwere engineering.");
           }
@@ -343,7 +343,7 @@ export default {
               },
             };
             this.$session.set("user", state2);
-            window.location.replace("http://localhost:8080/");
+            window.location.replace("https://senior-store-bba07.web.app");
           } else {
             alert("This system is support only major of softwere engineering.");
           }
@@ -364,10 +364,10 @@ export default {
       }
     },
     register() {
-      this.$router.replace({ name: "Register" });
+      router.push({ name: "Register" });
     },
     forgotPassword() {
-      this.$router.replace({ name: "ForgotPassword" });
+      router.push({ name: "ForgotPassword" });
     },
     submit() {
       const target = this.users.find((data) => {
@@ -390,7 +390,7 @@ export default {
           };
           this.$session.start();
           this.$session.set("user", state);
-          this.$router.replace({ name: "Dashboard" });
+          router.push({ name: "Dashboard" });
         } else if (target !== undefined && target.status == "block") {
           window.alert("Ooh no! Your account have been blocked by admin!");
         } else if (target === undefined) {
