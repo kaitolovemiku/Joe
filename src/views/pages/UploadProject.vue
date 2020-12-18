@@ -201,20 +201,19 @@
           </div>
           <div class="row">
             <div class="col-md-3">
-              <p for="validationServer03">Proeject File <b style="color:red">*</b></p>
+              <p for="validationServer03">Proeject File</p>
             </div>
             <div class="col-md-9 mb-3">
               <!-- put css  ' is-invalid ' to be red color , put css ' is-valid ' to be green color -->
-              <CInputFile
-                label="File custom input"
-                :description="validation.project_file?'Please upload your project document.':''"
-                :placeholder="this.project_file?this.project_file.name:'Upload your project document here ...'"
+              <input
+                type="file"
+                class="form-control"
                 @change="previewFile"
+                id="projectFile"
+                placeholder="City"
                 required
-                :was-validated="validation.project_file"
-                custom
               />
-              <div class="invalid-feedback">Please provide a valid city.</div>
+              <div class="invalid-feedback">Please provide a senior project document.</div>
             </div>
           </div>
           <div class="row">

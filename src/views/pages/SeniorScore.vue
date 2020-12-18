@@ -93,7 +93,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import XLSX from "xlsx";
-import projectData from './projectData';
+
 require("babel-polyfill");
 const testEmpty = (data) => {
   if (data === undefined || data === null || data === "") {
@@ -148,7 +148,7 @@ export default {
             if (this.academicYear == projectsDoc.data().academicYear) {
                   db.collection('projectProgress').get().then((querySnapshotPP)=>{
                     querySnapshotPP.forEach((ppqs)=>{
-                    if (this.projectProgressData.length === 0 || !this.projectProgressData.map(item=>item.id).includes(projectsDoc.id)) {
+                    if (this.projectProgressData.length === 0 || !this.projectProgressData.map(item=>item.id).includes(projectsDoc.id) || this.projectProgressData.map(item=>{return item.id == projectsDoc.id && item.seniorType != ppqs.data().seniorType})) {
                       if (ppqs.data().progressType == 'progress1') {
                         this.projectProgressData.push({
                         id: projectsDoc.id,
@@ -172,7 +172,7 @@ export default {
                         id: projectsDoc.id,
                         progress1: 0,
                         progress2: 0,
-                        finalPresentation: parseInt(ppqs.advisorPoint) + parseInt(ppqs.committee1Point) + parseInt(ppqs.committee2Point),
+                        finalPresentation: parseInt(ppqs.data().advisorPoint) + parseInt(ppqs.data().committee1Point) + parseInt(ppqs.data().committee2Point),
                         seniorType: ppqs.data().seniorType,
                         finalDocument: 0,
                       });
@@ -183,7 +183,7 @@ export default {
                         progress2: 0,
                         seniorType: ppqs.data().seniorType,
                         finalPresentation: 0,
-                        finalDocument: parseInt(ppqs.advisorPoint) + parseInt(ppqs.committee1Point) + parseInt(ppqs.committee2Point),
+                        finalDocument: parseInt(ppqs.data().advisorPoint) + parseInt(ppqs.data().committee1Point) + parseInt(ppqs.data().committee2Point),
                       });
                       }
                     } else if (this.projectProgressData.length != 0) {
@@ -252,10 +252,10 @@ export default {
                             let data = {
                               id: usersDoc.data().studentId,
                               name: usersDoc.data().username,
-                              progress1: test.filter(item=>item.id == projectsDoc.id ).map(item=>item.progress1),
-                              progress2: test.filter(item=>item.id == projectsDoc.id ).map(item=>item.progress2),
-                              finalPresentation: test.filter(item=>item.id == projectsDoc.id ).map(item=>item.finalPresentation),
-                              finalDocument: test.filter(item=>item.id == projectsDoc.id ).map(item=>item.finalDocument),
+                              progress1: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior1' }).map(item=>item.progress1),
+                              progress2: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior1' }).map(item=>item.progress2),
+                              finalPresentation: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior1' }).map(item=>item.finalPresentation),
+                              finalDocument: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior1' }).map(item=>item.finalDocument),
                               score: projectsDoc.data().projectPointSP1,
                               grade: projectsDoc.data().projectStatusSemester1,
                             };
@@ -285,12 +285,12 @@ export default {
                             let data = {
                               id: usersDoc.data().studentId,
                               name: usersDoc.data().username,
-                              progress1: test.filter(item=>item.id == projectsDoc.id).map(item=>item.progress1),
-                              progress2: test.filter(item=>item.id == projectsDoc.id).map(item=>item.progress2),
-                              finalPresentation: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalPresentation),
-                              finalDocument: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalDocument),
-                              score: projectsDoc.data().projectPointSP1,
-                              grade: projectsDoc.data().projectStatusSemester1,
+                              progress1: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior2' }).map(item=>item.progress1),
+                              progress2: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior2' }).map(item=>item.progress2),
+                              finalPresentation: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior2' }).map(item=>item.finalPresentation),
+                              finalDocument: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior2' }).map(item=>item.finalDocument),
+                              score: projectsDoc.data().projectPointSP2,
+                              grade: projectsDoc.data().projectStatusSemester2,
                             };
                             console.log('tttttttttttttttt',data)
                             this.items.push(data);
@@ -370,8 +370,8 @@ export default {
                               progress2: test.filter(item=>item.id == projectsDoc.id).map(item=>item.progress2),
                               finalPresentation: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalPresentation),
                               finalDocument: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalDocument),
-                              score: projectsDoc.data().projectPointSP1,
-                              grade: projectsDoc.data().projectStatusSemester1,
+                              score: projectsDoc.data().projectPointSP2,
+                              grade: projectsDoc.data().projectStatusSemester2,
                             };
                             this.items.push(data);
                           }
@@ -472,10 +472,10 @@ export default {
                             let data = {
                               id: usersDoc.data().studentId,
                               name: usersDoc.data().username,
-                              progress1: test.filter(item=>item.id == projectsDoc.id).map(item=>item.progress1)[0],
-                              progress2: test.filter(item=>item.id == projectsDoc.id).map(item=>item.progress2)[0],
-                              finalPresentation: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalPresentation)[0],
-                              finalDocument: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalDocument)[0],
+                              progress1: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior1' }).map(item=>item.progress1)[0],
+                              progress2: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior1' }).map(item=>item.progress2)[0],
+                              finalPresentation: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior1' }).map(item=>item.finalPresentation)[0],
+                              finalDocument: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior1' }).map(item=>item.finalDocument)[0],
                               score: projectsDoc.data().projectPointSP1,
                               grade: projectsDoc.data().projectStatusSemester1,
                             };
@@ -503,10 +503,10 @@ export default {
                             let data = {
                               id: usersDoc.data().studentId,
                               name: usersDoc.data().username,
-                              progress1: test.filter(item=>item.id == projectsDoc.id).map(item=>item.progress1)[0],
-                              progress2: test.filter(item=>item.id == projectsDoc.id).map(item=>item.progress2)[0],
-                              finalPresentation: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalPresentation)[0],
-                              finalDocument: test.filter(item=>item.id == projectsDoc.id).map(item=>item.finalDocument)[0],
+                              progress1: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior2' }).map(item=>item.progress1)[0],
+                              progress2: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior2' }).map(item=>item.progress2)[0],
+                              finalPresentation: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior2' }).map(item=>item.finalPresentation)[0],
+                              finalDocument: test.filter((item)=>{return item.id == projectsDoc.id && item.seniorType == 'senior2' }).map(item=>item.finalDocument)[0],
                               score: projectsDoc.data().projectPointSP1,
                               grade: projectsDoc.data().projectStatusSemester1,
                             };
