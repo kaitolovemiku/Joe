@@ -146,6 +146,7 @@ export default {
       users: [],
       myModal: false,
       checkLamduanMail: true,
+      whatIsThisYear: 0,
       lamduanMail: "",
       lamduanPass: "",
       form: {
@@ -161,6 +162,13 @@ export default {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           this.users.push({ id: doc.id, data: doc.data() });
+        });
+      });
+    db.collection("thisYearIs")
+    .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          this.whatIsThisYear = doc.data().id;
         });
       });
   },
@@ -271,6 +279,11 @@ export default {
 
       console.log("tartget->", target);
       if (target === undefined) {
+        let today = new Date();
+        let saveTodataBaseNumber = today.getFullYear() - 1960;
+        if (today.getDate() + today.getMonth() == "1") {
+          db.collection("thisYearIs").doc('yN5SN34SJdrXd3PDyFLt').set({id: saveTodataBaseNumber})
+        }
         if (result.additionalUserInfo.profile.hd == "lamduan.mfu.ac.th") {
           if (
             result.additionalUserInfo.profile.email.substring(3, 7) == "1305"
@@ -285,7 +298,7 @@ export default {
               role:
                 parseInt(
                   result.additionalUserInfo.profile.email.substring(0, 2)
-                ) <= 60
+                ) <= saveTodataBaseNumber
                   ? "senior"
                   : "guest",
               questionAns: "",
@@ -310,7 +323,7 @@ export default {
                 role:
                   parseInt(
                     result.additionalUserInfo.profile.email.substring(0, 2)
-                  ) <= 60
+                  ) <= saveTodataBaseNumber
                     ? "senior"
                     : "guest",
                 photo: result.additionalUserInfo.profile.picture,
